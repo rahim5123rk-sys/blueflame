@@ -16,9 +16,9 @@ export default function Layout({ children, setCurrentPage }: LayoutProps) {
   // NEW: Using the actual logo image from the /public folder
   const Logo = () => (
     <img 
-      src="/logo.JPG" 
+      src="/logo.jpg" 
       alt="Blue Flame Gas Services Logo" 
-      className="h-30" // Adjust height as needed
+      className="h-16" // Adjust height as needed
       onError={(e) => { e.currentTarget.src = 'https://placehold.co/160x40/005C9E/FFFFFF?text=Blue+Flame'; e.currentTarget.onerror = null; }}
     />
   );

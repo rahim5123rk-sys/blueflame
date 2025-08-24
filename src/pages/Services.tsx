@@ -3,16 +3,15 @@ import React, { useState } from 'react';
 // Service component with a "request a callback" system
 export default function Services() {
   const [selectedService, setSelectedService] = useState('');
-  // NEW: State for customer details, including contact preference
   const [customerDetails, setCustomerDetails] = useState({
     name: '',
     email: '',
     phone: '',
-    preference: 'Email', // Default contact preference
+    preference: 'Email',
   });
-  const [status, setStatus] = useState('idle'); // 'idle', 'sending', 'success', 'error'
+  const [status, setStatus] = useState('idle');
 
-  // NEW: Expanded list of services
+  // NEW: Added Radiator System Powerflush
   const services = [
     { name: 'Annual Boiler Service', price: '£60', description: 'A comprehensive annual check-up to ensure your boiler is safe, efficient, and reliable.' },
     { name: 'Landlord Gas Safety Certificate (CP12)', price: '£75', description: 'A full inspection and certification of all gas appliances, legally required for rental properties.' },
@@ -20,6 +19,7 @@ export default function Services() {
     { name: 'New Boiler Installation', price: 'Free Quote', description: 'Expert installation of modern, high-efficiency boilers tailored to your home\'s needs.' },
     { name: 'Gas Fire Servicing', price: '£70', description: 'Keep your gas fire looking great and working safely with our thorough servicing.' },
     { name: 'Gas Cooker & Hob Installation', price: 'From £80', description: 'Safe and professional installation of new gas cookers, ovens, and hobs.' },
+    { name: 'Radiator System Powerflush', price: 'From £200', description: 'A deep clean of your central heating system to remove sludge, improve efficiency, and reduce bills.' },
   ];
 
   const handleDetailChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -64,7 +64,7 @@ export default function Services() {
           <div className="text-center p-4 bg-green-100 text-green-800 rounded-lg">
             <h3 className="text-xl font-bold">Thank You, {customerDetails.name}!</h3>
             <p>Your request has been sent. We will contact you via {customerDetails.preference.toLowerCase()} shortly to arrange a booking.</p>
-            <button onClick={() => { setStatus('idle'); setSelectedService(''); setCustomerDetails({name: '', email: '', phone: '', preference: 'Email'}) }} className="mt-4 bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700">
+            <button onClick={() => { setStatus('idle'); setSelectedService(''); setCustomerDetails({name: '', email: '', phone: '', preference: 'Email'}) }} className="mt-4 bg-[#005C9E] text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-800">
               Make Another Request
             </button>
           </div>
@@ -74,7 +74,7 @@ export default function Services() {
            <div className="text-center p-4 bg-red-100 text-red-800 rounded-lg">
             <h3 className="text-xl font-bold">Something Went Wrong</h3>
             <p>We couldn't send your request. Please try again or call us directly.</p>
-            <button onClick={() => setStatus('idle')} className="mt-4 bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700">
+            <button onClick={() => setStatus('idle')} className="mt-4 bg-[#005C9E] text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-800">
               Try Again
             </button>
           </div>
@@ -106,7 +106,7 @@ export default function Services() {
                 <option>Text Message</option>
               </select>
             </div>
-            <button type="submit" disabled={!selectedService || status === 'sending'} className="w-full bg-green-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-600 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed">
+            <button type="submit" disabled={!selectedService || status === 'sending'} className="w-full bg-[#D9232D] text-white font-bold py-3 px-4 rounded-lg hover:bg-red-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed">
               {status === 'sending' ? 'Sending...' : 'Request a Callback'}
             </button>
             {!selectedService && <p className="text-center text-red-500 mt-2">Please select a service from the list above first.</p>}
@@ -122,20 +122,18 @@ export default function Services() {
           <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900">Our Services</h1>
           <p className="mt-4 text-xl text-gray-600">Professional solutions for your home's heating and gas systems.</p>
         </div>
-        {/* Service List */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {services.map((service) => (
             <div key={service.name} className="bg-white p-8 rounded-xl shadow-lg flex flex-col">
               <h2 className="text-2xl font-bold text-gray-800">{service.name}</h2>
-              <p className="text-3xl font-bold text-blue-600 my-4">{service.price}</p>
+              <p className="text-3xl font-bold text-[#005C9E] my-4">{service.price}</p>
               <p className="text-gray-600 mb-6 flex-grow">{service.description}</p>
-              <button onClick={() => { setSelectedService(service.name); setStatus('idle'); document.getElementById('booking-form')?.scrollIntoView({ behavior: 'smooth' }); }} className="w-full mt-auto bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors">
+              <button onClick={() => { setSelectedService(service.name); setStatus('idle'); document.getElementById('booking-form')?.scrollIntoView({ behavior: 'smooth' }); }} className="w-full mt-auto bg-[#005C9E] text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-800 transition-colors">
                 Request This Service
               </button>
             </div>
           ))}
         </div>
-        {/* Contact Form */}
         <div id="booking-form" className="max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-2xl">
           <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Request a Callback</h2>
           {renderFormContent()}
