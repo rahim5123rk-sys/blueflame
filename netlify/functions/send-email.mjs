@@ -1,4 +1,5 @@
-// This is the final, secure version of your function.
+// This is a Node.js function that will run on Netlify's servers.
+// It acts as a secure intermediary between your website and the Brevo API.
 
 export const handler = async (event) => {
   // Only allow POST requests.
@@ -6,10 +7,9 @@ export const handler = async (event) => {
     return { statusCode: 405, body: 'Method Not Allowed' };
   }
 
-  
   try {
-    // Get the booking data from the request body.
-    const { service_name, booking_date, customer_name, customer_email, customer_phone } = JSON.parse(event.body);
+    // Get all the data from the request body, including the contact preference.
+    const { service_name, customer_name, customer_email, customer_phone, contact_preference } = JSON.parse(event.body);
     
     // Using the secure environment variable provided by Netlify.
     const BREVO_API_KEY = process.env.BREVO_API_KEY; 
@@ -39,24 +39,22 @@ export const handler = async (event) => {
         email: customer_email,
         name: customer_name,
       },
-      subject: `New Booking Request: ${service_name} from ${customer_name}`,
+      subject: `New Callback Request: ${service_name} from ${customer_name}`,
       htmlContent: `
         <html>
           <body>
-            <h1>New Booking Request Received</h1>
+            <h1>New Callback Request Received</h1>
             <h2>Customer Details:</h2>
             <ul>
               <li><strong>Name:</strong> ${customer_name}</li>
               <li><strong>Email:</strong> ${customer_email}</li>
               <li><strong>Phone:</strong> ${customer_phone}</li>
+              <li><strong>Preferred Contact Method:</strong> ${contact_preference}</li>
             </ul>
             <hr>
-            <h2>Booking Details:</h2>
-            <ul>
-              <li><strong>Service:</strong> ${service_name}</li>
-              <li><strong>Requested Date:</strong> ${booking_date}</li>
-            </ul>
-            <p>Please contact the customer to confirm the appointment.</p>
+            <h2>Service Requested:</h2>
+            <p><strong>${service_name}</strong></p>
+            <p>Please contact the customer to arrange a booking.</p>
           </body>
         </html>
       `,

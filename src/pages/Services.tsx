@@ -1,58 +1,54 @@
 import React, { useState } from 'react';
 
-// Service component to display and allow booking of services
+// Service component with a "request a callback" system
 export default function Services() {
   const [selectedService, setSelectedService] = useState('');
-  const [selectedDate, setSelectedDate] = useState('');
-  // State for customer details
+  // NEW: State for customer details, including contact preference
   const [customerDetails, setCustomerDetails] = useState({
     name: '',
     email: '',
     phone: '',
+    preference: 'Email', // Default contact preference
   });
   const [status, setStatus] = useState('idle'); // 'idle', 'sending', 'success', 'error'
 
+  // NEW: Expanded list of services
   const services = [
-    { name: 'Gas Certificate', price: 75, description: 'A full inspection and certification of your gas appliances, essential for landlords.' },
-    { name: 'Boiler Service', price: 60, description: 'Comprehensive annual servicing to ensure your boiler runs safely and efficiently.' },
-    { name: 'Boiler Installation', price: 'Varies', description: 'Expert installation of new, high-efficiency boilers. Contact us for a custom quote.' },
-    { name: 'Emergency Breakdown', price: 'Varies', description: 'Fast and reliable repairs for when your heating or hot water fails. Call for immediate assistance.' },
+    { name: 'Annual Boiler Service', price: '£60', description: 'A comprehensive annual check-up to ensure your boiler is safe, efficient, and reliable.' },
+    { name: 'Landlord Gas Safety Certificate (CP12)', price: '£75', description: 'A full inspection and certification of all gas appliances, legally required for rental properties.' },
+    { name: 'Boiler Breakdown & Repair', price: 'Callout Fee', description: 'Fast and effective diagnosis and repair for when your heating or hot water fails.' },
+    { name: 'New Boiler Installation', price: 'Free Quote', description: 'Expert installation of modern, high-efficiency boilers tailored to your home\'s needs.' },
+    { name: 'Gas Fire Servicing', price: '£70', description: 'Keep your gas fire looking great and working safely with our thorough servicing.' },
+    { name: 'Gas Cooker & Hob Installation', price: 'From £80', description: 'Safe and professional installation of new gas cookers, ovens, and hobs.' },
   ];
 
-  // Handle changes in the customer detail input fields
-  const handleDetailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleDetailChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setCustomerDetails({
       ...customerDetails,
       [e.target.name]: e.target.value,
     });
   };
 
-  // Handle booking submission by calling our new backend function
   const handleBooking = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!selectedService || !selectedDate) return;
+    if (!selectedService) return;
 
     setStatus('sending');
 
     try {
       const response = await fetch('/.netlify/functions/send-email', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           service_name: selectedService,
-          booking_date: new Date(selectedDate).toLocaleDateString('en-GB'),
           customer_name: customerDetails.name,
           customer_email: customerDetails.email,
           customer_phone: customerDetails.phone,
+          contact_preference: customerDetails.preference,
         }),
       });
 
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-
+      if (!response.ok) throw new Error('Network response was not ok');
       setStatus('success');
 
     } catch (error) {
@@ -61,23 +57,15 @@ export default function Services() {
     }
   };
 
-  const getTodayString = () => {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, '0');
-    const day = String(today.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
-  };
-
   const renderFormContent = () => {
     switch (status) {
       case 'success':
         return (
           <div className="text-center p-4 bg-green-100 text-green-800 rounded-lg">
             <h3 className="text-xl font-bold">Thank You, {customerDetails.name}!</h3>
-            <p>Your booking request has been sent. We will contact you shortly to confirm.</p>
-            <button onClick={() => { setStatus('idle'); setSelectedService(''); setCustomerDetails({name: '', email: '', phone: ''}) }} className="mt-4 bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700">
-              Make Another Booking
+            <p>Your request has been sent. We will contact you via {customerDetails.preference.toLowerCase()} shortly to arrange a booking.</p>
+            <button onClick={() => { setStatus('idle'); setSelectedService(''); setCustomerDetails({name: '', email: '', phone: '', preference: 'Email'}) }} className="mt-4 bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700">
+              Make Another Request
             </button>
           </div>
         );
@@ -85,7 +73,7 @@ export default function Services() {
         return (
            <div className="text-center p-4 bg-red-100 text-red-800 rounded-lg">
             <h3 className="text-xl font-bold">Something Went Wrong</h3>
-            <p>We couldn't send your booking request. Please try again or call us directly.</p>
+            <p>We couldn't send your request. Please try again or call us directly.</p>
             <button onClick={() => setStatus('idle')} className="mt-4 bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700">
               Try Again
             </button>
@@ -98,8 +86,6 @@ export default function Services() {
               <label className="block text-gray-700 font-medium mb-1">Selected Service</label>
               <input type="text" value={selectedService || 'Please select a service above'} readOnly className="w-full p-3 bg-gray-100 border border-gray-300 rounded-lg" />
             </div>
-            
-            {/* Customer Detail Fields */}
             <div>
               <label htmlFor="name" className="block text-gray-700 font-medium mb-1">Your Name</label>
               <input type="text" id="name" name="name" value={customerDetails.name} onChange={handleDetailChange} required className="w-full p-3 border border-gray-300 rounded-lg" disabled={!selectedService} />
@@ -112,16 +98,18 @@ export default function Services() {
               <label htmlFor="phone" className="block text-gray-700 font-medium mb-1">Phone Number</label>
               <input type="tel" id="phone" name="phone" value={customerDetails.phone} onChange={handleDetailChange} required className="w-full p-3 border border-gray-300 rounded-lg" disabled={!selectedService} />
             </div>
-            
             <div>
-              <label htmlFor="date" className="block text-gray-700 font-medium mb-1">Choose a Date</label>
-              <input type="date" id="date" min={getTodayString()} value={selectedDate} onChange={(e) => setSelectedDate(e.target.value)} required className="w-full p-3 border border-gray-300 rounded-lg" disabled={!selectedService} />
+              <label htmlFor="preference" className="block text-gray-700 font-medium mb-1">How should we contact you?</label>
+              <select id="preference" name="preference" value={customerDetails.preference} onChange={handleDetailChange} required className="w-full p-3 border border-gray-300 rounded-lg bg-white" disabled={!selectedService}>
+                <option>Email</option>
+                <option>Phone Call</option>
+                <option>Text Message</option>
+              </select>
             </div>
-            
-            <button type="submit" disabled={!selectedService || !selectedDate || status === 'sending'} className="w-full bg-green-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-600 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed">
-              {status === 'sending' ? 'Sending...' : 'Request Booking'}
+            <button type="submit" disabled={!selectedService || status === 'sending'} className="w-full bg-green-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-600 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed">
+              {status === 'sending' ? 'Sending...' : 'Request a Callback'}
             </button>
-            {!selectedService && <p className="text-center text-red-500 mt-2">Please select a service first.</p>}
+            {!selectedService && <p className="text-center text-red-500 mt-2">Please select a service from the list above first.</p>}
           </form>
         );
     }
@@ -134,20 +122,22 @@ export default function Services() {
           <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900">Our Services</h1>
           <p className="mt-4 text-xl text-gray-600">Professional solutions for your home's heating and gas systems.</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        {/* Service List */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {services.map((service) => (
-            <div key={service.name} className="bg-white p-8 rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300">
+            <div key={service.name} className="bg-white p-8 rounded-xl shadow-lg flex flex-col">
               <h2 className="text-2xl font-bold text-gray-800">{service.name}</h2>
-              <p className="text-3xl font-bold text-blue-600 my-4">{typeof service.price === 'number' ? `£${service.price}` : service.price}</p>
-              <p className="text-gray-600 mb-6">{service.description}</p>
-              <button onClick={() => { setSelectedService(service.name); setStatus('idle'); document.getElementById('booking-form')?.scrollIntoView({ behavior: 'smooth' }); }} className="w-full bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors">
-                Select Service
+              <p className="text-3xl font-bold text-blue-600 my-4">{service.price}</p>
+              <p className="text-gray-600 mb-6 flex-grow">{service.description}</p>
+              <button onClick={() => { setSelectedService(service.name); setStatus('idle'); document.getElementById('booking-form')?.scrollIntoView({ behavior: 'smooth' }); }} className="w-full mt-auto bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors">
+                Request This Service
               </button>
             </div>
           ))}
         </div>
+        {/* Contact Form */}
         <div id="booking-form" className="max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-2xl">
-          <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Book an Appointment</h2>
+          <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Request a Callback</h2>
           {renderFormContent()}
         </div>
       </div>
