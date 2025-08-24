@@ -1,7 +1,5 @@
-
+import { useState } from 'react';
 import Layout from './components/Layout.tsx';
-import './index.css'
-import React, { useState } from 'react';
 import Home from './pages/home.tsx';
 import About from './pages/About.tsx';
 import Services from './pages/Services.tsx';
@@ -31,6 +29,14 @@ export default function App() {
     }
   };
 
+  return (
+    // The Layout component wraps every page, providing the header and footer
+    <Layout setCurrentPage={setCurrentPage}>
+      {/* The renderPage function is called here to display the active page */}
+      {renderPage()}
+    </Layout>
+  );
+}
   return (
     // The Layout component wraps every page, providing the header and footer
     <Layout setCurrentPage={setCurrentPage}>
