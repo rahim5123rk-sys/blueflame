@@ -1,8 +1,8 @@
 {
   "version": 3,
   "sources": ["../../../../../../Users/raheemkhan/Documents/blue-flame/netlify/functions/hello.mjs"],
-  "sourceRoot": "/var/folders/hm/559wjsqn7y1c1s34pkhtrl080000gn/T/tmp-28421-4aBnU5EY3WPS",
-  "sourcesContent": ["// Using the older \"CommonJS\" syntax for maximum compatibility.\nexports.handler = async () => {\n  return {\n    statusCode: 200,\n    body: \"Hello, World!\",\n  };\n};\n"],
-  "mappings": ";AACA,QAAQ,UAAU,YAAY;AAC5B,SAAO;AAAA,IACL,YAAY;AAAA,IACZ,MAAM;AAAA,EACR;AACF;",
+  "sourceRoot": "/var/folders/hm/559wjsqn7y1c1s34pkhtrl080000gn/T/tmp-28421-T5mBwy71Ufo3",
+  "sourcesContent": ["export const handler = async () => {\n  return {\n    statusCode: 200,\n    body: \"Hello, World!\",\n  };\n};\n\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAO,IAAM,UAAU,YAAY;AACjC,SAAO;AAAA,IACL,YAAY;AAAA,IACZ,MAAM;AAAA,EACR;AACF;",
   "names": []
 }

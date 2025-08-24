@@ -1,7 +1,7 @@
-// Using the older "CommonJS" syntax for maximum compatibility.
-exports.handler = async () => {
+export const handler = async () => {
   return {
     statusCode: 200,
     body: "Hello, World!",
   };
 };
+

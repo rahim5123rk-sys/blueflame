@@ -28,7 +28,11 @@ var handler = async (event) => {
   }
   try {
     const { service_name, booking_date, customer_name, customer_email, customer_phone } = JSON.parse(event.body);
-    const BREVO_API_KEY = "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";
+    const BREVO_API_KEY = process.env.BREVO_API_KEY;
+    if (!BREVO_API_KEY) {
+      console.error("Server Error: BREVO_API_KEY is not configured.");
+      return { statusCode: 500, body: "Internal Server Error: Email service is not configured." };
+    }
     const SENDER_EMAIL = "rahim.5123.rk@gmail.com";
     const SENDER_NAME = "Blue Flame Booking";
     const RECIPIENT_EMAIL = "rahim.5123.rk@gmail.com";

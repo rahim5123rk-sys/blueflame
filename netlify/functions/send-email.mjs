@@ -11,10 +11,14 @@ export const handler = async (event) => {
     // Get the booking data from the request body.
     const { service_name, booking_date, customer_name, customer_email, customer_phone } = JSON.parse(event.body);
     
-    // --- TEMPORARY DEBUGGING STEP ---
-    // Paste your Brevo API key directly here inside the quotes.
-    // This is NOT secure for production, but it will help us test.
-    const BREVO_API_KEY = "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"; 
+    // Using the secure environment variable.
+    const BREVO_API_KEY = process.env.BREVO_API_KEY; 
+    
+    // If the key is missing on the server, stop with a clear error.
+    if (!BREVO_API_KEY) {
+      console.error("Server Error: BREVO_API_KEY is not configured.");
+      return { statusCode: 500, body: "Internal Server Error: Email service is not configured." };
+    }
     
     const SENDER_EMAIL = "rahim.5123.rk@gmail.com"; 
     const SENDER_NAME = "Blue Flame Booking";
