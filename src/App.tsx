@@ -1,38 +1,60 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+// FIX: Added .tsx extensions to all imports for explicit path resolution.
 import Layout from './components/Layout.tsx';
 import Home from './pages/home.tsx';
 import About from './pages/About.tsx';
 import Services from './pages/Services.tsx';
 import Reviews from './pages/Reviews.tsx';
 import Contact from './pages/Contact.tsx';
+import NotFound from './pages/NotFound.tsx';
 
-// The main App component that orchestrates the page navigation
 export default function App() {
-  // State to keep track of the currently active page, defaulting to 'Home'
   const [currentPage, setCurrentPage] = useState('Home');
+  // State to hold the service selected from the homepage
+  const [preselectedService, setPreselectedService] = useState('');
 
-  // Function to render the correct page component based on the current state
+  useEffect(() => {
+    const pages = ['Home', 'Services', 'About', 'Reviews', 'Contact'];
+    const path = window.location.hash.replace('#', '');
+    const formattedPath = path.charAt(0).toUpperCase() + path.slice(1);
+
+    if (path && pages.includes(formattedPath)) {
+      setCurrentPage(formattedPath);
+    } else if (!path) {
+      setCurrentPage('Home');
+    } else {
+      setCurrentPage('NotFound');
+    }
+  }, []);
+
+  const handleSetPage = (page: string) => {
+    setCurrentPage(page);
+    if (page !== 'NotFound') {
+      window.location.hash = page.toLowerCase();
+    }
+  };
+
   const renderPage = () => {
     switch (currentPage) {
       case 'Home':
-        return <Home setCurrentPage={setCurrentPage} />;
+        // Pass the setter function to the Home component
+        return <Home setCurrentPage={handleSetPage} setPreselectedService={setPreselectedService} />;
       case 'About':
         return <About />;
       case 'Services':
-        return <Services />;
+        // Pass the selected service and the setter to the Services component
+        return <Services preselectedService={preselectedService} setPreselectedService={setPreselectedService} />;
       case 'Reviews':
         return <Reviews />;
       case 'Contact':
         return <Contact />;
       default:
-        return <Home setCurrentPage={setCurrentPage} />;
+        return <NotFound setCurrentPage={handleSetPage} />;
     }
   };
 
   return (
-    // The Layout component wraps every page, providing the header and footer
-    <Layout setCurrentPage={setCurrentPage}>
-      {/* The renderPage function is called here to display the active page */}
+    <Layout setCurrentPage={handleSetPage}>
       {renderPage()}
     </Layout>
   );

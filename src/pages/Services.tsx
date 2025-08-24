@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-// Service component with a "request a callback" system
-export default function Services() {
+// Updated props to receive the pre-selected service
+interface ServicesProps {
+  preselectedService: string;
+  setPreselectedService: (service: string) => void;
+}
+
+export default function Services({ preselectedService, setPreselectedService }: ServicesProps) {
   const [selectedService, setSelectedService] = useState('');
   const [customerDetails, setCustomerDetails] = useState({
     name: '',
@@ -11,16 +16,27 @@ export default function Services() {
   });
   const [status, setStatus] = useState('idle');
 
-  // NEW: Added Radiator System Powerflush
   const services = [
+    { name: 'Landlord Deal: Gas Cert + Boiler Service', price: '£100 (Save £35)', description: 'Our best value package for landlords. Covers your annual legal requirements and boiler maintenance in one simple visit.' },
     { name: 'Annual Boiler Service', price: '£60', description: 'A comprehensive annual check-up to ensure your boiler is safe, efficient, and reliable.' },
     { name: 'Landlord Gas Safety Certificate (CP12)', price: '£75', description: 'A full inspection and certification of all gas appliances, legally required for rental properties.' },
     { name: 'Boiler Breakdown & Repair', price: 'Callout Fee', description: 'Fast and effective diagnosis and repair for when your heating or hot water fails.' },
     { name: 'New Boiler Installation', price: 'Free Quote', description: 'Expert installation of modern, high-efficiency boilers tailored to your home\'s needs.' },
-    { name: 'Gas Fire Servicing', price: '£70', description: 'Keep your gas fire looking great and working safely with our thorough servicing.' },
-    { name: 'Gas Cooker & Hob Installation', price: 'From £80', description: 'Safe and professional installation of new gas cookers, ovens, and hobs.' },
-    { name: 'Radiator System Powerflush', price: 'From £200', description: 'A deep clean of your central heating system to remove sludge, improve efficiency, and reduce bills.' },
+    { name: 'Radiator System Powerflush', price: 'From £350', description: 'A deep clean of your central heating system to remove sludge, improve efficiency, and reduce bills.' },
   ];
+
+  // Effect to handle the pre-selected service from the homepage
+  useEffect(() => {
+    if (preselectedService) {
+      setSelectedService(preselectedService);
+      // Use a short timeout to ensure the page has rendered before scrolling
+      setTimeout(() => {
+        document.getElementById('booking-form')?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+      // Clear the pre-selection so it doesn't persist on re-visits
+      setPreselectedService('');
+    }
+  }, [preselectedService, setPreselectedService]);
 
   const handleDetailChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setCustomerDetails({
@@ -32,9 +48,7 @@ export default function Services() {
   const handleBooking = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!selectedService) return;
-
     setStatus('sending');
-
     try {
       const response = await fetch('/.netlify/functions/send-email', {
         method: 'POST',
@@ -47,10 +61,8 @@ export default function Services() {
           contact_preference: customerDetails.preference,
         }),
       });
-
       if (!response.ok) throw new Error('Network response was not ok');
       setStatus('success');
-
     } catch (error) {
       console.error('Failed to send booking:', error);
       setStatus('error');
