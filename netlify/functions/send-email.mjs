@@ -6,6 +6,7 @@ export const handler = async (event) => {
     return { statusCode: 405, body: 'Method Not Allowed' };
   }
 
+  
   try {
     // Get the booking data from the request body.
     const { service_name, booking_date, customer_name, customer_email, customer_phone } = JSON.parse(event.body);
