@@ -4,7 +4,7 @@ import Home from './pages/home.tsx';
 import About from './pages/About.tsx';
 import Services from './pages/Services.tsx';
 import Reviews from './pages/Reviews.tsx';
-import Contact from './pages/contact.tsx';
+import Contact from './pages/Contact.tsx';
 
 // The main App component that orchestrates the page navigation
 export default function App() {
