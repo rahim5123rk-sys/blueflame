@@ -85,7 +85,8 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
                 href="https://wa.me/447864954123"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center w-full sm:w-auto bg-green-500 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-green-600 transition-transform transform hover:scale-105"
+                // NEW: Darker green for better contrast
+                className="inline-flex items-center justify-center w-full sm:w-auto bg-green-600 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-green-700 transition-transform transform hover:scale-105"
               >
                 <WhatsAppIcon />
                 Message on WhatsApp
@@ -182,6 +183,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
               <button
                 key={index}
                 onClick={() => setCurrentTestimonial(index)}
+                aria-label={`Go to testimonial ${index + 1}`}
                 className={`w-3 h-3 rounded-full transition-colors ${index === currentTestimonial ? 'bg-[#005C9E]' : 'bg-gray-300'}`}
               />
             ))}
