@@ -37,11 +37,3 @@ export default function App() {
     </Layout>
   );
 }
-  return (
-    // The Layout component wraps every page, providing the header and footer
-    <Layout setCurrentPage={setCurrentPage}>
-      {/* The renderPage function is called here to display the active page */}
-      {renderPage()}
-    </Layout>
-  );
-}

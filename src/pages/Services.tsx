@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 export default function Services() {
   const [selectedService, setSelectedService] = useState('');
   const [selectedDate, setSelectedDate] = useState('');
-  // NEW: State for customer details
+  // State for customer details
   const [customerDetails, setCustomerDetails] = useState({
     name: '',
     email: '',
@@ -19,7 +19,7 @@ export default function Services() {
     { name: 'Emergency Breakdown', price: 'Varies', description: 'Fast and reliable repairs for when your heating or hot water fails. Call for immediate assistance.' },
   ];
 
-  // NEW: Handle changes in the customer detail input fields
+  // Handle changes in the customer detail input fields
   const handleDetailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCustomerDetails({
       ...customerDetails,
@@ -99,7 +99,7 @@ export default function Services() {
               <input type="text" value={selectedService || 'Please select a service above'} readOnly className="w-full p-3 bg-gray-100 border border-gray-300 rounded-lg" />
             </div>
             
-            {/* NEW Customer Detail Fields */}
+            {/* Customer Detail Fields */}
             <div>
               <label htmlFor="name" className="block text-gray-700 font-medium mb-1">Your Name</label>
               <input type="text" id="name" name="name" value={customerDetails.name} onChange={handleDetailChange} required className="w-full p-3 border border-gray-300 rounded-lg" disabled={!selectedService} />
