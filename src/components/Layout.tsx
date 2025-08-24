@@ -18,7 +18,7 @@ export default function Layout({ children, setCurrentPage }: LayoutProps) {
     <img 
       src="/logo.png" 
       alt="Blue Flame Gas Services Logo" 
-      className="h-13 drop-shadow-sm" 
+      className="h-20 drop-shadow-sm" 
       onError={(e) => { e.currentTarget.src = 'https://placehold.co/160x40/005C9E/FFFFFF?text=Blue+Flame'; e.currentTarget.onerror = null; }}
     />
   );
@@ -28,48 +28,33 @@ export default function Layout({ children, setCurrentPage }: LayoutProps) {
       {/* Header and Navigation Bar */}
       <header className="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-24">
-            
-            {/* --- Logo --- */}
-            {/* On small screens, it's on the left. On medium, it's on the left. On large, it's centered. */}
-            <div className="flex-shrink-0 lg:absolute lg:left-1/2 lg:transform lg:-translate-x-1/2">
+          <div className="relative flex items-center justify-center h-24">
+            {/* Centered Logo */}
+            <div className="absolute left-1/2 transform -translate-x-1/2">
               <a href="#" onClick={() => setCurrentPage('Home')} className="flex items-center">
                 <Logo />
               </a>
             </div>
 
-            {/* --- Desktop Navigation --- */}
-            {/* This nav is hidden on small screens. On medium and large, it's visible. */}
-            <nav className="hidden md:flex w-full items-center justify-between">
-              {/* Left-side links for centered layout on large screens */}
-              <div className="hidden lg:flex space-x-8">
-                {navLinks.slice(0, 2).map((link) => ( // Home, Services
-                  <a key={link} href={`#${link.toLowerCase()}`} onClick={() => setCurrentPage(link)} className="text-gray-600 hover:text-[#005C9E] transition-colors duration-300 font-medium">
-                    {link}
-                  </a>
-                ))}
-              </div>
-              {/* All links together for standard layout on medium screens */}
-              <div className="hidden md:flex lg:hidden space-x-8">
-                {navLinks.map((link) => (
-                   <a key={link} href={`#${link.toLowerCase()}`} onClick={() => setCurrentPage(link)} className="text-gray-600 hover:text-[#005C9E] transition-colors duration-300 font-medium">
-                    {link}
-                  </a>
-                ))}
-              </div>
-              {/* Right-side links for centered layout on large screens */}
-              <div className="hidden lg:flex space-x-8">
-                 {navLinks.slice(2).map((link) => ( // About, Reviews, Contact
-                  <a key={link} href={`#${link.toLowerCase()}`} onClick={() => setCurrentPage(link)} className="text-gray-600 hover:text-[#005C9E] transition-colors duration-300 font-medium">
-                    {link}
-                  </a>
-                ))}
-              </div>
+            {/* Desktop Navigation (left) */}
+            <nav className="hidden md:flex absolute left-4 space-x-8">
+              {navLinks.slice(0, 2).map((link) => (
+                <a key={link} href={`#${link.toLowerCase()}`} onClick={() => setCurrentPage(link)} className="text-gray-600 hover:text-[#005C9E] transition-colors duration-300 font-medium">
+                  {link}
+                </a>
+              ))}
+            </nav>
+            {/* Desktop Navigation (right) */}
+            <nav className="hidden md:flex absolute right-4 space-x-8">
+               {navLinks.slice(2).map((link) => (
+                <a key={link} href={`#${link.toLowerCase()}`} onClick={() => setCurrentPage(link)} className="text-gray-600 hover:text-[#005C9E] transition-colors duration-300 font-medium">
+                  {link}
+                </a>
+              ))}
             </nav>
 
-            {/* --- Mobile Menu Button --- */}
-            {/* This button is only visible on small screens */}
-            <div className="md:hidden flex items-center">
+            {/* Mobile Menu Button */}
+            <div className="md:hidden absolute right-4 flex items-center">
               <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
                 <span className="sr-only">Open main menu</span>
                 {isMenuOpen ? (
@@ -86,7 +71,7 @@ export default function Layout({ children, setCurrentPage }: LayoutProps) {
           </div>
         </div>
 
-        {/* --- Mobile Navigation Menu (collapsible part) --- */}
+        {/* Mobile Navigation Menu */}
         {isMenuOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
@@ -129,12 +114,25 @@ export default function Layout({ children, setCurrentPage }: LayoutProps) {
         <div className="container mx-auto py-8 px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-sm text-gray-500">&copy; {new Date().getFullYear()} Blue Flame Gas Services. All rights reserved.</p>
-            <p className="text-sm text-gray-500 font-medium">
-              Contact us: <a href="tel:07864954123" className="text-[#005C9E] hover:underline">07864 954 123</a>
-            </p>
+            
+            {/* NEW: Added location pin */}
+            <div className="text-sm text-gray-500 flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              Worcester
+            </div>
+
+            <div className="text-sm text-gray-500 font-medium text-center md:text-right">
+              <a href="tel:07480561846" className="text-[#005C9E] hover:underline block">07480 561 846</a>
+              <a href="tel:07864954123" className="text-[#005C9E] hover:underline block">07864 954 123</a>
+              <a href="mailto:sal.786@hotmail.com" className="text-[#005C9E] hover:underline block">sal.786@hotmail.com</a>
+            </div>
           </div>
         </div>
       </footer>
     </div>
   );
 }
+
