@@ -20,7 +20,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
   };
 
   const testimonials = [
-    { name: 'Abid P.', comment: 'The boys from Blue Flame saved the day when my boiler wasn\'t turning on, and straight away, they found the issue and resolved it. They have done numerous jobs for me, from boiler service to fitting new heaters around the house. They\'re very good at what they do.' },
+    { name: 'Sarah L.', comment: 'The boys from Blue Flame saved the day when my boiler wasn\'t turning on, and straight away, they found the issue and resolved it. They have done numerous jobs for me, from boiler service to fitting new heaters around the house. They\'re very good at what they do.' },
     { name: 'Tom H.', comment: 'Needed a landlord gas safety certificate at short notice. They were able to fit me in quickly and the whole process was seamless. Excellent service.' },
     { name: 'Emily R.', comment: 'Our boiler broke down in the middle of winter. Blue Flame responded to our emergency call immediately and had it fixed the same day. Lifesavers!' },
   ];
@@ -33,6 +33,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
   ];
 
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -68,8 +69,8 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900 tracking-tight">
-              <span className="block">Reliable Gas Engineering</span>
-              <span className="block text-[#005C9E]">You Can Trust.</span>
+              <span className="block">Reliable Gas Services</span>
+              <span className="block text-[#005C9E]">You Can Rely On.</span>
             </h1>
             <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-gray-600">
               Your local experts covering Worcestershire & the West Midlands for boiler servicing, safety certificates, and installations.
@@ -85,7 +86,6 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
                 href="https://wa.me/447864954123"
                 target="_blank"
                 rel="noopener noreferrer"
-                // NEW: Darker green for better contrast
                 className="inline-flex items-center justify-center w-full sm:w-auto bg-green-600 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-green-700 transition-transform transform hover:scale-105"
               >
                 <WhatsAppIcon />
@@ -215,7 +215,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
         </div>
       </section>
 
-      {/* FAQ Section */}
+      {/* FAQ Accordion Section */}
       <section className="bg-gray-50 py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -223,9 +223,23 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
           </div>
           <div className="max-w-3xl mx-auto space-y-4">
             {faqs.map((faq, index) => (
-              <div key={index} className="bg-white p-6 rounded-lg shadow-sm border">
-                <h3 className="font-semibold text-lg text-[#005C9E]">{faq.q}</h3>
-                <p className="mt-2 text-gray-600">{faq.a}</p>
+              <div key={index} className="border-b border-gray-200 pb-4">
+                <button
+                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                  className="w-full flex justify-between items-center text-left py-4"
+                >
+                  <h3 className="font-semibold text-lg text-gray-800">{faq.q}</h3>
+                  <span className={`transform transition-transform duration-300 ${openFaq === index ? 'rotate-45' : 'rotate-0'}`}>
+                    <svg className="w-6 h-6 text-[#005C9E]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                  </span>
+                </button>
+                <div
+                  className={`overflow-hidden transition-all duration-500 ease-in-out ${openFaq === index ? 'max-h-96' : 'max-h-0'}`}
+                >
+                  <p className="pt-2 pb-4 text-gray-600">
+                    {faq.a}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
