@@ -1,5 +1,4 @@
-// This is a Node.js function that will run on Netlify's servers.
-// It acts as a secure intermediary between your website and the Brevo API.
+// This is the final, secure version of your function.
 
 export const handler = async (event) => {
   // Only allow POST requests.
@@ -11,7 +10,7 @@ export const handler = async (event) => {
     // Get the booking data from the request body.
     const { service_name, booking_date, customer_name, customer_email, customer_phone } = JSON.parse(event.body);
     
-    // Using the secure environment variable.
+    // Using the secure environment variable provided by Netlify.
     const BREVO_API_KEY = process.env.BREVO_API_KEY; 
     
     // If the key is missing on the server, stop with a clear error.
