@@ -1,0 +1,20 @@
+{
+	"geolocation": {
+		"data": {
+			"city": "Worcester",
+			"country": {
+				"code": "GB",
+				"name": "United Kingdom"
+			},
+			"subdivision": {
+				"code": "ENG",
+				"name": "England"
+			},
+			"timezone": "Europe/London",
+			"latitude": 52.1752,
+			"longitude": -2.2028,
+			"postalCode": "WR5"
+		},
+		"timestamp": 1756048551724
+	}
+}
