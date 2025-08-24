@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
 
 // Define props for the Home component, including a function to change the page
 interface HomeProps {
