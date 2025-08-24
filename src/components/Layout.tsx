@@ -114,7 +114,7 @@ export default function Layout({ children, setCurrentPage }: LayoutProps) {
 
       {/* Floating Action Button for Click-to-Call */}
       <a 
-        href="tel:07864954123" 
+        href="tel:07480561846" 
         className="fixed bottom-6 right-6 bg-[#D9232D] text-white p-4 rounded-full shadow-lg hover:bg-red-700 transition-transform transform hover:scale-110 z-50"
         aria-label="Call now"
       >

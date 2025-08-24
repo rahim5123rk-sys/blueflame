@@ -35,7 +35,7 @@ export default function Contact() {
               <div className="mt-4">
                 <p className="text-lg font-semibold text-gray-700">Phone:</p>
                 {/* NEW: Updated Phone Number */}
-                <a href="tel:07864954123" className="text-2xl font-bold text-[#005C9E] hover:underline">07864 954 123</a>
+                <a href="tel:07480561846" className="text-2xl font-bold text-[#005C9E] hover:underline">07480 561 846</a>
               </div>
             </div>
              <div className="p-6 bg-gray-50 rounded-lg">
