@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.blueflamesgas.com/sitemap.xml
+Sitemap: https://www.blueflameworcester.com/sitemap.xml
