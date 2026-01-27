@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle, ArrowRight, ArrowLeft, Home, Droplets, MapPin, Wrench, Thermometer, Filter, Calculator, ArrowUpCircle, ArrowRightCircle } from 'lucide-react';
+import { CheckCircle, ArrowRight, ArrowLeft, Home, Droplets, MapPin, Wrench, Thermometer, Filter, Calculator, ArrowUpCircle, ArrowRightCircle, RefreshCw, PlusCircle, Phone } from 'lucide-react';
 
 // --- LOCAL IMAGES ---
 const BOILER_IMGS = {
@@ -43,14 +43,17 @@ export default function BoilerTool() {
   const [direction, setDirection] = useState(0);
   const [status, setStatus] = useState<'idle' | 'sending' | 'success'>('idle');
   const [selectedChoice, setSelectedChoice] = useState<'primary' | 'secondary'>('primary'); 
+  const [exitToCall, setExitToCall] = useState(false); // State to trigger "Call Us" screen
   
   const [data, setData] = useState({
+    jobType: '', // 'Swap' or 'New'
     houseType: '',
     bathrooms: '',
     location: '',
+    floorLevel: '', // 'Ground' or 'Upper'
     flueType: '', 
     name: '',
-    email: '', // Added Email Field
+    email: '',
     phone: ''
   });
 
@@ -60,25 +63,36 @@ export default function BoilerTool() {
   };
 
   const prevStep = () => {
+    // If we are on the Exit Screen, go back to step 1
+    if (exitToCall) {
+      setExitToCall(false);
+      setStep(1);
+      return;
+    }
     setDirection(-1);
     setStep(s => s - 1);
   };
 
-  // --- NEW PRICING LOGIC ---
-  // Vertical Flue adds £350
+  // --- PRICING LOGIC ---
+  // Base prices lowered by ~10%
+  // Vertical Flue: +£100 (Discreet)
+  // Upper Floor: +£50 (Discreet)
   const calculatePrice = (baseMin: number, baseMax: number) => {
-    const flueCost = data.flueType === 'Vertical' ? 350 : 0;
-    return `£${(baseMin + flueCost).toLocaleString()} - £${(baseMax + flueCost).toLocaleString()}`;
+    let extra = 0;
+    if (data.flueType === 'Vertical') extra += 100;
+    if (data.floorLevel === 'Upper') extra += 50;
+
+    return `£${(baseMin + extra).toLocaleString()} - £${(baseMax + extra).toLocaleString()}`;
   };
 
   const recommendations = useMemo(() => {
-    // 1. ENTRY LEVEL (Flats/1 Bath)
+    // 1. ENTRY LEVEL
     if (data.bathrooms === '1' && (data.houseType === 'Flat' || data.houseType === 'Terraced')) {
       return {
         primary: {
           id: 'w1000',
           name: "Worcester Bosch Greenstar 1000",
-          price: calculatePrice(1550, 1750), // Lowered Price
+          price: calculatePrice(1395, 1595), // Ultra Low Price
           kw: "24kW",
           warranty: "5 Year Guarantee",
           img: BOILER_IMGS.w1000,
@@ -88,7 +102,7 @@ export default function BoilerTool() {
         secondary: {
           id: 'esprit',
           name: "Ideal Esprit Eco 24",
-          price: calculatePrice(1450, 1650), // Lowered Price
+          price: calculatePrice(1295, 1495), // Ultra Low Price
           kw: "24kW",
           warranty: "5 Year Warranty",
           img: BOILER_IMGS.idealEsprit,
@@ -97,13 +111,13 @@ export default function BoilerTool() {
         }
       };
     } 
-    // 2. PREMIUM LEVEL (Large/Detached)
+    // 2. PREMIUM LEVEL
     else if (data.bathrooms === '3+' || data.houseType === 'Detached') {
       return {
         primary: {
           id: 'w8000',
           name: "Worcester Bosch 8000 Style",
-          price: calculatePrice(2750, 3100), // Lowered Price
+          price: calculatePrice(2550, 2850),
           kw: "35kW - 40kW",
           warranty: "12 Year Guarantee",
           img: BOILER_IMGS.w8000,
@@ -113,7 +127,7 @@ export default function BoilerTool() {
         secondary: {
           id: 'vogue',
           name: "Ideal Vogue Max C40",
-          price: calculatePrice(2550, 2900), // Lowered Price
+          price: calculatePrice(2350, 2650),
           kw: "40kW",
           warranty: "12 Year Warranty",
           img: BOILER_IMGS.idealVogue,
@@ -122,13 +136,13 @@ export default function BoilerTool() {
         }
       };
     } 
-    // 3. MID RANGE (Standard - Worcester 4000)
+    // 3. MID RANGE
     else {
       return {
         primary: {
           id: 'w4000',
           name: "Worcester Bosch 4000",
-          price: calculatePrice(1950, 2150), // Target: ~£2000
+          price: calculatePrice(1750, 1950), // Target ~£1850 avg
           kw: "30kW",
           warranty: "10 Year Guarantee",
           img: BOILER_IMGS.w4000,
@@ -138,7 +152,7 @@ export default function BoilerTool() {
         secondary: {
           id: 'logic',
           name: "Ideal Logic Max C30",
-          price: calculatePrice(1850, 2050), // Slightly cheaper than Worcester
+          price: calculatePrice(1650, 1850),
           kw: "30kW",
           warranty: "10 Year Warranty",
           img: BOILER_IMGS.idealLogic,
@@ -147,7 +161,7 @@ export default function BoilerTool() {
         }
       };
     }
-  }, [data.bathrooms, data.houseType, data.flueType]);
+  }, [data.bathrooms, data.houseType, data.flueType, data.floorLevel]);
 
   const activeBoiler = recommendations[selectedChoice];
 
@@ -161,14 +175,13 @@ export default function BoilerTool() {
         body: JSON.stringify({
           service_name: "Interactive Boiler Quote",
           customer_name: data.name,
-          customer_email: data.email, // Now sending the actual customer email
+          customer_email: data.email,
           customer_phone: data.phone,
           contact_preference: "Phone Call",
-          message: `PROPERTY: ${data.houseType}, ${data.bathrooms} Baths, Loc: ${data.location}, FLUE: ${data.flueType}. 
+          message: `JOB: ${data.jobType}. PROPERTY: ${data.houseType}, ${data.bathrooms} Baths. LOC: ${data.location} (${data.floorLevel}). FLUE: ${data.flueType}. 
                     SELECTED: ${activeBoiler.name} (${activeBoiler.kw}). 
                     PRICE: ${activeBoiler.price}. 
-                    WARRANTY: ${activeBoiler.warranty}.
-                    INCLUDES: ${activeBoiler.pack.join(' + ')}`
+                    WARRANTY: ${activeBoiler.warranty}.`
         })
       });
       if (response.ok) { setStatus('success'); nextStep(); } 
@@ -189,29 +202,63 @@ export default function BoilerTool() {
           <Calculator size={24} /> 
           Get Your Fixed Price Quote
         </h2>
-        <p className="text-blue-100 text-sm mt-1">Answer 4 questions to see your boiler options</p>
+        <p className="text-blue-100 text-sm mt-1">
+          {exitToCall ? "Survey Required" : "Answer a few questions to see your options"}
+        </p>
       </div>
 
-      {/* Progress Bar */}
-      <div className="bg-gray-50 px-6 py-4 border-b border-gray-100 flex justify-between items-center relative z-20">
-        <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">
-          Step {step} of 6
-        </span>
-        <div className="flex gap-1.5">
-          {[1, 2, 3, 4, 5, 6].map((i) => (
-            <div 
-              key={i} 
-              className={`h-1.5 w-6 rounded-full transition-all duration-300 ${step >= i ? 'bg-[#005C9E]' : 'bg-gray-200'}`}
-            />
-          ))}
+      {/* Progress Bar (Hidden on Exit Screen) */}
+      {!exitToCall && status !== 'success' && (
+        <div className="bg-gray-50 px-6 py-4 border-b border-gray-100 flex justify-between items-center relative z-20">
+          <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">
+            Step {step} of 7
+          </span>
+          <div className="flex gap-1">
+            {[1, 2, 3, 4, 5, 6, 7].map((i) => (
+              <div 
+                key={i} 
+                className={`h-1.5 w-4 rounded-full transition-all duration-300 ${step >= i ? 'bg-[#005C9E]' : 'bg-gray-200'}`}
+              />
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       <div className="p-6 min-h-[500px] relative overflow-hidden bg-white">
         <AnimatePresence initial={false} custom={direction}>
+
+          {/* EXIT SCREEN: NEW INSTALLATION */}
+          {exitToCall && (
+            <motion.div
+              key="exit"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="w-full absolute inset-0 p-8 flex flex-col items-center justify-center text-center"
+            >
+              <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                <Wrench size={40} className="text-[#005C9E]" />
+              </div>
+              <h3 className="text-2xl font-extrabold text-gray-900 mb-4">Book a Free Survey</h3>
+              <p className="text-gray-600 mb-8 leading-relaxed">
+                For brand new installations (where there is no existing boiler), we need to send an engineer to assess your property to give you an accurate price.
+              </p>
+              <a 
+                href="tel:07480561846"
+                className="w-full bg-[#D9232D] text-white py-4 rounded-xl font-bold text-lg hover:bg-red-700 transition-colors flex justify-center items-center gap-2 mb-4"
+              >
+                <Phone size={20} /> Call 07480 561 846
+              </a>
+              <button 
+                onClick={() => { setExitToCall(false); setStep(1); }}
+                className="text-gray-500 font-bold text-sm hover:text-[#005C9E]"
+              >
+                Start Over
+              </button>
+            </motion.div>
+          )}
           
-          {/* STEP 1: HOUSE TYPE */}
-          {step === 1 && (
+          {/* STEP 1: JOB TYPE */}
+          {!exitToCall && step === 1 && (
             <motion.div
               key="step1"
               custom={direction}
@@ -222,6 +269,58 @@ export default function BoilerTool() {
               transition={transitionSettings}
               className="w-full absolute inset-0 p-6 will-change-transform"
             >
+              <h3 className="text-2xl font-extrabold text-gray-900 mb-6 flex items-center gap-3">
+                <Wrench className="text-[#005C9E]" /> Installation Type?
+              </h3>
+              <div className="grid grid-cols-1 gap-4">
+                <button
+                  onClick={() => { setData({ ...data, jobType: 'Swap' }); nextStep(); }}
+                  className="p-6 rounded-xl border-2 border-gray-100 hover:border-[#005C9E] hover:bg-blue-50 transition-all text-left group"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="bg-blue-100 p-3 rounded-full text-[#005C9E]">
+                      <RefreshCw size={28} />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold text-gray-800">Boiler Swap</h4>
+                      <p className="text-sm text-gray-500">Replacing an existing boiler in the same location.</p>
+                    </div>
+                  </div>
+                </button>
+
+                <button
+                  onClick={() => { setData({ ...data, jobType: 'New' }); setExitToCall(true); }}
+                  className="p-6 rounded-xl border-2 border-gray-100 hover:border-[#005C9E] hover:bg-blue-50 transition-all text-left group"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="bg-blue-100 p-3 rounded-full text-[#005C9E]">
+                      <PlusCircle size={28} />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold text-gray-800">New Installation</h4>
+                      <p className="text-sm text-gray-500">No existing boiler, or moving to a new location.</p>
+                    </div>
+                  </div>
+                </button>
+              </div>
+            </motion.div>
+          )}
+
+          {/* STEP 2: HOUSE TYPE */}
+          {!exitToCall && step === 2 && (
+            <motion.div
+              key="step2"
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={transitionSettings}
+              className="w-full absolute inset-0 p-6 will-change-transform"
+            >
+               <button onClick={prevStep} className="text-gray-400 hover:text-[#005C9E] mb-4 text-xs font-bold flex items-center gap-1 uppercase tracking-wide">
+                <ArrowLeft size={14} /> Back
+              </button>
               <h3 className="text-2xl font-extrabold text-gray-900 mb-6 flex items-center gap-3">
                 <Home className="text-[#005C9E]" /> Property Type?
               </h3>
@@ -239,10 +338,10 @@ export default function BoilerTool() {
             </motion.div>
           )}
 
-          {/* STEP 2: BATHROOMS */}
-          {step === 2 && (
+          {/* STEP 3: BATHROOMS */}
+          {!exitToCall && step === 3 && (
             <motion.div
-              key="step2"
+              key="step3"
               custom={direction}
               variants={slideVariants}
               initial="enter"
@@ -271,10 +370,10 @@ export default function BoilerTool() {
             </motion.div>
           )}
 
-          {/* STEP 3: LOCATION */}
-          {step === 3 && (
+          {/* STEP 4: LOCATION (ROOM) */}
+          {!exitToCall && step === 4 && (
             <motion.div
-              key="step3"
+              key="step4"
               custom={direction}
               variants={slideVariants}
               initial="enter"
@@ -304,10 +403,10 @@ export default function BoilerTool() {
             </motion.div>
           )}
 
-          {/* STEP 4: FLUE TYPE */}
-          {step === 4 && (
+          {/* STEP 5: FLOOR LEVEL (NEW) */}
+          {!exitToCall && step === 5 && (
             <motion.div
-              key="step4"
+              key="step5"
               custom={direction}
               variants={slideVariants}
               initial="enter"
@@ -320,7 +419,49 @@ export default function BoilerTool() {
                 <ArrowLeft size={14} /> Back
               </button>
               <h3 className="text-2xl font-extrabold text-gray-900 mb-6 flex items-center gap-3">
-                <ArrowUpCircle className="text-[#005C9E]" /> Flue Type?
+                <ArrowUpCircle className="text-[#005C9E]" /> Which Floor?
+              </h3>
+              <div className="space-y-4">
+                <button
+                  onClick={() => { setData({ ...data, floorLevel: 'Ground' }); nextStep(); }}
+                  className="w-full p-6 text-left rounded-xl border border-gray-200 hover:border-[#005C9E] hover:bg-blue-50 transition-colors font-bold text-gray-700 group active:bg-blue-100"
+                >
+                  <div className="flex justify-between items-center">
+                    <span>Ground Floor / Basement</span>
+                    <ArrowRight size={18} className="text-gray-300 group-hover:text-[#005C9E]" />
+                  </div>
+                </button>
+
+                <button
+                  onClick={() => { setData({ ...data, floorLevel: 'Upper' }); nextStep(); }}
+                  className="w-full p-6 text-left rounded-xl border border-gray-200 hover:border-[#005C9E] hover:bg-blue-50 transition-colors font-bold text-gray-700 group active:bg-blue-100"
+                >
+                  <div className="flex justify-between items-center">
+                    <span>1st Floor or Higher</span>
+                    <ArrowRight size={18} className="text-gray-300 group-hover:text-[#005C9E]" />
+                  </div>
+                </button>
+              </div>
+            </motion.div>
+          )}
+
+          {/* STEP 6: FLUE TYPE */}
+          {!exitToCall && step === 6 && (
+            <motion.div
+              key="step6"
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={transitionSettings}
+              className="w-full absolute inset-0 p-6 will-change-transform"
+            >
+              <button onClick={prevStep} className="text-gray-400 hover:text-[#005C9E] mb-4 text-xs font-bold flex items-center gap-1 uppercase tracking-wide">
+                <ArrowLeft size={14} /> Back
+              </button>
+              <h3 className="text-2xl font-extrabold text-gray-900 mb-6 flex items-center gap-3">
+                <ArrowRightCircle className="text-[#005C9E]" /> Flue Type?
               </h3>
               <div className="grid grid-cols-1 gap-4">
                 <button
@@ -332,8 +473,8 @@ export default function BoilerTool() {
                       <ArrowRightCircle size={28} />
                     </div>
                     <div>
-                      <h4 className="text-lg font-bold text-gray-800">Through the Wall</h4>
-                      <p className="text-sm text-gray-500">Horizontal Flue (Standard)</p>
+                      <h4 className="text-lg font-bold text-gray-800">Horizontal (Wall)</h4>
+                      <p className="text-sm text-gray-500">Comes out of the side of the house.</p>
                     </div>
                   </div>
                 </button>
@@ -347,8 +488,8 @@ export default function BoilerTool() {
                       <ArrowUpCircle size={28} />
                     </div>
                     <div>
-                      <h4 className="text-lg font-bold text-gray-800">Through the Roof</h4>
-                      <p className="text-sm text-gray-500">Vertical Flue (+ £350)</p>
+                      <h4 className="text-lg font-bold text-gray-800">Vertical (Roof)</h4>
+                      <p className="text-sm text-gray-500">Goes up through the roof tiles.</p>
                     </div>
                   </div>
                 </button>
@@ -356,10 +497,10 @@ export default function BoilerTool() {
             </motion.div>
           )}
 
-          {/* STEP 5: SELECTION & CAPTURE */}
-          {step === 5 && (
+          {/* STEP 7: SELECTION & CAPTURE */}
+          {!exitToCall && step === 7 && (
             <motion.div
-              key="step5"
+              key="step7"
               custom={direction}
               variants={slideVariants}
               initial="enter"
@@ -411,10 +552,10 @@ export default function BoilerTool() {
             </motion.div>
           )}
 
-          {/* STEP 6: SUCCESS */}
-          {step === 6 && (
+          {/* STEP 8: SUCCESS */}
+          {step === 8 && (
             <motion.div
-              key="step6"
+              key="step8"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={transitionSettings}

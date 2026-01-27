@@ -25,7 +25,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
   const services = [
     { name: 'Annual Boiler Service', image: '/images/boiler-service.jpg' },
     { name: 'Landlord Gas Safety Certificate (CP12)', image: '/images/gas-certificate.jpg' },
-    { name: 'New Boiler Installation', image: '/images/boiler-install.jpg' }, // Target Service
+    { name: 'New Boiler Installation', image: '/images/boiler-install.jpg' }, 
     { name: 'Boiler Breakdown & Repair', image: '/images/emergency-repair.jpg' },
   ];
 
@@ -58,14 +58,13 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
   }, [testimonials.length]);
 
   const handleServiceClick = (serviceName: string) => {
-    // NEW LOGIC: If it's the Boiler Installation service, scroll to the tool
+    // Scroll to tool if it's the installation service
     if (serviceName === 'New Boiler Installation') {
       const toolElement = document.getElementById('boiler-quote-tool');
       if (toolElement) {
         toolElement.scrollIntoView({ behavior: 'smooth' });
       }
     } else {
-      // Standard behavior for other services
       setPreselectedService(serviceName);
       setCurrentPage('Services');
     }
@@ -73,7 +72,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
 
   return (
     <div className="animate-fadeIn">
-      {/* 1. HERO SECTION (Without the tool) */}
+      {/* 1. HERO SECTION */}
       <section className="relative bg-[#005C9E] py-24 px-4 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute transform -rotate-45 -left-1/4 top-0 w-full h-full bg-white/20 blur-3xl"></div>
@@ -112,7 +111,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
       </section>
 
       {/* 2. SERVICES OVERVIEW */}
-      <section className="bg-white py-16">
+      <section id="services" className="bg-white py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900">Our Core Services</h2>
@@ -124,7 +123,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
                 key={service.name} 
                 href={service.name === 'New Boiler Installation' ? '#boiler-quote-tool' : '#services'}
                 onClick={(e) => { e.preventDefault(); handleServiceClick(service.name); }} 
-                className="block bg-gray-50 rounded-xl shadow-md overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 border border-gray-100"
+                className="block bg-gray-50 rounded-xl shadow-md overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 border border-gray-100 cursor-pointer"
               >
                 <img 
                   src={service.image} 
@@ -136,7 +135,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
                   <h3 className="text-xl font-semibold text-gray-900">{service.name}</h3>
                   {service.name === 'New Boiler Installation' && (
                     <span className="block mt-2 text-[#005C9E] font-bold text-sm uppercase tracking-wide">
-                      Get Free Quote →
+                      Get Free Estimate →
                     </span>
                   )}
                 </div>
@@ -146,14 +145,13 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
         </div>
       </section>
 
-      {/* 3. NEW: DEDICATED BOILER TOOL SECTION */}
+      {/* 3. DEDICATED BOILER TOOL SECTION */}
       <section id="boiler-quote-tool" className="bg-blue-50 py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-10">
             <h2 className="text-3xl font-extrabold text-[#005C9E]">Looking for a New Boiler?</h2>
-            <p className="text-gray-600 mt-2 text-lg">Use our smart tool below to get a fixed price estimate in seconds.</p>
+            <p className="text-gray-600 mt-2 text-lg">Use our smart tool below to get an instant estimate in seconds.</p>
           </div>
-          {/* THE TOOL IS HERE NOW */}
           <BoilerTool />
         </div>
       </section>
