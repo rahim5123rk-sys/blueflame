@@ -43,14 +43,17 @@ export default function BoilerTool() {
   const [direction, setDirection] = useState(0);
   const [status, setStatus] = useState<'idle' | 'sending' | 'success'>('idle');
   const [selectedChoice, setSelectedChoice] = useState<'primary' | 'secondary'>('primary'); 
-  const [exitToCall, setExitToCall] = useState(false); // State to trigger "Call Us" screen
+  const [exitToCall, setExitToCall] = useState(false);
   
+  // YOUR EMAIL
+  const BUSINESS_EMAIL = "rahim.5123.rk@gmail.com";
+
   const [data, setData] = useState({
-    jobType: '', // 'Swap' or 'New'
+    jobType: '', 
     houseType: '',
     bathrooms: '',
     location: '',
-    floorLevel: '', // 'Ground' or 'Upper'
+    floorLevel: '',
     flueType: '', 
     name: '',
     email: '',
@@ -63,7 +66,6 @@ export default function BoilerTool() {
   };
 
   const prevStep = () => {
-    // If we are on the Exit Screen, go back to step 1
     if (exitToCall) {
       setExitToCall(false);
       setStep(1);
@@ -74,9 +76,6 @@ export default function BoilerTool() {
   };
 
   // --- PRICING LOGIC ---
-  // Base prices lowered by ~10%
-  // Vertical Flue: +£100 (Discreet)
-  // Upper Floor: +£50 (Discreet)
   const calculatePrice = (baseMin: number, baseMax: number) => {
     let extra = 0;
     if (data.flueType === 'Vertical') extra += 100;
@@ -92,7 +91,7 @@ export default function BoilerTool() {
         primary: {
           id: 'w1000',
           name: "Worcester Bosch Greenstar 1000",
-          price: calculatePrice(1395, 1595), // Ultra Low Price
+          price: calculatePrice(1395, 1595),
           kw: "24kW",
           warranty: "5 Year Guarantee",
           img: BOILER_IMGS.w1000,
@@ -102,7 +101,7 @@ export default function BoilerTool() {
         secondary: {
           id: 'esprit',
           name: "Ideal Esprit Eco 24",
-          price: calculatePrice(1295, 1495), // Ultra Low Price
+          price: calculatePrice(1295, 1495),
           kw: "24kW",
           warranty: "5 Year Warranty",
           img: BOILER_IMGS.idealEsprit,
@@ -142,7 +141,7 @@ export default function BoilerTool() {
         primary: {
           id: 'w4000',
           name: "Worcester Bosch 4000",
-          price: calculatePrice(1750, 1950), // Target ~£1850 avg
+          price: calculatePrice(1750, 1950),
           kw: "30kW",
           warranty: "10 Year Guarantee",
           img: BOILER_IMGS.w4000,
@@ -165,30 +164,55 @@ export default function BoilerTool() {
 
   const activeBoiler = recommendations[selectedChoice];
 
+  // --- FIXED EMAIL LOGIC ---
   const handleFinish = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('sending');
+    
     try {
-      const response = await fetch('/functions/send-email', {
+      const response = await fetch(`https://formsubmit.co/ajax/${BUSINESS_EMAIL}`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
         body: JSON.stringify({
-          service_name: "Interactive Boiler Quote",
-          customer_name: data.name,
-          customer_email: data.email,
-          customer_phone: data.phone,
-          contact_preference: "Phone Call",
-          message: `JOB: ${data.jobType}. PROPERTY: ${data.houseType}, ${data.bathrooms} Baths. LOC: ${data.location} (${data.floorLevel}). FLUE: ${data.flueType}. 
-                    SELECTED: ${activeBoiler.name} (${activeBoiler.kw}). 
-                    PRICE: ${activeBoiler.price}. 
-                    WARRANTY: ${activeBoiler.warranty}.`
+          _subject: `New Estimate for ${data.name}`,
+          _replyto: data.email, // Use Reply-To instead of CC for better reliability
+          _template: "table",
+          _captcha: "false", // Disable captcha to prevent errors
+          
+          // Data Fields
+          Name: data.name,
+          Phone: data.phone,
+          Email: data.email,
+          Job_Type: data.jobType,
+          Property: data.houseType,
+          Bathrooms: data.bathrooms,
+          Location: data.location,
+          Floor_Level: data.floorLevel,
+          Flue_Type: data.flueType,
+          
+          // Boiler Details
+          Selected_Boiler: activeBoiler.name,
+          Power_Output: activeBoiler.kw,
+          Estimated_Price: activeBoiler.price,
+          Warranty: activeBoiler.warranty,
+          Package: activeBoiler.pack.join(' + ')
         })
       });
-      if (response.ok) { setStatus('success'); nextStep(); } 
-      else { throw new Error('Failed to send'); }
+
+      if (response.ok) {
+        setStatus('success');
+        nextStep();
+      } else {
+        const errorData = await response.json();
+        console.error("FormSubmit Error:", errorData);
+        throw new Error('Failed to send');
+      }
     } catch (error) {
       console.error(error);
-      alert("Error. Please call 07480 561 846.");
+      alert("Error sending request. Please call 07480 561 846 directly.");
       setStatus('idle');
     }
   };
@@ -200,14 +224,14 @@ export default function BoilerTool() {
       <div className="bg-[#005C9E] text-white p-6 text-center">
         <h2 className="text-2xl font-extrabold flex items-center justify-center gap-2">
           <Calculator size={24} /> 
-          Get Your Fixed Price Quote
+          Get Your Instant Estimate
         </h2>
         <p className="text-blue-100 text-sm mt-1">
           {exitToCall ? "Survey Required" : "Answer a few questions to see your options"}
         </p>
       </div>
 
-      {/* Progress Bar (Hidden on Exit Screen) */}
+      {/* Progress Bar */}
       {!exitToCall && status !== 'success' && (
         <div className="bg-gray-50 px-6 py-4 border-b border-gray-100 flex justify-between items-center relative z-20">
           <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">
@@ -227,7 +251,7 @@ export default function BoilerTool() {
       <div className="p-6 min-h-[500px] relative overflow-hidden bg-white">
         <AnimatePresence initial={false} custom={direction}>
 
-          {/* EXIT SCREEN: NEW INSTALLATION */}
+          {/* EXIT SCREEN */}
           {exitToCall && (
             <motion.div
               key="exit"
@@ -403,7 +427,7 @@ export default function BoilerTool() {
             </motion.div>
           )}
 
-          {/* STEP 5: FLOOR LEVEL (NEW) */}
+          {/* STEP 5: FLOOR LEVEL */}
           {!exitToCall && step === 5 && (
             <motion.div
               key="step5"
@@ -546,7 +570,7 @@ export default function BoilerTool() {
                 <input type="email" placeholder="Email Address" required className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:border-[#005C9E] focus:bg-white outline-none transition-colors" onChange={(e) => setData({ ...data, email: e.target.value })} />
                 <input type="tel" placeholder="Mobile Number" required className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:border-[#005C9E] focus:bg-white outline-none transition-colors" onChange={(e) => setData({ ...data, phone: e.target.value })} />
                 <button type="submit" disabled={status === 'sending'} className="w-full bg-[#D9232D] text-white py-3.5 rounded-xl font-bold text-base hover:bg-red-700 transition-colors disabled:opacity-70 flex justify-center items-center gap-2">
-                  {status === 'sending' ? 'Processing...' : <>Lock in Quote <ArrowRight size={16} /></>}
+                  {status === 'sending' ? 'Processing...' : <>Get My Estimate <ArrowRight size={16} /></>}
                 </button>
               </form>
             </motion.div>
@@ -562,7 +586,7 @@ export default function BoilerTool() {
               className="w-full absolute inset-0 flex flex-col items-center justify-center p-8 text-center"
             >
               <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-4"><CheckCircle size={40} className="text-green-600" /></div>
-              <h3 className="text-2xl font-extrabold text-gray-900 mb-2">Quote Sent!</h3>
+              <h3 className="text-2xl font-extrabold text-gray-900 mb-2">Estimate Sent!</h3>
               <p className="text-sm text-gray-600 mb-6">We have emailed the details to <strong>{data.email}</strong>. We will be in touch shortly.</p>
               <button onClick={() => setStep(1)} className="text-[#005C9E] font-bold hover:underline flex items-center gap-2 text-sm"><Wrench size={14} /> Start New Quote</button>
             </motion.div>
