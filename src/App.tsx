@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-// FIX: Added .tsx extensions to all imports for explicit path resolution.
+// Explicit path resolution with .tsx extensions
 import Layout from './components/Layout.tsx';
 import Home from './pages/home.tsx';
 import About from './pages/About.tsx';
@@ -15,6 +15,7 @@ export default function App() {
 
   useEffect(() => {
     const pages = ['Home', 'Services', 'About', 'Reviews', 'Contact'];
+    // Handle hash navigation (e.g. #contact)
     const path = window.location.hash.replace('#', '');
     const formattedPath = path.charAt(0).toUpperCase() + path.slice(1);
 

@@ -3,4 +3,4 @@ pages_build_output_dir = "dist"
 
 [vars]
 # Do NOT paste your API key here for security.
-# Keep the BREVO_API_KEY in the Cloudflare Dashboard.
+# Keep the BREVO_API_KEY in the Cloudflare Dashboard

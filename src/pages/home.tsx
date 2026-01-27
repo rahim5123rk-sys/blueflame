@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import BoilerTool from '../components/BoilerTool'; 
-import { CheckCircle, Flame, ArrowRight } from 'lucide-react';
+import Gallery from '../components/Gallery'; // IMPORTED THE GALLERY
+import { CheckCircle, Flame, ArrowRight, Zap, ShieldCheck } from 'lucide-react';
 
 interface HomeProps {
   setCurrentPage: (page: string) => void;
@@ -73,21 +74,21 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
   return (
     <div className="animate-fadeIn font-sans">
       
-      {/* 1. HERO SECTION - FIXED READABILITY */}
-      <section className="relative pt-28 pb-20 lg:pt-36 lg:pb-32 overflow-hidden">
-        {/* Background Image */}
+      {/* 1. HERO SECTION */}
+      <section className="relative pt-24 pb-20 lg:pt-32 lg:pb-32 overflow-hidden">
+        
+        {/* Background Image with Readability Overlay */}
         <div className="absolute inset-0 z-0">
           <img 
             src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=2070&auto=format&fit=crop" 
             alt="Modern Home Interior" 
             className="w-full h-full object-cover"
           />
-          {/* DARKER Gradient Overlay for Maximum Readability */}
           <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-[#005C9E]/90 to-[#005C9E]/80 mix-blend-multiply"></div>
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             
             {/* LEFT: MAIN TEXT */}
             <div className="text-white text-center lg:text-left">
@@ -97,7 +98,6 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
                 <span className="text-[#60a5fa]">Heating Experts.</span>
               </h1>
               
-              {/* UPDATED SUB-TEXT: BRIGHTER & SHARPER */}
               <p className="text-xl text-gray-100 mb-8 max-w-xl mx-auto lg:mx-0 font-medium leading-relaxed drop-shadow-md">
                 From emergency repairs to brand new boiler installations. We provide honest pricing, quality workmanship, and 24/7 support.
               </p>
@@ -132,63 +132,63 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
               </div>
             </div>
 
-            {/* RIGHT: THE SPECIAL OFFER CARD (STRAIGHTENED) */}
-            <div className="relative max-w-md mx-auto lg:mr-0 w-full">
-              <div className="relative bg-white text-gray-900 rounded-2xl shadow-2xl overflow-hidden border border-gray-100">
+            {/* RIGHT: SPECIAL OFFER CARD */}
+            <div className="relative max-w-sm mx-auto lg:mr-0 w-full mt-8 lg:mt-0">
+              <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 group hover:scale-[1.02] transition-transform duration-300">
                 
-                {/* Card Header - Updated Text */}
-                <div className="bg-[#D9232D] text-white py-3 px-6 text-center font-bold uppercase tracking-widest flex items-center justify-center gap-2 shadow-sm">
-                  <Flame size={20} className="fill-current" /> Special Offer <Flame size={20} className="fill-current" />
+                <div className="absolute top-0 right-0 bg-[#D9232D] text-white text-xs font-bold px-4 py-2 rounded-bl-2xl z-20 shadow-md flex items-center gap-1">
+                  <Flame size={12} fill="currentColor" /> SPECIAL OFFER
                 </div>
-                
-                <div className="p-6">
-                  {/* Product Title & Image */}
-                  <div className="flex justify-between items-start mb-6 border-b border-gray-100 pb-6">
-                    <div>
-                      <h3 className="text-2xl font-extrabold text-[#005C9E] leading-tight">Worcester 1000</h3>
-                      <div className="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded font-bold uppercase mt-1">
-                        30kW Upgrade
-                      </div>
+
+                <div className="bg-gradient-to-b from-blue-50 to-white pt-10 pb-4 px-6 relative flex justify-center items-center h-64">
+                  <div className="absolute w-40 h-40 bg-blue-200 rounded-full blur-3xl opacity-50"></div>
+                  <img 
+                    src="/images/boilers/w1000.png" 
+                    alt="Worcester 1000" 
+                    className="relative w-56 h-auto object-contain drop-shadow-2xl z-10 transform group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+
+                <div className="p-6 pt-2">
+                  <div className="text-center mb-6">
+                    <h3 className="text-2xl font-extrabold text-gray-900 mb-1">Worcester Bosch 1000</h3>
+                    <div className="inline-block bg-green-100 text-green-800 text-[10px] font-extrabold px-2 py-1 rounded uppercase tracking-wider">
+                      30kW Upgrade Included
                     </div>
-                    {/* Make sure w1000.png exists in /public/images/boilers/ */}
-                    <img src="/images/boilers/w1000.png" alt="Worcester Boiler" className="w-16 h-20 object-contain drop-shadow-md" />
                   </div>
 
-                  {/* Included List */}
-                  <ul className="space-y-3 mb-6">
-                    <li className="flex items-center gap-3">
-                      <div className="bg-green-100 p-1 rounded-full"><CheckCircle className="text-green-600 w-4 h-4" /></div>
-                      <span className="font-bold text-gray-700">Hive Mini Smart Thermostat</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <div className="bg-green-100 p-1 rounded-full"><CheckCircle className="text-green-600 w-4 h-4" /></div>
-                      <span className="font-medium text-gray-600">Adey Filter & Chemicals</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <div className="bg-green-100 p-1 rounded-full"><CheckCircle className="text-green-600 w-4 h-4" /></div>
-                      <span className="font-medium text-gray-600">Full Installation & Labour</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <div className="bg-green-100 p-1 rounded-full"><CheckCircle className="text-green-600 w-4 h-4" /></div>
-                      <span className="font-bold text-green-700">5 Year Guarantee Included</span>
-                    </li>
-                  </ul>
+                  <div className="space-y-3 mb-6 bg-gray-50 p-4 rounded-xl border border-gray-100">
+                    <div className="flex items-start gap-3">
+                      <Zap className="w-4 h-4 text-[#005C9E] mt-0.5 flex-shrink-0" />
+                      <span className="text-sm font-bold text-gray-700">ESI Programmable Thermostat</span>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <ShieldCheck className="w-4 h-4 text-[#005C9E] mt-0.5 flex-shrink-0" />
+                      <span className="text-sm font-medium text-gray-600">Adey Filter & Chemicals</span>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <CheckCircle className="w-4 h-4 text-[#005C9E] mt-0.5 flex-shrink-0" />
+                      <span className="text-sm font-medium text-gray-600">Full Installation & Fittings</span>
+                    </div>
+                  </div>
 
-                  {/* Pricing Box */}
-                  <div className="bg-gray-50 rounded-xl p-4 text-center border border-gray-200 mb-4">
-                    <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Total Supplied & Fitted</p>
-                    <div className="text-5xl font-extrabold text-[#005C9E] tracking-tight">£1,650</div>
-                    <p className="text-[10px] text-gray-400 mt-2 font-medium">
-                      *Based on straight Combi-Combi swap with horizontal flue.
-                    </p>
+                  <div className="flex justify-between items-end mb-6 border-t border-gray-100 pt-4">
+                    <div className="text-left">
+                      <p className="text-xs text-gray-400 font-medium mb-0.5">Supplied & Fitted</p>
+                      <p className="text-3xl font-extrabold text-[#005C9E]">£1,650</p>
+                    </div>
+                    <div className="text-right pb-1">
+                      <span className="text-sm text-gray-400 line-through font-medium">£1,850</span>
+                    </div>
                   </div>
 
                   <button 
                     onClick={() => document.getElementById('boiler-quote-tool')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="w-full bg-[#005C9E] text-white font-bold py-4 rounded-xl shadow-lg hover:bg-blue-800 transition-colors flex justify-center items-center gap-2"
+                    className="w-full bg-[#005C9E] text-white font-bold py-3.5 rounded-xl shadow-lg hover:bg-blue-800 transition-colors flex justify-center items-center gap-2"
                   >
-                    Claim This Deal <ArrowRight size={18} />
+                    Claim Deal <ArrowRight size={18} />
                   </button>
+                  <p className="text-[10px] text-gray-400 text-center mt-3">*Standard horizontal flue swap.</p>
                 </div>
               </div>
             </div>
@@ -196,6 +196,21 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
           </div>
         </div>
       </section>
+
+      {/* NEW: TRUST BADGE STRIP */}
+      <div className="bg-gray-100 border-y border-gray-200 py-6 overflow-hidden">
+        <div className="container mx-auto px-4">
+          <p className="text-center text-gray-500 text-xs font-bold uppercase tracking-widest mb-4">Fully Accredited & Installing Top Brands</p>
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
+            {/* Gas Safe */}
+            <img src="https://upload.wikimedia.org/wikipedia/en/e/e5/Gas_Safe_Register_logo.svg" alt="Gas Safe Register" className="h-12 w-auto object-contain" />
+            
+            {/* Brands */}
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Worcester_Bosch_Logo.svg" alt="Worcester Bosch" className="h-10 w-auto object-contain" />
+            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/86/Ideal_Boilers_logo.svg/1200px-Ideal_Boilers_logo.svg.png" alt="Ideal" className="h-12 w-auto object-contain" />
+          </div>
+        </div>
+      </div>
 
       {/* 2. SERVICES OVERVIEW */}
       <section id="services" className="bg-white py-16">
@@ -281,7 +296,10 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
         </div>
       </section>
 
-      {/* 5. TESTIMONIALS */}
+      {/* 5. NEW: GALLERY SECTION */}
+      <Gallery />
+
+      {/* 6. TESTIMONIALS */}
       <section className="bg-gray-50 py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -317,7 +335,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
         </div>
       </section>
 
-      {/* 6. SERVICE AREA */}
+      {/* 7. SERVICE AREA */}
       <section className="bg-white py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -341,7 +359,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
         </div>
       </section>
 
-      {/* 7. FAQ */}
+      {/* 8. FAQ */}
       <section className="bg-gray-50 py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
