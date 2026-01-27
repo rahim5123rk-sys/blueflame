@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle, ArrowRight, ArrowLeft, Home, Droplets, MapPin, Wrench, Thermometer, Filter, Calculator, ArrowUpCircle, ArrowRightCircle, Mail } from 'lucide-react';
+import { CheckCircle, ArrowRight, ArrowLeft, Home, Droplets, MapPin, Wrench, Thermometer, Filter, Calculator, ArrowUpCircle, ArrowRightCircle } from 'lucide-react';
 
 // --- LOCAL IMAGES ---
 const BOILER_IMGS = {
