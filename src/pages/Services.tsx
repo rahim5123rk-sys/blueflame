@@ -22,7 +22,7 @@ export default function Services({ preselectedService, setPreselectedService }: 
     { name: 'Landlord Gas Safety Certificate (CP12)', price: '£60', description: 'A full inspection and certification of all gas appliances, legally required for rental properties.' },
     { name: 'Boiler Breakdown & Repair', price: 'Callout Fee', description: 'Fast and effective diagnosis and repair for when your heating or hot water fails.' },
     { name: 'New Boiler Installation', price: 'Free Quote', description: 'Expert installation of modern, high-efficiency boilers tailored to your home\'s needs.' },
-    { name: 'Radiator System Clean', price: 'From £2000', description: 'A deep clean of your central heating system to remove sludge, improve efficiency, and reduce bills.' },
+    { name: 'Radiator System Clean', price: 'From £200', description: 'A deep clean of your central heating system to remove sludge, improve efficiency, and reduce bills.' },
   ];
 
   // Effect to handle the pre-selected service from the homepage
