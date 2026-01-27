@@ -1,21 +1,40 @@
 import { useState } from 'react';
 
-// Contact component for user inquiries
 export default function Contact() {
   const [formState, setFormState] = useState({ name: '', email: '', message: '' });
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
-  // Handle form input changes
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
   };
 
-  // Handle form submission
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, you would handle form submission here (e.g., send an email)
-    console.log('Form submitted:', formState);
-    setIsSubmitted(true);
+    setStatus('sending');
+
+    try {
+      const response = await fetch('/functions/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          customer_name: formState.name,
+          customer_email: formState.email,
+          service_name: "General Inquiry",
+          customer_phone: "Not provided",
+          contact_preference: "Email",
+          message: formState.message // This maps to the template in your backend
+        }),
+      });
+
+      if (response.ok) {
+        setStatus('success');
+      } else {
+        throw new Error('Failed to send');
+      }
+    } catch (error) {
+      console.error('Submission error:', error);
+      setStatus('error');
+    }
   };
 
   return (
@@ -27,52 +46,46 @@ export default function Contact() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-          {/* Contact Information */}
           <div className="space-y-6">
             <div className="p-6 bg-gray-50 rounded-lg">
               <h3 className="text-2xl font-bold text-gray-800">Contact Details</h3>
               <p className="text-gray-600 mt-2">For immediate assistance or to speak with an engineer, please call us.</p>
               <div className="mt-4">
                 <p className="text-lg font-semibold text-gray-700">Phone:</p>
-                {/* NEW: Updated Phone Number */}
                 <a href="tel:07480561846" className="text-2xl font-bold text-[#005C9E] hover:underline">07480 561 846</a>
-              </div>
-            </div>
-             <div className="p-6 bg-gray-50 rounded-lg">
-              <h3 className="text-2xl font-bold text-gray-800">Business Hours</h3>
-              <div className="mt-4 text-gray-700">
-                <p><strong>Mon - Sat:</strong> 8:00 AM - 6:00 PM</p>
-                
-                <p><strong>Sunday:</strong> Closed</p>
-                <p className="mt-2 font-semibold">24/7 Emergency Call-Outs Available</p>
               </div>
             </div>
           </div>
 
-          {/* Contact Form */}
           <div className="bg-gray-50 p-8 rounded-lg shadow-inner">
-            {isSubmitted ? (
+            {status === 'success' ? (
               <div className="text-center p-4 bg-green-100 text-green-800 rounded-lg">
                 <h3 className="text-xl font-bold">Message Sent!</h3>
                 <p>Thank you for reaching out. We will get back to you as soon as possible.</p>
+                <button onClick={() => setStatus('idle')} className="mt-4 text-[#005C9E] font-bold underline">Send another message</button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
+                {status === 'error' && (
+                  <div className="p-3 bg-red-100 text-red-700 rounded-md">
+                    Failed to send message. Please check your connection or call us directly.
+                  </div>
+                )}
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700">Full Name</label>
-                  <input type="text" name="name" id="name" required className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" onChange={handleChange} />
+                  <input type="text" name="name" id="name" required className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" onChange={handleChange} value={formState.name} />
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email Address</label>
-                  <input type="email" name="email" id="email" required className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" onChange={handleChange} />
+                  <input type="email" name="email" id="email" required className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" onChange={handleChange} value={formState.email} />
                 </div>
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700">Message</label>
-                  <textarea name="message" id="message" rows={4} required className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" onChange={handleChange}></textarea>
+                  <textarea name="message" id="message" rows={4} required className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" onChange={handleChange} value={formState.message}></textarea>
                 </div>
                 <div>
-                  <button type="submit" className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#D9232D] hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
-                    Send Message
+                  <button type="submit" disabled={status === 'sending'} className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#D9232D] hover:bg-red-700 disabled:bg-gray-400">
+                    {status === 'sending' ? 'Sending...' : 'Send Message'}
                   </button>
                 </div>
               </form>

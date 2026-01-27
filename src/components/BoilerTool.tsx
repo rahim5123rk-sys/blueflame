@@ -37,7 +37,7 @@ export default function BoilerTool() {
     
     try {
       // Sends data to your existing Brevo backend
-      await fetch('/.netlify/functions/send-email', {
+      await fetch('/functions/send-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
