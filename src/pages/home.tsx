@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import BoilerTool from '../components/BoilerTool'; 
+import { CheckCircle, Flame, ArrowRight } from 'lucide-react';
 
 interface HomeProps {
   setCurrentPage: (page: string) => void;
@@ -7,7 +8,7 @@ interface HomeProps {
 }
 
 const WhatsAppIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="mr-2">
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="mr-2">
     <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
   </svg>
 );
@@ -58,7 +59,6 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
   }, [testimonials.length]);
 
   const handleServiceClick = (serviceName: string) => {
-    // Scroll to tool if it's the installation service
     if (serviceName === 'New Boiler Installation') {
       const toolElement = document.getElementById('boiler-quote-tool');
       if (toolElement) {
@@ -71,41 +71,128 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
   };
 
   return (
-    <div className="animate-fadeIn">
-      {/* 1. HERO SECTION */}
-      <section className="relative bg-[#005C9E] py-24 px-4 overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute transform -rotate-45 -left-1/4 top-0 w-full h-full bg-white/20 blur-3xl"></div>
+    <div className="animate-fadeIn font-sans">
+      
+      {/* 1. HERO SECTION - FIXED READABILITY */}
+      <section className="relative pt-28 pb-20 lg:pt-36 lg:pb-32 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=2070&auto=format&fit=crop" 
+            alt="Modern Home Interior" 
+            className="w-full h-full object-cover"
+          />
+          {/* DARKER Gradient Overlay for Maximum Readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-[#005C9E]/90 to-[#005C9E]/80 mix-blend-multiply"></div>
         </div>
-        
-        <div className="container mx-auto relative z-10 text-center">
-          <h1 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight text-white">
-            Reliable Gas Services <br />
-            <span className="text-blue-100">You Can Rely On.</span>
-          </h1>
-          <p className="text-xl mb-10 text-blue-100 max-w-2xl mx-auto">
-            Your local experts covering Worcestershire & the West Midlands for boiler servicing, safety certificates, and installations.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
-              onClick={() => {
-                const toolElement = document.getElementById('boiler-quote-tool');
-                if (toolElement) toolElement.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="bg-[#D9232D] text-white font-bold py-4 px-10 rounded-full shadow-lg hover:bg-red-700 transition-transform transform hover:scale-105"
-            >
-              Get an Instant Quote
-            </button>
-            <a
-              href="https://wa.me/447480561846"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center bg-green-600 text-white font-bold py-4 px-10 rounded-full shadow-lg hover:bg-green-700 transition-transform transform hover:scale-105"
-            >
-              <WhatsAppIcon />
-              WhatsApp
-            </a>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            
+            {/* LEFT: MAIN TEXT */}
+            <div className="text-white text-center lg:text-left">
+              
+              <h1 className="text-5xl lg:text-7xl font-extrabold mb-6 leading-tight tracking-tight drop-shadow-xl">
+                Your Local Gas & <br className="hidden lg:block"/>
+                <span className="text-[#60a5fa]">Heating Experts.</span>
+              </h1>
+              
+              {/* UPDATED SUB-TEXT: BRIGHTER & SHARPER */}
+              <p className="text-xl text-gray-100 mb-8 max-w-xl mx-auto lg:mx-0 font-medium leading-relaxed drop-shadow-md">
+                From emergency repairs to brand new boiler installations. We provide honest pricing, quality workmanship, and 24/7 support.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <button
+                  onClick={() => document.getElementById('boiler-quote-tool')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="bg-[#D9232D] text-white font-bold py-4 px-8 rounded-xl shadow-xl hover:bg-red-700 hover:shadow-2xl transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2"
+                >
+                  Get Instant Estimate <ArrowRight size={20} />
+                </button>
+                <a
+                  href="https://wa.me/447480561846"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white/10 backdrop-blur-md text-white font-bold py-4 px-8 rounded-xl hover:bg-white hover:text-[#005C9E] transition-all border border-white/30 flex items-center justify-center gap-2"
+                >
+                  <WhatsAppIcon /> WhatsApp Us
+                </a>
+              </div>
+              
+              <div className="mt-10 flex items-center justify-center lg:justify-start gap-6 text-sm font-medium text-gray-200">
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-5 h-5 text-green-400" /> Gas Safe
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-5 h-5 text-green-400" /> Fully Insured
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-5 h-5 text-green-400" /> 5★ Reviews
+                </div>
+              </div>
+            </div>
+
+            {/* RIGHT: THE SPECIAL OFFER CARD (STRAIGHTENED) */}
+            <div className="relative max-w-md mx-auto lg:mr-0 w-full">
+              <div className="relative bg-white text-gray-900 rounded-2xl shadow-2xl overflow-hidden border border-gray-100">
+                
+                {/* Card Header - Updated Text */}
+                <div className="bg-[#D9232D] text-white py-3 px-6 text-center font-bold uppercase tracking-widest flex items-center justify-center gap-2 shadow-sm">
+                  <Flame size={20} className="fill-current" /> Special Offer <Flame size={20} className="fill-current" />
+                </div>
+                
+                <div className="p-6">
+                  {/* Product Title & Image */}
+                  <div className="flex justify-between items-start mb-6 border-b border-gray-100 pb-6">
+                    <div>
+                      <h3 className="text-2xl font-extrabold text-[#005C9E] leading-tight">Worcester 1000</h3>
+                      <div className="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded font-bold uppercase mt-1">
+                        30kW Upgrade
+                      </div>
+                    </div>
+                    {/* Make sure w1000.png exists in /public/images/boilers/ */}
+                    <img src="/images/boilers/w1000.png" alt="Worcester Boiler" className="w-16 h-20 object-contain drop-shadow-md" />
+                  </div>
+
+                  {/* Included List */}
+                  <ul className="space-y-3 mb-6">
+                    <li className="flex items-center gap-3">
+                      <div className="bg-green-100 p-1 rounded-full"><CheckCircle className="text-green-600 w-4 h-4" /></div>
+                      <span className="font-bold text-gray-700">Hive Mini Smart Thermostat</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <div className="bg-green-100 p-1 rounded-full"><CheckCircle className="text-green-600 w-4 h-4" /></div>
+                      <span className="font-medium text-gray-600">Adey Filter & Chemicals</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <div className="bg-green-100 p-1 rounded-full"><CheckCircle className="text-green-600 w-4 h-4" /></div>
+                      <span className="font-medium text-gray-600">Full Installation & Labour</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <div className="bg-green-100 p-1 rounded-full"><CheckCircle className="text-green-600 w-4 h-4" /></div>
+                      <span className="font-bold text-green-700">5 Year Guarantee Included</span>
+                    </li>
+                  </ul>
+
+                  {/* Pricing Box */}
+                  <div className="bg-gray-50 rounded-xl p-4 text-center border border-gray-200 mb-4">
+                    <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Total Supplied & Fitted</p>
+                    <div className="text-5xl font-extrabold text-[#005C9E] tracking-tight">£1,650</div>
+                    <p className="text-[10px] text-gray-400 mt-2 font-medium">
+                      *Based on straight Combi-Combi swap with horizontal flue.
+                    </p>
+                  </div>
+
+                  <button 
+                    onClick={() => document.getElementById('boiler-quote-tool')?.scrollIntoView({ behavior: 'smooth' })}
+                    className="w-full bg-[#005C9E] text-white font-bold py-4 rounded-xl shadow-lg hover:bg-blue-800 transition-colors flex justify-center items-center gap-2"
+                  >
+                    Claim This Deal <ArrowRight size={18} />
+                  </button>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
@@ -123,18 +210,21 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
                 key={service.name} 
                 href={service.name === 'New Boiler Installation' ? '#boiler-quote-tool' : '#services'}
                 onClick={(e) => { e.preventDefault(); handleServiceClick(service.name); }} 
-                className="block bg-gray-50 rounded-xl shadow-md overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 border border-gray-100 cursor-pointer"
+                className="block bg-gray-50 rounded-xl shadow-md overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 border border-gray-100 cursor-pointer group"
               >
-                <img 
-                  src={service.image} 
-                  alt={service.name} 
-                  className="w-full h-48 object-cover"
-                  onError={(e) => { e.currentTarget.src = 'https://placehold.co/400x300/cccccc/ffffff?text=Image'; e.currentTarget.onerror = null; }}
-                />
+                <div className="relative h-48 overflow-hidden">
+                  <img 
+                    src={service.image} 
+                    alt={service.name} 
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    onError={(e) => { e.currentTarget.src = 'https://placehold.co/400x300/cccccc/ffffff?text=Image'; e.currentTarget.onerror = null; }}
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
+                </div>
                 <div className="p-6 text-center">
-                  <h3 className="text-xl font-semibold text-gray-900">{service.name}</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 group-hover:text-[#005C9E] transition-colors">{service.name}</h3>
                   {service.name === 'New Boiler Installation' && (
-                    <span className="block mt-2 text-[#005C9E] font-bold text-sm uppercase tracking-wide">
+                    <span className="inline-block mt-3 px-3 py-1 bg-[#005C9E]/10 text-[#005C9E] rounded-full font-bold text-xs uppercase tracking-wide">
                       Get Free Estimate →
                     </span>
                   )}
@@ -146,10 +236,11 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
       </section>
 
       {/* 3. DEDICATED BOILER TOOL SECTION */}
-      <section id="boiler-quote-tool" className="bg-blue-50 py-20">
-        <div className="container mx-auto px-4">
+      <section id="boiler-quote-tool" className="bg-blue-50 py-20 relative">
+         <div className="absolute inset-0 opacity-5 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#005C9E 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+        <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-extrabold text-[#005C9E]">Looking for a New Boiler?</h2>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-[#005C9E]">Looking for a New Boiler?</h2>
             <p className="text-gray-600 mt-2 text-lg">Use our smart tool below to get an instant estimate in seconds.</p>
           </div>
           <BoilerTool />
@@ -173,7 +264,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
               </ul>
               <button
                 onClick={() => handleServiceClick('Landlord Deal: Gas Cert + Boiler Service')}
-                className="mt-4 inline-block bg-[#D9232D] text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-red-700 transition-transform transform hover:scale-105 no-underline"
+                className="mt-6 inline-block bg-[#D9232D] text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-red-700 transition-transform transform hover:scale-105 no-underline"
               >
                 View Landlord Deal
               </button>
@@ -182,7 +273,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
               <img 
                 src="/images/landlord-deal.jpg" 
                 alt="Specialist gas services for landlords"
-                className="rounded-xl shadow-lg w-full h-auto"
+                className="rounded-xl shadow-lg w-full h-auto transform hover:scale-[1.02] transition-transform"
                 onError={(e) => { e.currentTarget.src = 'https://placehold.co/600x400/cccccc/ffffff?text=Landlord+Services'; e.currentTarget.onerror = null; }}
               />
             </div>
@@ -195,7 +286,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900">What Our Customers Say</h2>
-            <a href="https://share.google/ugaj3yv88Z6JjYB77" target="_blank" rel="noopener noreferrer" className="inline-flex items-center mt-2 text-gray-600 hover:text-[#005C9E]">
+            <a href="https://share.google/ugaj3yv88Z6JjYB77" target="_blank" rel="noopener noreferrer" className="inline-flex items-center mt-2 text-gray-600 hover:text-[#005C9E] font-medium transition-colors">
               <GoogleIcon />
               Verified on Google
             </a>
@@ -206,9 +297,9 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
                 key={index}
                 className={`absolute w-full transition-opacity duration-1000 ease-in-out ${index === currentTestimonial ? 'opacity-100' : 'opacity-0'}`}
               >
-                <div className="bg-white p-8 rounded-lg shadow-md text-center">
+                <div className="bg-white p-8 rounded-xl shadow-md text-center border border-gray-100 mx-4">
                   <p className="text-lg text-gray-600 italic">"{testimonial.comment}"</p>
-                  <p className="mt-4 font-bold text-gray-800">- {testimonial.name}</p>
+                  <p className="mt-4 font-bold text-gray-800 text-lg">- {testimonial.name}</p>
                 </div>
               </div>
             ))}
@@ -219,7 +310,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
                 key={index}
                 onClick={() => setCurrentTestimonial(index)}
                 aria-label={`Go to testimonial ${index + 1}`}
-                className={`w-3 h-3 rounded-full transition-colors ${index === currentTestimonial ? 'bg-[#005C9E]' : 'bg-gray-300'}`}
+                className={`w-3 h-3 rounded-full transition-all ${index === currentTestimonial ? 'bg-[#005C9E] w-6' : 'bg-gray-300 hover:bg-gray-400'}`}
               />
             ))}
           </div>
@@ -234,16 +325,16 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
             <p className="mt-2 text-lg text-gray-600">Covering Worcestershire and the West Midlands.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="bg-gray-50 p-6 rounded-lg shadow-sm border">
-              <h3 className="text-2xl font-semibold text-center text-[#005C9E] mb-4">Worcestershire</h3>
-              <ul className="space-y-2 text-center text-gray-700">
-                {serviceAreas.worcestershire.map(area => <li key={area}>{area}</li>)}
+            <div className="bg-gray-50 p-8 rounded-2xl shadow-sm border border-gray-100 hover:border-blue-100 transition-colors">
+              <h3 className="text-2xl font-bold text-center text-[#005C9E] mb-6">Worcestershire</h3>
+              <ul className="space-y-3 text-center text-gray-700">
+                {serviceAreas.worcestershire.map(area => <li key={area} className="font-medium">{area}</li>)}
               </ul>
             </div>
-            <div className="bg-gray-50 p-6 rounded-lg shadow-sm border">
-              <h3 className="text-2xl font-semibold text-center text-[#005C9E] mb-4">West Midlands</h3>
-              <ul className="space-y-2 text-center text-gray-700">
-                {serviceAreas.westMidlands.map(area => <li key={area}>{area}</li>)}
+            <div className="bg-gray-50 p-8 rounded-2xl shadow-sm border border-gray-100 hover:border-blue-100 transition-colors">
+              <h3 className="text-2xl font-bold text-center text-[#005C9E] mb-6">West Midlands</h3>
+              <ul className="space-y-3 text-center text-gray-700">
+                {serviceAreas.westMidlands.map(area => <li key={area} className="font-medium">{area}</li>)}
               </ul>
             </div>
           </div>
@@ -258,20 +349,20 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
           </div>
           <div className="max-w-3xl mx-auto space-y-4">
             {faqs.map((faq, index) => (
-              <div key={index} className="border-b border-gray-200 pb-4">
+              <div key={index} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
                 <button
                   onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                  className="w-full flex justify-between items-center text-left py-4"
+                  className="w-full flex justify-between items-center text-left p-5 focus:outline-none hover:bg-gray-50 transition-colors"
                 >
                   <h3 className="font-semibold text-lg text-gray-800">{faq.q}</h3>
-                  <span className={`transform transition-transform duration-300 ${openFaq === index ? 'rotate-45' : 'rotate-0'}`}>
-                    <svg className="w-6 h-6 text-[#005C9E]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                  <span className={`transform transition-transform duration-300 ${openFaq === index ? 'rotate-180' : 'rotate-0'}`}>
+                    <svg className="w-5 h-5 text-[#005C9E]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
                   </span>
                 </button>
                 <div
-                  className={`overflow-hidden transition-all duration-500 ease-in-out ${openFaq === index ? 'max-h-96' : 'max-h-0'}`}
+                  className={`overflow-hidden transition-all duration-300 ease-in-out ${openFaq === index ? 'max-h-48' : 'max-h-0'}`}
                 >
-                  <p className="pt-2 pb-4 text-gray-600">
+                  <p className="p-5 pt-0 text-gray-600 border-t border-gray-100">
                     {faq.a}
                   </p>
                 </div>
