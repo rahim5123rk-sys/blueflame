@@ -139,7 +139,7 @@ export default function Layout({ children, setCurrentPage }: LayoutProps) {
 
             <div className="text-sm text-gray-500 font-medium text-center md:text-right">
               <a href="tel:07480561846" className="text-[#005C9E] hover:underline block">07480 561 846</a>
-              <a href="tel:07864954123" className="text-[#005C9E] hover:underline block">07864 954 123</a>
+              
               <a href="mailto:sal.786@hotmail.com" className="text-[#005C9E] hover:underline block">sal.786@hotmail.com</a>
             </div>
           </div>
