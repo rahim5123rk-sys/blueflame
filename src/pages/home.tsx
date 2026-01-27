@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import BoilerTool from '../components/BoilerTool'; 
-import Gallery from '../components/Gallery'; // IMPORTED THE GALLERY
+import Gallery from '../components/Gallery'; 
 import { CheckCircle, Flame, ArrowRight, Zap, ShieldCheck } from 'lucide-react';
 
 interface HomeProps {
@@ -84,6 +84,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
             alt="Modern Home Interior" 
             className="w-full h-full object-cover"
           />
+          {/* THE FIX: Slate to Brand Blue gradient overlay for readable text */}
           <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-[#005C9E]/90 to-[#005C9E]/80 mix-blend-multiply"></div>
         </div>
 
@@ -132,16 +133,23 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
               </div>
             </div>
 
-            {/* RIGHT: SPECIAL OFFER CARD */}
+            {/* RIGHT: SPECIAL OFFER CARD (Redesigned) */}
             <div className="relative max-w-sm mx-auto lg:mr-0 w-full mt-8 lg:mt-0">
+              
+              {/* Card Container */}
               <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 group hover:scale-[1.02] transition-transform duration-300">
                 
+                {/* Special Offer Badge */}
                 <div className="absolute top-0 right-0 bg-[#D9232D] text-white text-xs font-bold px-4 py-2 rounded-bl-2xl z-20 shadow-md flex items-center gap-1">
                   <Flame size={12} fill="currentColor" /> SPECIAL OFFER
                 </div>
 
+                {/* IMAGE SECTION - MAIN FOCUS */}
                 <div className="bg-gradient-to-b from-blue-50 to-white pt-10 pb-4 px-6 relative flex justify-center items-center h-64">
+                  {/* Subtle Glow Behind Boiler */}
                   <div className="absolute w-40 h-40 bg-blue-200 rounded-full blur-3xl opacity-50"></div>
+                  
+                  {/* BOILER IMAGE - LARGE & CENTERED */}
                   <img 
                     src="/images/boilers/w1000.png" 
                     alt="Worcester 1000" 
@@ -149,6 +157,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
                   />
                 </div>
 
+                {/* DETAILS SECTION */}
                 <div className="p-6 pt-2">
                   <div className="text-center mb-6">
                     <h3 className="text-2xl font-extrabold text-gray-900 mb-1">Worcester Bosch 1000</h3>
@@ -157,6 +166,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
                     </div>
                   </div>
 
+                  {/* Modern Feature Grid */}
                   <div className="space-y-3 mb-6 bg-gray-50 p-4 rounded-xl border border-gray-100">
                     <div className="flex items-start gap-3">
                       <Zap className="w-4 h-4 text-[#005C9E] mt-0.5 flex-shrink-0" />
@@ -172,6 +182,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
                     </div>
                   </div>
 
+                  {/* Pricing */}
                   <div className="flex justify-between items-end mb-6 border-t border-gray-100 pt-4">
                     <div className="text-left">
                       <p className="text-xs text-gray-400 font-medium mb-0.5">Supplied & Fitted</p>
@@ -198,16 +209,37 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
       </section>
 
       {/* NEW: TRUST BADGE STRIP */}
-      <div className="bg-gray-100 border-y border-gray-200 py-6 overflow-hidden">
+      <div className="bg-gray-100 border-y border-gray-200 py-8 overflow-hidden">
         <div className="container mx-auto px-4">
-          <p className="text-center text-gray-500 text-xs font-bold uppercase tracking-widest mb-4">Fully Accredited & Installing Top Brands</p>
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
-            {/* Gas Safe */}
-            <img src="https://upload.wikimedia.org/wikipedia/en/e/e5/Gas_Safe_Register_logo.svg" alt="Gas Safe Register" className="h-12 w-auto object-contain" />
+          <p className="text-center text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-6">
+            Fully Accredited & Installing Top Brands
+          </p>
+          
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
             
-            {/* Brands */}
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Worcester_Bosch_Logo.svg" alt="Worcester Bosch" className="h-10 w-auto object-contain" />
-            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/86/Ideal_Boilers_logo.svg/1200px-Ideal_Boilers_logo.svg.png" alt="Ideal" className="h-12 w-auto object-contain" />
+            {/* Gas Safe - Make this one slightly larger as it is most important */}
+            <img 
+              src="/images/gas-safe.png" 
+              alt="Gas Safe Register" 
+              className="h-14 w-auto object-contain" 
+            />
+            
+            {/* Divider Line (Optional visual separator) */}
+            <div className="hidden md:block w-px h-8 bg-gray-300"></div>
+
+            {/* Worcester Bosch */}
+            <img 
+              src="/images/worcester.png" 
+              alt="Worcester Bosch Accredited" 
+              className="h-10 w-auto object-contain" 
+            />
+
+            {/* Ideal */}
+            <img 
+              src="/images/ideal.png" 
+              alt="Ideal Boilers" 
+              className="h-12 w-auto object-contain" 
+            />
           </div>
         </div>
       </div>

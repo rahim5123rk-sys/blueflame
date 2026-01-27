@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle, ArrowRight, ArrowLeft, Home, Droplets, MapPin, Wrench, Thermometer, Filter, Calculator, ArrowUpCircle, ArrowRightCircle, RefreshCw, PlusCircle, Phone } from 'lucide-react';
+// FIXED: Removed 'Thermometer' and 'Filter' from imports
+import { CheckCircle, ArrowRight, ArrowLeft, Home, Droplets, MapPin, Wrench, Calculator, ArrowUpCircle, ArrowRightCircle, RefreshCw, PlusCircle, Phone, Flame } from 'lucide-react';
 
 // --- LOCAL IMAGES ---
 const BOILER_IMGS = {
@@ -164,7 +165,6 @@ export default function BoilerTool() {
 
   const activeBoiler = recommendations[selectedChoice];
 
-  // --- FIXED EMAIL LOGIC ---
   const handleFinish = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('sending');
@@ -177,12 +177,11 @@ export default function BoilerTool() {
           'Accept': 'application/json'
         },
         body: JSON.stringify({
-          _subject: `New Estimate for ${data.name}`,
-          _replyto: data.email, // Use Reply-To instead of CC for better reliability
+          _subject: `New Combi Estimate for ${data.name}`,
+          _replyto: data.email, 
           _template: "table",
-          _captcha: "false", // Disable captcha to prevent errors
+          _captcha: "false",
           
-          // Data Fields
           Name: data.name,
           Phone: data.phone,
           Email: data.email,
@@ -193,7 +192,6 @@ export default function BoilerTool() {
           Floor_Level: data.floorLevel,
           Flue_Type: data.flueType,
           
-          // Boiler Details
           Selected_Boiler: activeBoiler.name,
           Power_Output: activeBoiler.kw,
           Estimated_Price: activeBoiler.price,
@@ -224,10 +222,10 @@ export default function BoilerTool() {
       <div className="bg-[#005C9E] text-white p-6 text-center">
         <h2 className="text-2xl font-extrabold flex items-center justify-center gap-2">
           <Calculator size={24} /> 
-          Get Your Instant Estimate
+          Combi Boiler Estimate
         </h2>
         <p className="text-blue-100 text-sm mt-1">
-          {exitToCall ? "Survey Required" : "Answer a few questions to see your options"}
+          {exitToCall ? "Survey Required" : "Instant quote for Combi swaps & installs"}
         </p>
       </div>
 
@@ -306,8 +304,8 @@ export default function BoilerTool() {
                       <RefreshCw size={28} />
                     </div>
                     <div>
-                      <h4 className="text-lg font-bold text-gray-800">Boiler Swap</h4>
-                      <p className="text-sm text-gray-500">Replacing an existing boiler in the same location.</p>
+                      <h4 className="text-lg font-bold text-gray-800">Combi Boiler Swap</h4>
+                      <p className="text-sm text-gray-500">Replacing an existing combi boiler in the same location.</p>
                     </div>
                   </div>
                 </button>
@@ -321,8 +319,8 @@ export default function BoilerTool() {
                       <PlusCircle size={28} />
                     </div>
                     <div>
-                      <h4 className="text-lg font-bold text-gray-800">New Installation</h4>
-                      <p className="text-sm text-gray-500">No existing boiler, or moving to a new location.</p>
+                      <h4 className="text-lg font-bold text-gray-800">New / System Conversion</h4>
+                      <p className="text-sm text-gray-500">Converting from a tank system or new location.</p>
                     </div>
                   </div>
                 </button>
@@ -542,23 +540,36 @@ export default function BoilerTool() {
                 <button onClick={() => setSelectedChoice('secondary')} className={`flex-1 py-2 text-xs font-bold rounded-md transition-all ${selectedChoice === 'secondary' ? 'bg-white text-[#005C9E] shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}>Alternative</button>
               </div>
 
-              <div className="border border-gray-200 rounded-2xl p-4 mb-5 shadow-sm relative">
-                <div className="absolute top-0 right-0 bg-[#D9232D] text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">{activeBoiler.warranty}</div>
-                <div className="flex gap-4 items-center mb-4">
-                  <div className="w-20 h-24 bg-gray-50 rounded-lg flex-shrink-0 flex items-center justify-center p-1">
-                     <img src={activeBoiler.img} alt="Boiler" className="w-full h-full object-contain" />
-                  </div>
-                  <div>
-                    <h3 className="font-extrabold text-gray-900 text-lg leading-tight">{activeBoiler.name}</h3>
-                    <p className="text-[#005C9E] font-bold text-xl">{activeBoiler.price}</p>
-                    <p className="text-xs text-gray-500">{activeBoiler.kw} Output • {data.flueType} Flue</p>
-                  </div>
+              {/* NEW RESULT CARD DESIGN */}
+              <div className="border border-gray-200 rounded-3xl p-5 mb-5 shadow-lg relative bg-white">
+                
+                {/* Combi Label Badge */}
+                <div className="absolute top-4 left-4 bg-green-100 text-green-800 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider flex items-center gap-1">
+                  <Flame size={10} fill="currentColor" /> Combi Boiler
                 </div>
-                <div className="bg-blue-50 rounded-lg p-3 space-y-2 mb-2">
-                   <p className="text-[10px] font-bold text-[#005C9E] uppercase tracking-wider">Includes:</p>
+
+                <div className="absolute top-0 right-0 bg-[#D9232D] text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl rounded-tr-xl">{activeBoiler.warranty}</div>
+                
+                {/* Large Centered Image */}
+                <div className="w-full h-48 bg-gradient-to-b from-blue-50 to-white rounded-xl flex items-center justify-center mb-4 mt-2 p-2">
+                   <img src={activeBoiler.img} alt="Boiler" className="h-full object-contain drop-shadow-xl" />
+                </div>
+
+                <div className="text-center mb-4">
+                  <h3 className="font-extrabold text-gray-900 text-2xl leading-tight">{activeBoiler.name}</h3>
+                  <div className="flex justify-center items-baseline gap-2 mt-1">
+                    <p className="text-[#005C9E] font-extrabold text-3xl">{activeBoiler.price}</p>
+                  </div>
+                  <p className="text-xs text-gray-500 mt-1">{activeBoiler.kw} Output • {data.flueType} Flue</p>
+                </div>
+
+                <div className="bg-blue-50 rounded-xl p-4 space-y-2 mb-2">
+                   <p className="text-[10px] font-bold text-[#005C9E] uppercase tracking-wider mb-2">Package Includes:</p>
                    {activeBoiler.pack.map((item, i) => (
-                     <div key={i} className="flex items-center gap-2 text-xs font-bold text-gray-700">
-                       {i === 0 ? <Filter size={12} className="text-[#005C9E]" /> : <Thermometer size={12} className="text-[#005C9E]" />}
+                     <div key={i} className="flex items-center gap-3 text-sm font-bold text-gray-700">
+                       <div className="w-5 h-5 rounded-full bg-white text-[#005C9E] flex items-center justify-center shadow-sm">
+                         <CheckCircle size={12} />
+                       </div>
                        {item}
                      </div>
                    ))}
