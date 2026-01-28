@@ -1,28 +1,31 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.jpg" />
-    <!-- NEW: Preload your main assets to improve loading speed -->
-    <!-- Note: The exact filenames (e.g., index-D2lkMFHL.js) change with every build. -->
-    <!-- Vite handles this automatically, but these links give the browser a hint. -->
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-M97YPQ2QT2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-M97YPQ2QT2');
+    </script>
+
     <link rel="preload" href="/assets/index-CHEvV8m4.css" as="style">
     <link rel="preload" href="/assets/index-D2lkMFHL.js" as="script">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Primary SEO Meta Tags -->
     <title>Blue Flame | Gas Safe Engineer in Worcestershire & West Midlands</title>
     <meta name="description" content="Your trusted, local Gas Safe registered engineer for boiler servicing, repairs, landlord certificates, and installations in Worcestershire and the West Midlands." />
 
-    <!-- NEW: Social Media / Open Graph Tags -->
     <meta property="og:title" content="Blue Flame | Gas Safe Engineer in Worcestershire & West Midlands">
     <meta property="og:description" content="Your trusted, local Gas Safe registered engineer for boiler servicing, repairs, landlord certificates, and installations.">
     <meta property="og:image" content="/images/logo.jpg">
     <meta property="og:url" content="https://www.blueflameworcester.com">
     <meta name="twitter:card" content="summary_large_image">
 
-    <!-- NEW: Structured Data for Local Business SEO -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -44,22 +47,10 @@
       "priceRange": "££"
     }
     </script>
-
-    <!-- NEW: Placeholder for Google Analytics -->
-    <!-- Replace with your actual Google Analytics script -->
-    <!-- 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-M97YPQ2QT2"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-M97YPQ2QT2');
-    </script>
-    -->
-
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
+
