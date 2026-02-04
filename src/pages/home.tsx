@@ -96,8 +96,8 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
             <div className="text-white text-center lg:text-left">
               
               <h1 className="text-5xl lg:text-7xl font-extrabold mb-6 leading-tight tracking-tight drop-shadow-xl">
-                Your Local Gas & <br className="hidden lg:block"/>
-                <span className="text-[#60a5fa]">Heating Experts.</span>
+                Gas Safe Registered <br className="hidden lg:block"/>
+               <span className="text-[#60a5fa]">Engineers in Worcester.</span>
               </h1>
               
               <p className="text-xl text-gray-100 mb-8 max-w-xl mx-auto lg:mx-0 font-medium leading-relaxed drop-shadow-md">
