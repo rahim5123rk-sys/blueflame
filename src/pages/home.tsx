@@ -80,9 +80,10 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
         {/* Background Image with Readability Overlay */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=2070&auto=format&fit=crop" 
+            src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=60&w=1200&auto=format&fit=crop" 
             alt="Modern Home Interior" 
             className="w-full h-full object-cover"
+            fetchPriority="high"
           />
           {/* THE FIX: Slate to Brand Blue gradient overlay for readable text */}
           <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-[#005C9E]/90 to-[#005C9E]/80 mix-blend-multiply"></div>
