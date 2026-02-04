@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import BoilerTool from '../components/BoilerTool'; 
-import Gallery from '../components/Gallery'; 
+
 import { CheckCircle, Flame, ArrowRight, Zap, ShieldCheck } from 'lucide-react';
 
 interface HomeProps {
@@ -330,7 +330,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
       </section>
 
       {/* 5. NEW: GALLERY SECTION */}
-      <Gallery />
+     
 
       {/* 6. TESTIMONIALS */}
       <section className="bg-gray-50 py-16">

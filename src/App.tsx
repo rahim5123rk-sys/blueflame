@@ -1,19 +1,21 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense, lazy } from 'react';
 // Explicit path resolution with .tsx extensions
 import Layout from './components/Layout.tsx';
-import Home from './pages/home.tsx';
-import About from './pages/About.tsx';
-import Services from './pages/Services.tsx';
-import Reviews from './pages/Reviews.tsx';
-import Contact from './pages/Contact.tsx';
-import NotFound from './pages/NotFound.tsx';
+
+// Lazy load page components to improve performance and reduce main-thread tasks
+const Home = lazy(() => import('./pages/home.tsx'));
+const About = lazy(() => import('./pages/About.tsx'));
+const Services = lazy(() => import('./pages/Services.tsx'));
+const Reviews = lazy(() => import('./pages/Reviews.tsx'));
+const Contact = lazy(() => import('./pages/Contact.tsx'));
+const NotFound = lazy(() => import('./pages/NotFound.tsx'));
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('Home');
   // State to hold the service selected from the homepage
   const [preselectedService, setPreselectedService] = useState('');
 
-  // Google Analytics Page View Tracking
+  // Google Analytics Page View Tracking for SPA navigation
   useEffect(() => {
     if (typeof (window as any).gtag === 'function') {
       (window as any).gtag('config', 'G-M97YPQ2QT2', {
@@ -45,22 +47,27 @@ export default function App() {
   };
 
   const renderPage = () => {
-    switch (currentPage) {
-      case 'Home':
-        // Pass the setter function to the Home component
-        return <Home setCurrentPage={handleSetPage} setPreselectedService={setPreselectedService} />;
-      case 'About':
-        return <About />;
-      case 'Services':
-        // Pass the selected service and the setter to the Services component
-        return <Services preselectedService={preselectedService} setPreselectedService={setPreselectedService} />;
-      case 'Reviews':
-        return <Reviews />;
-      case 'Contact':
-        return <Contact />;
-      default:
-        return <NotFound setCurrentPage={handleSetPage} />;
-    }
+    return (
+      // Suspense handles the loading state while lazy components are fetched
+      <Suspense fallback={<div className="min-h-screen bg-white"></div>}>
+        {(() => {
+          switch (currentPage) {
+            case 'Home':
+              return <Home setCurrentPage={handleSetPage} setPreselectedService={setPreselectedService} />;
+            case 'About':
+              return <About />;
+            case 'Services':
+              return <Services preselectedService={preselectedService} setPreselectedService={setPreselectedService} />;
+            case 'Reviews':
+              return <Reviews />;
+            case 'Contact':
+              return <Contact />;
+            default:
+              return <NotFound setCurrentPage={handleSetPage} />;
+          }
+        })()}
+      </Suspense>
+    );
   };
 
   return (
