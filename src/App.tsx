@@ -13,6 +13,15 @@ export default function App() {
   // State to hold the service selected from the homepage
   const [preselectedService, setPreselectedService] = useState('');
 
+  // Google Analytics Page View Tracking
+  useEffect(() => {
+    if (typeof (window as any).gtag === 'function') {
+      (window as any).gtag('config', 'G-M97YPQ2QT2', {
+        page_path: window.location.hash || '/',
+      });
+    }
+  }, [currentPage]);
+
   useEffect(() => {
     const pages = ['Home', 'Services', 'About', 'Reviews', 'Contact'];
     // Handle hash navigation (e.g. #contact)
