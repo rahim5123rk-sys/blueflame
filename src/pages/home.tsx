@@ -220,7 +220,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
             
             {/* Gas Safe - Make this one slightly larger as it is most important */}
             <img 
-              src="/images/gas-safe.png" 
+              src="/images/gas-safe.webp" 
               alt="Gas Safe Register" 
               className="h-14 w-auto object-contain" 
             />
@@ -230,14 +230,14 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
 
             {/* Worcester Bosch */}
             <img 
-              src="/images/worcester.png" 
+              src="/images/worcester.webp" 
               alt="Worcester Bosch Accredited" 
               className="h-10 w-auto object-contain" 
             />
 
             {/* Ideal */}
             <img 
-              src="/images/ideal.png" 
+              src="/images/ideal.webp" 
               alt="Ideal Boilers" 
               className="h-12 w-auto object-contain" 
             />
@@ -319,7 +319,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
             </div>
             <div>
               <img 
-                src="/images/landlord-deal.jpg" 
+                src="/images/landlord-deal.webp" 
                 alt="Specialist gas services for landlords"
                 className="rounded-xl shadow-lg w-full h-auto transform hover:scale-[1.02] transition-transform"
                 onError={(e) => { e.currentTarget.src = 'https://placehold.co/600x400/cccccc/ffffff?text=Landlord+Services'; e.currentTarget.onerror = null; }}
