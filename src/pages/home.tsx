@@ -25,10 +25,10 @@ const GoogleIcon = () => (
 
 export default function Home({ setCurrentPage, setPreselectedService }: HomeProps) {
   const services = [
-    { name: 'Annual Boiler Service', image: '/images/boiler-service.jpg' },
-    { name: 'Landlord Gas Safety Certificate (CP12)', image: '/images/gas-certificate.jpg' },
-    { name: 'New Boiler Installation', image: '/images/boiler-install.jpg' }, 
-    { name: 'Boiler Breakdown & Repair', image: '/images/emergency-repair.jpg' },
+    { name: 'Annual Boiler Service', image: '/images/boiler-service.webp' },
+    { name: 'Landlord Gas Safety Certificate (CP12)', image: '/images/gas-certificate.webp' },
+    { name: 'New Boiler Installation', image: '/images/boiler-install.webp' }, 
+    { name: 'Boiler Breakdown & Repair', image: '/images/emergency-repair.webp' },
   ];
 
   const serviceAreas = {
@@ -152,7 +152,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
                   
                   {/* BOILER IMAGE - LARGE & CENTERED */}
                   <img 
-                    src="/images/boilers/w1000.png" 
+                    src="/images/boilers/w1000.webp" 
                     alt="Worcester 1000" 
                     className="relative w-56 h-auto object-contain drop-shadow-2xl z-10 transform group-hover:scale-105 transition-transform duration-500"
                   />
