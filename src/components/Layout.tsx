@@ -32,7 +32,7 @@ export default function Layout({ children, setCurrentPage }: LayoutProps) {
               className="flex items-center gap-2"
             >
               <img 
-                src="/images/logo.jpg" 
+                src="/images/logo.webp" 
                 alt="Blue Flame Gas Services" 
                 className="h-14 w-auto object-contain"
                 onError={(e) => {
