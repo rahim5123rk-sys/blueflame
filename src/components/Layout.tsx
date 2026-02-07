@@ -140,7 +140,7 @@ export default function Layout({ children, setCurrentPage }: LayoutProps) {
             </h4>
             <ul className="space-y-3 text-gray-400 text-sm font-medium">
               <li className="flex items-center gap-3"><Phone size={16} className="text-[#D9232D]"/> 07480 561 846</li>
-              <li className="flex items-center gap-3">rahim.5123.rk@gmail.com</li>
+              <li className="flex items-center gap-3">blueflameworc@gmail.com</li>
               <li className="flex items-center gap-3">Worcester, UK</li>
             </ul>
           </div>
