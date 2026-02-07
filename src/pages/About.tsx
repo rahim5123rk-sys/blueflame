@@ -37,7 +37,7 @@ export default function About() {
           </div>
           <div>
             <img 
-              src="/images/about-us.jpg" 
+              src="/images/about-us.webp" 
               alt="Team of professional engineers"
               className="rounded-xl shadow-lg w-full h-auto"
               onError={(e) => { e.currentTarget.src = 'https://placehold.co/600x400/cccccc/ffffff?text=About+Us'; e.currentTarget.onerror = null; }}
