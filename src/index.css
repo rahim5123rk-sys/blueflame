@@ -13,17 +13,17 @@
      Drop basic blues and reds. Use Midnight Navy/Slate and Burnished Copper/Cyan.
      We map standard Tailwind names to our premium palette so existing classes adapt automatically.
      ======================================================== */
-  /* Blue -> Midnight Navy / Slate Scale */
-  --color-blue-50: #f8fafc;
-  --color-blue-100: #f1f5f9;
-  --color-blue-200: #e2e8f0;
-  --color-blue-300: #cbd5e1;
-  --color-blue-400: #94a3b8;
-  --color-blue-500: #64748b;
-  --color-blue-600: #475569;
-  --color-blue-700: #334155;
-  --color-blue-800: #0f172a; /* Midnight Navy */
-  --color-blue-900: #020617;
+  /* Blue -> Original Brand Blue (#005C9E) Scale */
+  --color-blue-50: #f0f7fb;
+  --color-blue-100: #e1f0f7;
+  --color-blue-200: #b9deed;
+  --color-blue-300: #7cc0df;
+  --color-blue-400: #389ecb;
+  --color-blue-500: #1a83b2;
+  --color-blue-600: #126895;
+  --color-blue-700: #115378;
+  --color-blue-800: #005C9E; /* Brand Blue */
+  --color-blue-900: #004273;
   
   /* Gray -> Warm Charcoal/Slate Scale */
   --color-gray-50: #fafaf9;
@@ -37,17 +37,17 @@
   --color-gray-800: #292524;
   --color-gray-900: #1c1917; /* Deep Charcoal */
 
-  /* Red -> Gas-Flame Cyan & Copper (We'll use Cyan as it matches 'Blue Flame') */
-  --color-red-50: #ecfeff;
-  --color-red-100: #cffafe;
-  --color-red-200: #a5f3fc;
-  --color-red-300: #67e8f9;
-  --color-red-400: #22d3ee;
-  --color-red-500: #06b6d4;
-  --color-red-600: #0891b2; /* Bright Gas-Flame Cyan */
-  --color-red-700: #0e7490; /* Primary action button color mapping */
-  --color-red-800: #155e75;
-  --color-red-900: #164e63;
+  /* Red -> Original Brand Red (#D9232D) Scale */
+  --color-red-50: #fef2f3;
+  --color-red-100: #fde6e8;
+  --color-red-200: #facdd2;
+  --color-red-300: #f4aab1;
+  --color-red-400: #ed7985;
+  --color-red-500: #e24958;
+  --color-red-600: #d02c3d;
+  --color-red-700: #D9232D; /* Brand Red */
+  --color-red-800: #b31d25;
+  --color-red-900: #7a1b24;
 
   /* ========================================================
      REFINED DEPTH & SPACING (Shadows)

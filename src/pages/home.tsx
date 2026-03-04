@@ -85,8 +85,8 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
             className="w-full h-full object-cover"
             fetchPriority="high"
           />
-          {/* THE FIX: Moody, high-end dark gradient overlay for readable text */}
-          <div className="absolute inset-0 bg-gradient-to-r from-gray-900/95 via-gray-900/80 to-gray-900/40"></div>
+          {/* THE FIX: Brand-aligned dark gradient overlay for optimal readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-gray-900/95 via-blue-900/85 to-blue-800/60"></div>
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
@@ -97,7 +97,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
               
               <h1 className="text-5xl lg:text-7xl font-extrabold mb-6 leading-tight tracking-tight drop-shadow-xl">
                 Gas Safe Registered <br className="hidden lg:block"/>
-               <span className="text-[#60a5fa]">Engineers in Worcester.</span>
+               <span className="text-blue-300">Engineers in Worcester.</span>
               </h1>
               
               <p className="text-xl text-gray-100 mb-8 max-w-xl mx-auto lg:mx-0 font-medium leading-relaxed drop-shadow-md">
