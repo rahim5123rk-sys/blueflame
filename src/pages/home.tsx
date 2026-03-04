@@ -25,10 +25,10 @@ const GoogleIcon = () => (
 
 export default function Home({ setCurrentPage, setPreselectedService }: HomeProps) {
   const services = [
-    { name: 'Annual Boiler Service', image: '/images/boiler-service.jpg' },
-    { name: 'Landlord Gas Safety Certificate (CP12)', image: '/images/gas-certificate.jpg' },
-    { name: 'New Boiler Installation', image: '/images/boiler-install.jpg' }, 
-    { name: 'Boiler Breakdown & Repair', image: '/images/emergency-repair.jpg' },
+    { name: 'Annual Boiler Service', image: '/images/boiler-service.webp' },
+    { name: 'Landlord Gas Safety Certificate (CP12)', image: '/images/gas-certificate.webp' },
+    { name: 'New Boiler Installation', image: '/images/boiler-install.webp' }, 
+    { name: 'Boiler Breakdown & Repair', image: '/images/emergency-repair.webp' },
   ];
 
   const serviceAreas = {
@@ -75,7 +75,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
     <div className="animate-fadeIn font-sans">
       
       {/* 1. HERO SECTION */}
-      <section className="relative pt-24 pb-20 lg:pt-32 lg:pb-32 overflow-hidden">
+      <section className="relative pt-32 pb-32 lg:pt-40 lg:pb-40 overflow-hidden">
         
         {/* Background Image with Readability Overlay */}
         <div className="absolute inset-0 z-0">
@@ -85,8 +85,8 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
             className="w-full h-full object-cover"
             fetchPriority="high"
           />
-          {/* THE FIX: Slate to Brand Blue gradient overlay for readable text */}
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-[#005C9E]/90 to-[#005C9E]/80 mix-blend-multiply"></div>
+          {/* THE FIX: Moody, high-end dark gradient overlay for readable text */}
+          <div className="absolute inset-0 bg-gradient-to-r from-gray-900/95 via-gray-900/80 to-gray-900/40"></div>
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
@@ -107,7 +107,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <button
                   onClick={() => document.getElementById('boiler-quote-tool')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="bg-[#D9232D] text-white font-bold py-4 px-8 rounded-xl shadow-xl hover:bg-red-700 hover:shadow-2xl transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2"
+                  className="bg-red-700 text-white font-bold py-4 px-8 rounded-xl shadow-xl hover:bg-red-700 hover:shadow-2xl transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2"
                 >
                   Get Instant Estimate <ArrowRight size={20} />
                 </button>
@@ -115,7 +115,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
                   href="https://wa.me/447480561846"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-white/10 backdrop-blur-md text-white font-bold py-4 px-8 rounded-xl hover:bg-white hover:text-[#005C9E] transition-all border border-white/30 flex items-center justify-center gap-2"
+                  className="bg-white/10 backdrop-blur-md text-white font-bold py-4 px-8 rounded-xl hover:bg-white hover:text-blue-800 transition-all border border-white/30 flex items-center justify-center gap-2"
                 >
                   <WhatsAppIcon /> WhatsApp Us
                 </a>
@@ -141,7 +141,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
               <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 group hover:scale-[1.02] transition-transform duration-300">
                 
                 {/* Special Offer Badge */}
-                <div className="absolute top-0 right-0 bg-[#D9232D] text-white text-xs font-bold px-4 py-2 rounded-bl-2xl z-20 shadow-md flex items-center gap-1">
+                <div className="absolute top-0 right-0 bg-red-700 text-white text-xs font-bold px-4 py-2 rounded-bl-2xl z-20 shadow-md flex items-center gap-1">
                   <Flame size={12} fill="currentColor" /> SPECIAL OFFER
                 </div>
 
@@ -152,7 +152,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
                   
                   {/* BOILER IMAGE - LARGE & CENTERED */}
                   <img 
-                    src="/images/boilers/w1000.png" 
+                    src="/images/boilers/w1000.webp" 
                     alt="Worcester 1000" 
                     className="relative w-56 h-auto object-contain drop-shadow-2xl z-10 transform group-hover:scale-105 transition-transform duration-500"
                   />
@@ -170,15 +170,15 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
                   {/* Modern Feature Grid */}
                   <div className="space-y-3 mb-6 bg-gray-50 p-4 rounded-xl border border-gray-100">
                     <div className="flex items-start gap-3">
-                      <Zap className="w-4 h-4 text-[#005C9E] mt-0.5 flex-shrink-0" />
+                      <Zap className="w-4 h-4 text-blue-800 mt-0.5 flex-shrink-0" />
                       <span className="text-sm font-bold text-gray-700">ESI Programmable Thermostat</span>
                     </div>
                     <div className="flex items-start gap-3">
-                      <ShieldCheck className="w-4 h-4 text-[#005C9E] mt-0.5 flex-shrink-0" />
+                      <ShieldCheck className="w-4 h-4 text-blue-800 mt-0.5 flex-shrink-0" />
                       <span className="text-sm font-medium text-gray-600">Adey Filter & Chemicals</span>
                     </div>
                     <div className="flex items-start gap-3">
-                      <CheckCircle className="w-4 h-4 text-[#005C9E] mt-0.5 flex-shrink-0" />
+                      <CheckCircle className="w-4 h-4 text-blue-800 mt-0.5 flex-shrink-0" />
                       <span className="text-sm font-medium text-gray-600">Full Installation & Fittings</span>
                     </div>
                   </div>
@@ -187,7 +187,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
                   <div className="flex justify-between items-end mb-6 border-t border-gray-100 pt-4">
                     <div className="text-left">
                       <p className="text-xs text-gray-400 font-medium mb-0.5">Supplied & Fitted</p>
-                      <p className="text-3xl font-extrabold text-[#005C9E]">£1,650</p>
+                      <p className="text-3xl font-extrabold text-blue-800">£1,650</p>
                     </div>
                     <div className="text-right pb-1">
                       <span className="text-sm text-gray-400 line-through font-medium">£1,850</span>
@@ -196,7 +196,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
 
                   <button 
                     onClick={() => document.getElementById('boiler-quote-tool')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="w-full bg-[#005C9E] text-white font-bold py-3.5 rounded-xl shadow-lg hover:bg-blue-800 transition-colors flex justify-center items-center gap-2"
+                    className="w-full bg-blue-800 text-white font-bold py-3.5 rounded-xl shadow-lg hover:bg-blue-800 transition-colors flex justify-center items-center gap-2"
                   >
                     Claim Deal <ArrowRight size={18} />
                   </button>
@@ -220,7 +220,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
             
             {/* Gas Safe - Make this one slightly larger as it is most important */}
             <img 
-              src="/images/gas-safe.png" 
+              src="/images/gas-safe.webp" 
               alt="Gas Safe Register" 
               className="h-14 w-auto object-contain" 
             />
@@ -230,14 +230,14 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
 
             {/* Worcester Bosch */}
             <img 
-              src="/images/worcester.png" 
+              src="/images/worcester.webp" 
               alt="Worcester Bosch Accredited" 
               className="h-10 w-auto object-contain" 
             />
 
             {/* Ideal */}
             <img 
-              src="/images/ideal.png" 
+              src="/images/ideal.webp" 
               alt="Ideal Boilers" 
               className="h-12 w-auto object-contain" 
             />
@@ -246,7 +246,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
       </div>
 
       {/* 2. SERVICES OVERVIEW */}
-      <section id="services" className="bg-white py-16">
+      <section id="services" className="bg-white py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900">Our Core Services</h2>
@@ -270,9 +270,9 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
                 </div>
                 <div className="p-6 text-center">
-                  <h3 className="text-xl font-semibold text-gray-900 group-hover:text-[#005C9E] transition-colors">{service.name}</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 group-hover:text-blue-800 transition-colors">{service.name}</h3>
                   {service.name === 'New Boiler Installation' && (
-                    <span className="inline-block mt-3 px-3 py-1 bg-[#005C9E]/10 text-[#005C9E] rounded-full font-bold text-xs uppercase tracking-wide">
+                    <span className="inline-block mt-3 px-3 py-1 bg-blue-800/10 text-blue-800 rounded-full font-bold text-xs uppercase tracking-wide">
                       Get Free Estimate →
                     </span>
                   )}
@@ -284,11 +284,11 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
       </section>
 
       {/* 3. DEDICATED BOILER TOOL SECTION */}
-      <section id="boiler-quote-tool" className="bg-blue-50 py-20 relative">
+      <section id="boiler-quote-tool" className="bg-blue-50 py-32 relative">
          <div className="absolute inset-0 opacity-5 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#005C9E 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#005C9E]">Looking for a New Boiler?</h2>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-blue-800">Looking for a New Boiler?</h2>
             <p className="text-gray-600 mt-2 text-lg">Use our smart tool below to get an instant estimate in seconds.</p>
           </div>
           <BoilerTool />
@@ -296,7 +296,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
       </section>
 
       {/* 4. LANDLORDS SECTION */}
-      <section className="bg-white py-16">
+      <section className="bg-white py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="prose prose-lg text-gray-700">
@@ -312,14 +312,14 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
               </ul>
               <button
                 onClick={() => handleServiceClick('Landlord Deal: Gas Cert + Boiler Service')}
-                className="mt-6 inline-block bg-[#D9232D] text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-red-700 transition-transform transform hover:scale-105 no-underline"
+                className="mt-6 inline-block bg-red-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-red-700 transition-transform transform hover:scale-105 no-underline"
               >
                 View Landlord Deal
               </button>
             </div>
             <div>
               <img 
-                src="/images/landlord-deal.jpg" 
+                src="/images/landlord-deal.webp" 
                 alt="Specialist gas services for landlords"
                 className="rounded-xl shadow-lg w-full h-auto transform hover:scale-[1.02] transition-transform"
                 onError={(e) => { e.currentTarget.src = 'https://placehold.co/600x400/cccccc/ffffff?text=Landlord+Services'; e.currentTarget.onerror = null; }}
@@ -333,11 +333,11 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
      
 
       {/* 6. TESTIMONIALS */}
-      <section className="bg-gray-50 py-16">
+      <section className="bg-gray-50 py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900">What Our Customers Say</h2>
-            <a href="https://share.google/ugaj3yv88Z6JjYB77" target="_blank" rel="noopener noreferrer" className="inline-flex items-center mt-2 text-gray-600 hover:text-[#005C9E] font-medium transition-colors">
+            <a href="https://share.google/ugaj3yv88Z6JjYB77" target="_blank" rel="noopener noreferrer" className="inline-flex items-center mt-2 text-gray-600 hover:text-blue-800 font-medium transition-colors">
               <GoogleIcon />
               Verified on Google
             </a>
@@ -361,7 +361,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
                 key={index}
                 onClick={() => setCurrentTestimonial(index)}
                 aria-label={`Go to testimonial ${index + 1}`}
-                className={`w-3 h-3 rounded-full transition-all ${index === currentTestimonial ? 'bg-[#005C9E] w-6' : 'bg-gray-300 hover:bg-gray-400'}`}
+                className={`w-3 h-3 rounded-full transition-all ${index === currentTestimonial ? 'bg-blue-800 w-6' : 'bg-gray-300 hover:bg-gray-400'}`}
               />
             ))}
           </div>
@@ -369,21 +369,21 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
       </section>
 
       {/* 7. SERVICE AREA */}
-      <section className="bg-white py-16">
+      <section className="bg-white py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900">Our Service Area</h2>
-            <p className="mt-2 text-lg text-gray-600">Covering Worcestershire and the West Midlands.</p>
+            <p className="mt-2 text-lg text-gray-600">Covering Worcestershire </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <div className="bg-gray-50 p-8 rounded-2xl shadow-sm border border-gray-100 hover:border-blue-100 transition-colors">
-              <h3 className="text-2xl font-bold text-center text-[#005C9E] mb-6">Worcestershire</h3>
+              <h3 className="text-2xl font-bold text-center text-blue-800 mb-6">Worcestershire</h3>
               <ul className="space-y-3 text-center text-gray-700">
                 {serviceAreas.worcestershire.map(area => <li key={area} className="font-medium">{area}</li>)}
               </ul>
             </div>
             <div className="bg-gray-50 p-8 rounded-2xl shadow-sm border border-gray-100 hover:border-blue-100 transition-colors">
-              <h3 className="text-2xl font-bold text-center text-[#005C9E] mb-6">West Midlands</h3>
+              <h3 className="text-2xl font-bold text-center text-blue-800 mb-6">West Midlands</h3>
               <ul className="space-y-3 text-center text-gray-700">
                 {serviceAreas.westMidlands.map(area => <li key={area} className="font-medium">{area}</li>)}
               </ul>
@@ -393,7 +393,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
       </section>
 
       {/* 8. FAQ */}
-      <section className="bg-gray-50 py-16">
+      <section className="bg-gray-50 py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900">Frequently Asked Questions</h2>
@@ -407,7 +407,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
                 >
                   <h3 className="font-semibold text-lg text-gray-800">{faq.q}</h3>
                   <span className={`transform transition-transform duration-300 ${openFaq === index ? 'rotate-180' : 'rotate-0'}`}>
-                    <svg className="w-5 h-5 text-[#005C9E]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                    <svg className="w-5 h-5 text-blue-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
                   </span>
                 </button>
                 <div

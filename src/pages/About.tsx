@@ -20,13 +20,13 @@ export default function About() {
 
   return (
     <div className="bg-white animate-fadeIn">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-24">
         
         {/* --- Top Section: Introduction --- */}
         <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
           <div className="prose prose-lg text-gray-700">
             <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900">
-              Your Local Gas Experts in <span className="text-[#005C9E]">Worcestershire</span>
+              Your Local Gas Experts in <span className="text-blue-800">Worcestershire</span>
             </h1>
             <p>
               Welcome to <strong>Blue Flame Gas Services</strong>. We are a dedicated team of Gas Safe registered engineers committed to providing top-tier heating and gas solutions across Worcestershire and the West Midlands.
@@ -37,7 +37,7 @@ export default function About() {
           </div>
           <div>
             <img 
-              src="/images/about-us.jpg" 
+              src="/images/about-us.webp" 
               alt="Team of professional engineers"
               className="rounded-xl shadow-lg w-full h-auto"
               onError={(e) => { e.currentTarget.src = 'https://placehold.co/600x400/cccccc/ffffff?text=About+Us'; e.currentTarget.onerror = null; }}
