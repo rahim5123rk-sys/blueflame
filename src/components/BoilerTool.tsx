@@ -219,7 +219,7 @@ export default function BoilerTool() {
     <div className="w-full max-w-2xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 font-sans transform transition-all will-change-transform">
       
       {/* HEADER */}
-      <div className="bg-[#005C9E] text-white p-6 text-center">
+      <div className="bg-blue-800 text-white p-6 text-center">
         <h2 className="text-2xl font-extrabold flex items-center justify-center gap-2">
           <Calculator size={24} /> 
           Combi Boiler Estimate
@@ -239,7 +239,7 @@ export default function BoilerTool() {
             {[1, 2, 3, 4, 5, 6, 7].map((i) => (
               <div 
                 key={i} 
-                className={`h-1.5 w-4 rounded-full transition-all duration-300 ${step >= i ? 'bg-[#005C9E]' : 'bg-gray-200'}`}
+                className={`h-1.5 w-4 rounded-full transition-all duration-300 ${step >= i ? 'bg-blue-800' : 'bg-gray-200'}`}
               />
             ))}
           </div>
@@ -258,7 +258,7 @@ export default function BoilerTool() {
               className="w-full absolute inset-0 p-8 flex flex-col items-center justify-center text-center"
             >
               <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mb-6">
-                <Wrench size={40} className="text-[#005C9E]" />
+                <Wrench size={40} className="text-blue-800" />
               </div>
               <h3 className="text-2xl font-extrabold text-gray-900 mb-4">Book a Free Survey</h3>
               <p className="text-gray-600 mb-8 leading-relaxed">
@@ -266,13 +266,13 @@ export default function BoilerTool() {
               </p>
               <a 
                 href="tel:07480561846"
-                className="w-full bg-[#D9232D] text-white py-4 rounded-xl font-bold text-lg hover:bg-red-700 transition-colors flex justify-center items-center gap-2 mb-4"
+                className="w-full bg-red-700 text-white py-4 rounded-xl font-bold text-lg hover:bg-red-800 transition-colors flex justify-center items-center gap-2 mb-4"
               >
                 <Phone size={20} /> Call 07480 561 846
               </a>
               <button 
                 onClick={() => { setExitToCall(false); setStep(1); }}
-                className="text-gray-500 font-bold text-sm hover:text-[#005C9E]"
+                className="text-gray-500 font-bold text-sm hover:text-blue-800"
               >
                 Start Over
               </button>
@@ -292,15 +292,15 @@ export default function BoilerTool() {
               className="w-full absolute inset-0 p-6 will-change-transform"
             >
               <h3 className="text-2xl font-extrabold text-gray-900 mb-6 flex items-center gap-3">
-                <Wrench className="text-[#005C9E]" /> Installation Type?
+                <Wrench className="text-blue-800" /> Installation Type?
               </h3>
               <div className="grid grid-cols-1 gap-4">
                 <button
                   onClick={() => { setData({ ...data, jobType: 'Swap' }); nextStep(); }}
-                  className="p-6 rounded-xl border-2 border-gray-100 hover:border-[#005C9E] hover:bg-blue-50 transition-all text-left group"
+                  className="p-6 rounded-xl border-2 border-gray-100 hover:border-blue-800 hover:bg-blue-50 transition-all text-left group"
                 >
                   <div className="flex items-center gap-4">
-                    <div className="bg-blue-100 p-3 rounded-full text-[#005C9E]">
+                    <div className="bg-blue-100 p-3 rounded-full text-blue-800">
                       <RefreshCw size={28} />
                     </div>
                     <div>
@@ -312,10 +312,10 @@ export default function BoilerTool() {
 
                 <button
                   onClick={() => { setData({ ...data, jobType: 'New' }); setExitToCall(true); }}
-                  className="p-6 rounded-xl border-2 border-gray-100 hover:border-[#005C9E] hover:bg-blue-50 transition-all text-left group"
+                  className="p-6 rounded-xl border-2 border-gray-100 hover:border-blue-800 hover:bg-blue-50 transition-all text-left group"
                 >
                   <div className="flex items-center gap-4">
-                    <div className="bg-blue-100 p-3 rounded-full text-[#005C9E]">
+                    <div className="bg-blue-100 p-3 rounded-full text-blue-800">
                       <PlusCircle size={28} />
                     </div>
                     <div>
@@ -340,20 +340,20 @@ export default function BoilerTool() {
               transition={transitionSettings}
               className="w-full absolute inset-0 p-6 will-change-transform"
             >
-               <button onClick={prevStep} className="text-gray-400 hover:text-[#005C9E] mb-4 text-xs font-bold flex items-center gap-1 uppercase tracking-wide">
+               <button onClick={prevStep} className="text-gray-400 hover:text-blue-800 mb-4 text-xs font-bold flex items-center gap-1 uppercase tracking-wide">
                 <ArrowLeft size={14} /> Back
               </button>
               <h3 className="text-2xl font-extrabold text-gray-900 mb-6 flex items-center gap-3">
-                <Home className="text-[#005C9E]" /> Property Type?
+                <Home className="text-blue-800" /> Property Type?
               </h3>
               <div className="grid grid-cols-2 gap-3">
                 {['Flat', 'Terraced', 'Semi', 'Detached'].map(type => (
                   <button
                     key={type}
                     onClick={() => { setData({ ...data, houseType: type }); nextStep(); }}
-                    className="h-28 rounded-xl border border-gray-200 hover:border-[#005C9E] hover:bg-blue-50 transition-colors flex flex-col items-center justify-center gap-1 group active:bg-blue-100"
+                    className="h-28 rounded-xl border border-gray-200 hover:border-blue-800 hover:bg-blue-50 transition-colors flex flex-col items-center justify-center gap-1 group active:bg-blue-100"
                   >
-                    <span className="text-lg font-bold text-gray-700 group-hover:text-[#005C9E]">{type}</span>
+                    <span className="text-lg font-bold text-gray-700 group-hover:text-blue-800">{type}</span>
                   </button>
                 ))}
               </div>
@@ -372,20 +372,20 @@ export default function BoilerTool() {
               transition={transitionSettings}
               className="w-full absolute inset-0 p-6 will-change-transform"
             >
-              <button onClick={prevStep} className="text-gray-400 hover:text-[#005C9E] mb-4 text-xs font-bold flex items-center gap-1 uppercase tracking-wide">
+              <button onClick={prevStep} className="text-gray-400 hover:text-blue-800 mb-4 text-xs font-bold flex items-center gap-1 uppercase tracking-wide">
                 <ArrowLeft size={14} /> Back
               </button>
               <h3 className="text-2xl font-extrabold text-gray-900 mb-6 flex items-center gap-3">
-                <Droplets className="text-[#005C9E]" /> Bathrooms?
+                <Droplets className="text-blue-800" /> Bathrooms?
               </h3>
               <div className="grid grid-cols-3 gap-3">
                 {['1', '2', '3+'].map(num => (
                   <button
                     key={num}
                     onClick={() => { setData({ ...data, bathrooms: num }); nextStep(); }}
-                    className="h-32 rounded-xl border border-gray-200 hover:border-[#005C9E] hover:bg-blue-50 transition-colors flex flex-col items-center justify-center gap-1 group active:bg-blue-100"
+                    className="h-32 rounded-xl border border-gray-200 hover:border-blue-800 hover:bg-blue-50 transition-colors flex flex-col items-center justify-center gap-1 group active:bg-blue-100"
                   >
-                    <span className="text-3xl font-extrabold text-gray-300 group-hover:text-[#005C9E] transition-colors">{num}</span>
+                    <span className="text-3xl font-extrabold text-gray-300 group-hover:text-blue-800 transition-colors">{num}</span>
                   </button>
                 ))}
               </div>
@@ -404,21 +404,21 @@ export default function BoilerTool() {
               transition={transitionSettings}
               className="w-full absolute inset-0 p-6 will-change-transform"
             >
-              <button onClick={prevStep} className="text-gray-400 hover:text-[#005C9E] mb-4 text-xs font-bold flex items-center gap-1 uppercase tracking-wide">
+              <button onClick={prevStep} className="text-gray-400 hover:text-blue-800 mb-4 text-xs font-bold flex items-center gap-1 uppercase tracking-wide">
                 <ArrowLeft size={14} /> Back
               </button>
               <h3 className="text-2xl font-extrabold text-gray-900 mb-6 flex items-center gap-3">
-                <MapPin className="text-[#005C9E]" /> Boiler Location?
+                <MapPin className="text-blue-800" /> Boiler Location?
               </h3>
               <div className="space-y-3">
                 {['Kitchen', 'Airing Cupboard', 'Garage', 'Loft'].map(loc => (
                   <button
                     key={loc}
                     onClick={() => { setData({ ...data, location: loc }); nextStep(); }}
-                    className="w-full p-4 text-left rounded-xl border border-gray-200 hover:border-[#005C9E] hover:bg-blue-50 transition-colors font-bold text-gray-700 flex justify-between items-center group active:bg-blue-100"
+                    className="w-full p-4 text-left rounded-xl border border-gray-200 hover:border-blue-800 hover:bg-blue-50 transition-colors font-bold text-gray-700 flex justify-between items-center group active:bg-blue-100"
                   >
                     {loc}
-                    <ArrowRight size={18} className="text-gray-300 group-hover:text-[#005C9E]" />
+                    <ArrowRight size={18} className="text-gray-300 group-hover:text-blue-800" />
                   </button>
                 ))}
               </div>
@@ -437,30 +437,30 @@ export default function BoilerTool() {
               transition={transitionSettings}
               className="w-full absolute inset-0 p-6 will-change-transform"
             >
-              <button onClick={prevStep} className="text-gray-400 hover:text-[#005C9E] mb-4 text-xs font-bold flex items-center gap-1 uppercase tracking-wide">
+              <button onClick={prevStep} className="text-gray-400 hover:text-blue-800 mb-4 text-xs font-bold flex items-center gap-1 uppercase tracking-wide">
                 <ArrowLeft size={14} /> Back
               </button>
               <h3 className="text-2xl font-extrabold text-gray-900 mb-6 flex items-center gap-3">
-                <ArrowUpCircle className="text-[#005C9E]" /> Which Floor?
+                <ArrowUpCircle className="text-blue-800" /> Which Floor?
               </h3>
               <div className="space-y-4">
                 <button
                   onClick={() => { setData({ ...data, floorLevel: 'Ground' }); nextStep(); }}
-                  className="w-full p-6 text-left rounded-xl border border-gray-200 hover:border-[#005C9E] hover:bg-blue-50 transition-colors font-bold text-gray-700 group active:bg-blue-100"
+                  className="w-full p-6 text-left rounded-xl border border-gray-200 hover:border-blue-800 hover:bg-blue-50 transition-colors font-bold text-gray-700 group active:bg-blue-100"
                 >
                   <div className="flex justify-between items-center">
                     <span>Ground Floor / Basement</span>
-                    <ArrowRight size={18} className="text-gray-300 group-hover:text-[#005C9E]" />
+                    <ArrowRight size={18} className="text-gray-300 group-hover:text-blue-800" />
                   </div>
                 </button>
 
                 <button
                   onClick={() => { setData({ ...data, floorLevel: 'Upper' }); nextStep(); }}
-                  className="w-full p-6 text-left rounded-xl border border-gray-200 hover:border-[#005C9E] hover:bg-blue-50 transition-colors font-bold text-gray-700 group active:bg-blue-100"
+                  className="w-full p-6 text-left rounded-xl border border-gray-200 hover:border-blue-800 hover:bg-blue-50 transition-colors font-bold text-gray-700 group active:bg-blue-100"
                 >
                   <div className="flex justify-between items-center">
                     <span>1st Floor or Higher</span>
-                    <ArrowRight size={18} className="text-gray-300 group-hover:text-[#005C9E]" />
+                    <ArrowRight size={18} className="text-gray-300 group-hover:text-blue-800" />
                   </div>
                 </button>
               </div>
@@ -479,19 +479,19 @@ export default function BoilerTool() {
               transition={transitionSettings}
               className="w-full absolute inset-0 p-6 will-change-transform"
             >
-              <button onClick={prevStep} className="text-gray-400 hover:text-[#005C9E] mb-4 text-xs font-bold flex items-center gap-1 uppercase tracking-wide">
+              <button onClick={prevStep} className="text-gray-400 hover:text-blue-800 mb-4 text-xs font-bold flex items-center gap-1 uppercase tracking-wide">
                 <ArrowLeft size={14} /> Back
               </button>
               <h3 className="text-2xl font-extrabold text-gray-900 mb-6 flex items-center gap-3">
-                <ArrowRightCircle className="text-[#005C9E]" /> Flue Type?
+                <ArrowRightCircle className="text-blue-800" /> Flue Type?
               </h3>
               <div className="grid grid-cols-1 gap-4">
                 <button
                   onClick={() => { setData({ ...data, flueType: 'Horizontal' }); nextStep(); }}
-                  className="p-6 rounded-xl border-2 border-gray-100 hover:border-[#005C9E] hover:bg-blue-50 transition-all text-left group"
+                  className="p-6 rounded-xl border-2 border-gray-100 hover:border-blue-800 hover:bg-blue-50 transition-all text-left group"
                 >
                   <div className="flex items-center gap-4">
-                    <div className="bg-blue-100 p-3 rounded-full text-[#005C9E]">
+                    <div className="bg-blue-100 p-3 rounded-full text-blue-800">
                       <ArrowRightCircle size={28} />
                     </div>
                     <div>
@@ -503,10 +503,10 @@ export default function BoilerTool() {
 
                 <button
                   onClick={() => { setData({ ...data, flueType: 'Vertical' }); nextStep(); }}
-                  className="p-6 rounded-xl border-2 border-gray-100 hover:border-[#005C9E] hover:bg-blue-50 transition-all text-left group"
+                  className="p-6 rounded-xl border-2 border-gray-100 hover:border-blue-800 hover:bg-blue-50 transition-all text-left group"
                 >
                   <div className="flex items-center gap-4">
-                    <div className="bg-blue-100 p-3 rounded-full text-[#005C9E]">
+                    <div className="bg-blue-100 p-3 rounded-full text-blue-800">
                       <ArrowUpCircle size={28} />
                     </div>
                     <div>
@@ -531,13 +531,13 @@ export default function BoilerTool() {
               transition={transitionSettings}
               className="w-full absolute inset-0 p-6 overflow-y-auto scrollbar-hide"
             >
-              <button onClick={prevStep} className="text-gray-400 hover:text-[#005C9E] mb-2 text-xs font-bold flex items-center gap-1 uppercase tracking-wide">
+              <button onClick={prevStep} className="text-gray-400 hover:text-blue-800 mb-2 text-xs font-bold flex items-center gap-1 uppercase tracking-wide">
                 <ArrowLeft size={14} /> Back
               </button>
 
               <div className="flex bg-gray-100 p-1 rounded-lg mb-4">
-                <button onClick={() => setSelectedChoice('primary')} className={`flex-1 py-2 text-xs font-bold rounded-md transition-all ${selectedChoice === 'primary' ? 'bg-white text-[#005C9E] shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}>Recommended</button>
-                <button onClick={() => setSelectedChoice('secondary')} className={`flex-1 py-2 text-xs font-bold rounded-md transition-all ${selectedChoice === 'secondary' ? 'bg-white text-[#005C9E] shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}>Alternative</button>
+                <button onClick={() => setSelectedChoice('primary')} className={`flex-1 py-2 text-xs font-bold rounded-md transition-all ${selectedChoice === 'primary' ? 'bg-white text-blue-800 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}>Recommended</button>
+                <button onClick={() => setSelectedChoice('secondary')} className={`flex-1 py-2 text-xs font-bold rounded-md transition-all ${selectedChoice === 'secondary' ? 'bg-white text-blue-800 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}>Alternative</button>
               </div>
 
               {/* NEW RESULT CARD DESIGN */}
@@ -548,7 +548,7 @@ export default function BoilerTool() {
                   <Flame size={10} fill="currentColor" /> Combi Boiler
                 </div>
 
-                <div className="absolute top-0 right-0 bg-[#D9232D] text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl rounded-tr-xl">{activeBoiler.warranty}</div>
+                <div className="absolute top-0 right-0 bg-red-700 text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl rounded-tr-xl">{activeBoiler.warranty}</div>
                 
                 {/* Large Centered Image */}
                 <div className="w-full h-48 bg-gradient-to-b from-blue-50 to-white rounded-xl flex items-center justify-center mb-4 mt-2 p-2">
@@ -558,16 +558,16 @@ export default function BoilerTool() {
                 <div className="text-center mb-4">
                   <h3 className="font-extrabold text-gray-900 text-2xl leading-tight">{activeBoiler.name}</h3>
                   <div className="flex justify-center items-baseline gap-2 mt-1">
-                    <p className="text-[#005C9E] font-extrabold text-3xl">{activeBoiler.price}</p>
+                    <p className="text-blue-800 font-extrabold text-3xl">{activeBoiler.price}</p>
                   </div>
                   <p className="text-xs text-gray-500 mt-1">{activeBoiler.kw} Output • {data.flueType} Flue</p>
                 </div>
 
                 <div className="bg-blue-50 rounded-xl p-4 space-y-2 mb-2">
-                   <p className="text-[10px] font-bold text-[#005C9E] uppercase tracking-wider mb-2">Package Includes:</p>
+                   <p className="text-[10px] font-bold text-blue-800 uppercase tracking-wider mb-2">Package Includes:</p>
                    {activeBoiler.pack.map((item, i) => (
                      <div key={i} className="flex items-center gap-3 text-sm font-bold text-gray-700">
-                       <div className="w-5 h-5 rounded-full bg-white text-[#005C9E] flex items-center justify-center shadow-sm">
+                       <div className="w-5 h-5 rounded-full bg-white text-blue-800 flex items-center justify-center shadow-sm">
                          <CheckCircle size={12} />
                        </div>
                        {item}
@@ -577,10 +577,10 @@ export default function BoilerTool() {
               </div>
 
               <form onSubmit={handleFinish} className="space-y-3">
-                <input type="text" placeholder="Your Name" required className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:border-[#005C9E] focus:bg-white outline-none transition-colors" onChange={(e) => setData({ ...data, name: e.target.value })} />
-                <input type="email" placeholder="Email Address" required className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:border-[#005C9E] focus:bg-white outline-none transition-colors" onChange={(e) => setData({ ...data, email: e.target.value })} />
-                <input type="tel" placeholder="Mobile Number" required className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:border-[#005C9E] focus:bg-white outline-none transition-colors" onChange={(e) => setData({ ...data, phone: e.target.value })} />
-                <button type="submit" disabled={status === 'sending'} className="w-full bg-[#D9232D] text-white py-3.5 rounded-xl font-bold text-base hover:bg-red-700 transition-colors disabled:opacity-70 flex justify-center items-center gap-2">
+                <input type="text" placeholder="Your Name" required className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:border-blue-800 focus:bg-white outline-none transition-colors" onChange={(e) => setData({ ...data, name: e.target.value })} />
+                <input type="email" placeholder="Email Address" required className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:border-blue-800 focus:bg-white outline-none transition-colors" onChange={(e) => setData({ ...data, email: e.target.value })} />
+                <input type="tel" placeholder="Mobile Number" required className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:border-blue-800 focus:bg-white outline-none transition-colors" onChange={(e) => setData({ ...data, phone: e.target.value })} />
+                <button type="submit" disabled={status === 'sending'} className="w-full bg-red-700 text-white py-3.5 rounded-xl font-bold text-base hover:bg-red-800 transition-colors disabled:opacity-70 flex justify-center items-center gap-2">
                   {status === 'sending' ? 'Processing...' : <>Get My Estimate <ArrowRight size={16} /></>}
                 </button>
               </form>
@@ -599,7 +599,7 @@ export default function BoilerTool() {
               <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-4"><CheckCircle size={40} className="text-green-600" /></div>
               <h3 className="text-2xl font-extrabold text-gray-900 mb-2">Estimate Sent!</h3>
               <p className="text-sm text-gray-600 mb-6">We have emailed the details to <strong>{data.email}</strong>. We will be in touch shortly.</p>
-              <button onClick={() => setStep(1)} className="text-[#005C9E] font-bold hover:underline flex items-center gap-2 text-sm"><Wrench size={14} /> Start New Quote</button>
+              <button onClick={() => setStep(1)} className="text-blue-800 font-bold hover:underline flex items-center gap-2 text-sm"><Wrench size={14} /> Start New Quote</button>
             </motion.div>
           )}
         </AnimatePresence>

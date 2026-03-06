@@ -91,7 +91,7 @@ export default function Services({ preselectedService, setPreselectedService }: 
             <p className="text-sm">We will contact you via <strong>{customerDetails.preference}</strong> shortly to confirm a time.</p>
             <button 
               onClick={() => { setStatus('idle'); setSelectedService(''); setCustomerDetails({name: '', email: '', phone: '', preference: 'Email'}) }} 
-              className="mt-6 bg-[#005C9E] text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-800 transition-colors"
+              className="mt-6 bg-blue-800 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-900 transition-colors"
             >
               Make Another Request
             </button>
@@ -102,10 +102,10 @@ export default function Services({ preselectedService, setPreselectedService }: 
            <div className="text-center p-8 bg-red-50 text-red-800 rounded-xl border border-red-200">
             <h3 className="text-xl font-bold mb-2">Something Went Wrong</h3>
             <p className="mb-6">We couldn't process your request automatically.</p>
-            <a href="tel:07480561846" className="block w-full bg-[#D9232D] text-white font-bold py-3 px-6 rounded-lg hover:bg-red-700 mb-4">
+            <a href="tel:07480561846" className="block w-full bg-red-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-red-800 mb-4">
               Call 07480 561 846 Instead
             </a>
-            <button onClick={() => setStatus('idle')} className="text-[#005C9E] font-bold underline">
+            <button onClick={() => setStatus('idle')} className="text-blue-800 font-bold underline">
               Try Again
             </button>
           </div>
@@ -121,29 +121,29 @@ export default function Services({ preselectedService, setPreselectedService }: 
             <div className="grid md:grid-cols-2 gap-4">
               <div>
                 <label htmlFor="name" className="block text-gray-700 font-bold mb-2">Your Name</label>
-                <input type="text" id="name" name="name" value={customerDetails.name} onChange={handleDetailChange} required className="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-[#005C9E] outline-none transition-colors" disabled={!selectedService} />
+                <input type="text" id="name" name="name" value={customerDetails.name} onChange={handleDetailChange} required className="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-blue-800 outline-none transition-colors" disabled={!selectedService} />
               </div>
               <div>
                 <label htmlFor="phone" className="block text-gray-700 font-bold mb-2">Phone Number</label>
-                <input type="tel" id="phone" name="phone" value={customerDetails.phone} onChange={handleDetailChange} required className="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-[#005C9E] outline-none transition-colors" disabled={!selectedService} />
+                <input type="tel" id="phone" name="phone" value={customerDetails.phone} onChange={handleDetailChange} required className="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-blue-800 outline-none transition-colors" disabled={!selectedService} />
               </div>
             </div>
 
              <div>
               <label htmlFor="email" className="block text-gray-700 font-bold mb-2">Email Address</label>
-              <input type="email" id="email" name="email" value={customerDetails.email} onChange={handleDetailChange} required className="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-[#005C9E] outline-none transition-colors" disabled={!selectedService} />
+              <input type="email" id="email" name="email" value={customerDetails.email} onChange={handleDetailChange} required className="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-blue-800 outline-none transition-colors" disabled={!selectedService} />
             </div>
             
             <div>
               <label htmlFor="preference" className="block text-gray-700 font-bold mb-2">Preferred Contact Method</label>
-              <select id="preference" name="preference" value={customerDetails.preference} onChange={handleDetailChange} required className="w-full p-4 border-2 border-gray-200 rounded-xl bg-white focus:border-[#005C9E] outline-none transition-colors" disabled={!selectedService}>
+              <select id="preference" name="preference" value={customerDetails.preference} onChange={handleDetailChange} required className="w-full p-4 border-2 border-gray-200 rounded-xl bg-white focus:border-blue-800 outline-none transition-colors" disabled={!selectedService}>
                 <option>Email</option>
                 <option>Phone Call</option>
                 <option>Text Message</option>
               </select>
             </div>
 
-            <button type="submit" disabled={!selectedService || status === 'sending'} className="w-full bg-[#D9232D] text-white font-bold py-4 px-6 rounded-xl hover:bg-red-700 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed shadow-lg mt-4 text-lg">
+            <button type="submit" disabled={!selectedService || status === 'sending'} className="w-full bg-red-700 text-white font-bold py-4 px-6 rounded-xl hover:bg-red-800 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed shadow-lg mt-4 text-lg">
               {status === 'sending' ? 'Sending Request...' : 'Request Callback'}
             </button>
             
@@ -155,10 +155,10 @@ export default function Services({ preselectedService, setPreselectedService }: 
 
   return (
     <div className="bg-gray-50 animate-fadeIn min-h-screen">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-24">
         
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-[#005C9E]">Our Services</h1>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-blue-800">Our Services</h1>
           <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">Select a service below to request a booking.</p>
         </div>
 
@@ -166,7 +166,7 @@ export default function Services({ preselectedService, setPreselectedService }: 
           {services.map((service) => (
             <div key={service.name} className="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition-shadow flex flex-col border border-gray-100">
               <h2 className="text-xl font-bold text-gray-800 min-h-[56px] flex items-center">{service.name}</h2>
-              <p className="text-3xl font-extrabold text-[#005C9E] my-4">{service.price}</p>
+              <p className="text-3xl font-extrabold text-blue-800 my-4">{service.price}</p>
               <p className="text-gray-600 mb-8 flex-grow leading-relaxed">{service.description}</p>
               <button 
                 onClick={() => { 
@@ -176,7 +176,7 @@ export default function Services({ preselectedService, setPreselectedService }: 
                   const formEl = document.getElementById('booking-form');
                   if (formEl) formEl.scrollIntoView({ behavior: 'smooth' });
                 }} 
-                className="w-full mt-auto bg-gray-100 text-[#005C9E] font-bold py-3 px-4 rounded-xl hover:bg-[#005C9E] hover:text-white transition-colors border-2 border-[#005C9E]"
+                className="w-full mt-auto bg-gray-100 text-blue-800 font-bold py-3 px-4 rounded-xl hover:bg-blue-800 hover:text-white transition-colors border-2 border-blue-800"
               >
                 Select This Service
               </button>
