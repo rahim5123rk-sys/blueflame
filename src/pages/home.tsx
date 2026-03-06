@@ -76,38 +76,40 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
       
       {/* 1. HERO SECTION */}
       <section className="relative pt-32 pb-32 lg:pt-40 lg:pb-40 overflow-hidden">
-        
+
         {/* Background Image with Readability Overlay */}
         <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=60&w=1200&auto=format&fit=crop" 
-            alt="Modern Home Interior" 
+          <img
+            src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=60&w=1200&auto=format&fit=crop"
+            alt="Modern Home Interior"
             className="w-full h-full object-cover"
             fetchPriority="high"
           />
-          {/* THE FIX: Brand-aligned dark gradient overlay for optimal readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-gray-900/95 via-blue-900/85 to-blue-800/60"></div>
+          {/* Base dark layer ensures readability on all screen sizes and image regions */}
+          <div className="absolute inset-0 bg-gray-950/70"></div>
+          {/* Directional gradient adds brand depth on desktop without reducing mobile contrast */}
+          <div className="absolute inset-0 bg-gradient-to-r from-gray-950/60 via-blue-950/30 to-blue-900/20"></div>
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            
+
             {/* LEFT: MAIN TEXT */}
             <div className="text-white text-center lg:text-left">
-              
-              <h1 className="text-5xl lg:text-7xl font-extrabold mb-6 leading-tight tracking-tight drop-shadow-xl">
+
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold mb-6 leading-tight tracking-tight" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.7)' }}>
                 Gas Safe Registered <br className="hidden lg:block"/>
                <span className="text-red-400">Engineers in Worcester.</span>
               </h1>
-              
-              <p className="text-xl text-gray-100 mb-8 max-w-xl mx-auto lg:mx-0 font-medium leading-relaxed drop-shadow-md">
+
+              <p className="text-lg sm:text-xl text-white mb-8 max-w-xl mx-auto lg:mx-0 font-semibold leading-relaxed" style={{ textShadow: '0 1px 8px rgba(0,0,0,0.8)' }}>
                 From emergency repairs to brand new boiler installations. We provide honest pricing, quality workmanship, and 24/7 support.
               </p>
-              
+
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <button
                   onClick={() => document.getElementById('boiler-quote-tool')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="bg-red-700 text-white font-bold py-4 px-8 rounded-xl shadow-xl hover:bg-red-700 hover:shadow-2xl transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2"
+                  className="bg-red-700 text-white font-bold py-4 px-8 rounded-xl shadow-xl hover:bg-red-600 hover:shadow-2xl transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2"
                 >
                   Get Instant Estimate <ArrowRight size={20} />
                 </button>
@@ -115,21 +117,21 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
                   href="https://wa.me/447480561846"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-white/10 backdrop-blur-md text-white font-bold py-4 px-8 rounded-xl hover:bg-white hover:text-blue-800 transition-all border border-white/30 flex items-center justify-center gap-2"
+                  className="bg-white/15 backdrop-blur-md text-white font-bold py-4 px-8 rounded-xl hover:bg-white hover:text-blue-800 transition-all border border-white/50 flex items-center justify-center gap-2"
                 >
                   <WhatsAppIcon /> WhatsApp Us
                 </a>
               </div>
-              
-              <div className="mt-10 flex items-center justify-center lg:justify-start gap-6 text-sm font-medium text-gray-200">
+
+              <div className="mt-10 flex items-center justify-center lg:justify-start gap-6 text-sm font-semibold text-white">
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-5 h-5 text-green-400" /> Gas Safe
+                  <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" /> Gas Safe
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-5 h-5 text-green-400" /> Fully Insured
+                  <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" /> Fully Insured
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-5 h-5 text-green-400" /> 5★ Reviews
+                  <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" /> 5★ Reviews
                 </div>
               </div>
             </div>
