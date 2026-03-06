@@ -91,7 +91,7 @@ export default function Services({ preselectedService, setPreselectedService }: 
             <p className="text-sm">We will contact you via <strong>{customerDetails.preference}</strong> shortly to confirm a time.</p>
             <button 
               onClick={() => { setStatus('idle'); setSelectedService(''); setCustomerDetails({name: '', email: '', phone: '', preference: 'Email'}) }} 
-              className="mt-6 bg-blue-800 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-800 transition-colors"
+              className="mt-6 bg-blue-800 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-900 transition-colors"
             >
               Make Another Request
             </button>
@@ -102,7 +102,7 @@ export default function Services({ preselectedService, setPreselectedService }: 
            <div className="text-center p-8 bg-red-50 text-red-800 rounded-xl border border-red-200">
             <h3 className="text-xl font-bold mb-2">Something Went Wrong</h3>
             <p className="mb-6">We couldn't process your request automatically.</p>
-            <a href="tel:07480561846" className="block w-full bg-red-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-red-700 mb-4">
+            <a href="tel:07480561846" className="block w-full bg-red-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-red-800 mb-4">
               Call 07480 561 846 Instead
             </a>
             <button onClick={() => setStatus('idle')} className="text-blue-800 font-bold underline">
@@ -143,7 +143,7 @@ export default function Services({ preselectedService, setPreselectedService }: 
               </select>
             </div>
 
-            <button type="submit" disabled={!selectedService || status === 'sending'} className="w-full bg-red-700 text-white font-bold py-4 px-6 rounded-xl hover:bg-red-700 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed shadow-lg mt-4 text-lg">
+            <button type="submit" disabled={!selectedService || status === 'sending'} className="w-full bg-red-700 text-white font-bold py-4 px-6 rounded-xl hover:bg-red-800 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed shadow-lg mt-4 text-lg">
               {status === 'sending' ? 'Sending Request...' : 'Request Callback'}
             </button>
             

@@ -57,7 +57,7 @@ export default function Layout({ children, setCurrentPage }: LayoutProps) {
               ))}
               <a 
                 href="tel:07480561846" 
-                className="bg-red-700 text-white px-6 py-3 rounded-full font-bold shadow-lg hover:bg-red-700 transition-all flex items-center gap-2 text-sm transform hover:-translate-y-0.5"
+                className="bg-red-700 text-white px-6 py-3 rounded-full font-bold shadow-lg hover:bg-red-800 transition-all flex items-center gap-2 text-sm transform hover:-translate-y-0.5"
               >
                 <Phone size={18} /> 07480 561 846
               </a>
@@ -91,7 +91,7 @@ export default function Layout({ children, setCurrentPage }: LayoutProps) {
               ))}
               <a 
                 href="tel:07480561846" 
-                className="block w-full text-center bg-red-700 text-white px-3 py-4 rounded-lg font-bold mt-4 shadow-md uppercase tracking-wide"
+                className="block w-full text-center bg-red-700 text-white px-3 py-4 rounded-lg font-bold mt-4 shadow-md uppercase tracking-wide hover:bg-red-800 transition-colors"
               >
                 Call Now
               </a>
@@ -172,7 +172,7 @@ export default function Layout({ children, setCurrentPage }: LayoutProps) {
       {/* Floating Call Button (Mobile Only) */}
       <a 
         href="tel:07480561846"
-        className="md:hidden fixed bottom-6 right-6 bg-red-700 text-white p-4 rounded-full shadow-2xl hover:bg-red-700 z-50 animate-bounce"
+        className="md:hidden fixed bottom-6 right-6 bg-red-700 text-white p-4 rounded-full shadow-2xl hover:bg-red-800 z-50 animate-bounce"
         aria-label="Call Now"
       >
         <Phone size={24} fill="currentColor" />

@@ -14,7 +14,7 @@ export default function NotFound({ setCurrentPage }: NotFoundProps) {
         <div className="mt-8">
           <button
             onClick={() => setCurrentPage('Home')}
-            className="inline-block bg-red-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-red-700 transition-colors"
+            className="inline-block bg-red-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-red-800 transition-colors"
           >
             Go Back Home
           </button>

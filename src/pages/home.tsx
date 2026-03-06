@@ -107,7 +107,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <button
                   onClick={() => document.getElementById('boiler-quote-tool')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="bg-red-700 text-white font-bold py-4 px-8 rounded-xl shadow-xl hover:bg-red-700 hover:shadow-2xl transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2"
+                  className="bg-red-700 text-white font-bold py-4 px-8 rounded-xl shadow-xl hover:bg-red-800 hover:shadow-2xl transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2"
                 >
                   Get Instant Estimate <ArrowRight size={20} />
                 </button>
@@ -196,7 +196,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
 
                   <button 
                     onClick={() => document.getElementById('boiler-quote-tool')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="w-full bg-blue-800 text-white font-bold py-3.5 rounded-xl shadow-lg hover:bg-blue-800 transition-colors flex justify-center items-center gap-2"
+                    className="w-full bg-blue-800 text-white font-bold py-3.5 rounded-xl shadow-lg hover:bg-blue-900 transition-colors flex justify-center items-center gap-2"
                   >
                     Claim Deal <ArrowRight size={18} />
                   </button>
@@ -312,7 +312,7 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
               </ul>
               <button
                 onClick={() => handleServiceClick('Landlord Deal: Gas Cert + Boiler Service')}
-                className="mt-6 inline-block bg-red-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-red-700 transition-transform transform hover:scale-105 no-underline"
+                className="mt-6 inline-block bg-red-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-red-800 transition-transform transform hover:scale-105 no-underline"
               >
                 View Landlord Deal
               </button>

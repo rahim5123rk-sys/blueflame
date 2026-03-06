@@ -80,7 +80,7 @@ export default function Contact() {
               <div className="text-center p-6 bg-green-100 text-green-800 rounded-lg border border-green-200">
                 <h3 className="text-xl font-bold mb-2">Message Sent!</h3>
                 <p>Thank you for reaching out. We will get back to you shortly.</p>
-                <button onClick={() => setStatus('idle')} className="mt-4 text-blue-800 font-bold underline hover:text-blue-800">Send another message</button>
+                <button onClick={() => setStatus('idle')} className="mt-4 text-blue-800 font-bold underline hover:text-blue-900">Send another message</button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -112,7 +112,7 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <button type="submit" disabled={status === 'sending'} className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-base font-bold text-white bg-red-700 hover:bg-red-700 disabled:bg-gray-400 transition-colors">
+                  <button type="submit" disabled={status === 'sending'} className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-base font-bold text-white bg-red-700 hover:bg-red-800 disabled:bg-gray-400 transition-colors">
                     {status === 'sending' ? 'Sending...' : 'Send Message'}
                   </button>
                 </div>

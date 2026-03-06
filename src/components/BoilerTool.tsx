@@ -266,7 +266,7 @@ export default function BoilerTool() {
               </p>
               <a 
                 href="tel:07480561846"
-                className="w-full bg-red-700 text-white py-4 rounded-xl font-bold text-lg hover:bg-red-700 transition-colors flex justify-center items-center gap-2 mb-4"
+                className="w-full bg-red-700 text-white py-4 rounded-xl font-bold text-lg hover:bg-red-800 transition-colors flex justify-center items-center gap-2 mb-4"
               >
                 <Phone size={20} /> Call 07480 561 846
               </a>
@@ -580,7 +580,7 @@ export default function BoilerTool() {
                 <input type="text" placeholder="Your Name" required className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:border-blue-800 focus:bg-white outline-none transition-colors" onChange={(e) => setData({ ...data, name: e.target.value })} />
                 <input type="email" placeholder="Email Address" required className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:border-blue-800 focus:bg-white outline-none transition-colors" onChange={(e) => setData({ ...data, email: e.target.value })} />
                 <input type="tel" placeholder="Mobile Number" required className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:border-blue-800 focus:bg-white outline-none transition-colors" onChange={(e) => setData({ ...data, phone: e.target.value })} />
-                <button type="submit" disabled={status === 'sending'} className="w-full bg-red-700 text-white py-3.5 rounded-xl font-bold text-base hover:bg-red-700 transition-colors disabled:opacity-70 flex justify-center items-center gap-2">
+                <button type="submit" disabled={status === 'sending'} className="w-full bg-red-700 text-white py-3.5 rounded-xl font-bold text-base hover:bg-red-800 transition-colors disabled:opacity-70 flex justify-center items-center gap-2">
                   {status === 'sending' ? 'Processing...' : <>Get My Estimate <ArrowRight size={16} /></>}
                 </button>
               </form>
