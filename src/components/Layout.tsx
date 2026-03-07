@@ -15,6 +15,7 @@ export default function Layout({ children }: LayoutProps) {
     { name: 'Services', to: '/services' },
     { name: 'About', to: '/about' },
     { name: 'Reviews', to: '/reviews' },
+    { name: 'Blog', to: '/blog' },
     { name: 'Contact', to: '/contact' },
   ];
 
@@ -136,6 +137,7 @@ export default function Layout({ children }: LayoutProps) {
               <li><Link to="/services" className="hover:text-white transition-colors">Landlord Certificates</Link></li>
               <li><Link to="/services" className="hover:text-white transition-colors">Emergency Repairs</Link></li>
               <li><Link to="/gas-safety-guide" className="hover:text-white transition-colors">Gas Safety Guide</Link></li>
+              <li><Link to="/blog" className="hover:text-white transition-colors">Blog & Advice</Link></li>
             </ul>
           </div>
 

@@ -9,6 +9,12 @@ const Reviews = lazy(() => import('./pages/Reviews.tsx'));
 const Contact = lazy(() => import('./pages/Contact.tsx'));
 const NotFound = lazy(() => import('./pages/NotFound.tsx'));
 const GasSafetyGuide = lazy(() => import('./pages/GasSafetyGuide.tsx'));
+const Blog = lazy(() => import('./pages/Blog.tsx'));
+const BoilerCost = lazy(() => import('./pages/blog/BoilerCost.tsx'));
+const SignsBoilerNeedsReplacing = lazy(() => import('./pages/blog/SignsBoilerNeedsReplacing.tsx'));
+const CarbonMonoxideSafety = lazy(() => import('./pages/blog/CarbonMonoxideSafety.tsx'));
+const WorcesterVsIdeal = lazy(() => import('./pages/blog/WorcesterVsIdeal.tsx'));
+const HowToBleedRadiator = lazy(() => import('./pages/blog/HowToBleedRadiator.tsx'));
 
 const PAGE_META: Record<string, { title: string; description: string }> = {
   '/': {
@@ -34,6 +40,30 @@ const PAGE_META: Record<string, { title: string; description: string }> = {
   '/gas-safety-guide': {
     title: 'Worcester Landlord Gas Safety Guide | Blue Flame',
     description: 'Complete guide to landlord gas safety obligations in Worcestershire. CP12 certificates, boiler servicing requirements, and Gas Safe regulations explained.',
+  },
+  '/blog': {
+    title: 'Heating & Gas Safety Blog | Blue Flame Gas Services Worcester',
+    description: 'Expert heating advice from Gas Safe engineers in Worcester. Boiler guides, gas safety tips, and money-saving advice for homeowners and landlords.',
+  },
+  '/blog/boiler-cost-worcester': {
+    title: 'How Much Does a New Boiler Cost in Worcester? (2026 Guide) | Blue Flame',
+    description: "Complete breakdown of new boiler installation costs in Worcester 2026 — supply and fit prices, what's included, and how to get the best deal.",
+  },
+  '/blog/signs-boiler-needs-replacing': {
+    title: '7 Warning Signs Your Boiler Needs Replacing | Blue Flame Worcester',
+    description: "Is your boiler on its way out? These 7 warning signs tell you when repair isn't enough and it's time for a replacement.",
+  },
+  '/blog/carbon-monoxide-safety': {
+    title: 'Carbon Monoxide Safety Guide for Homeowners | Blue Flame Worcester',
+    description: 'Everything Worcester homeowners and landlords need to know about carbon monoxide — symptoms, prevention, and what to do in an emergency.',
+  },
+  '/blog/worcester-bosch-vs-ideal-boilers': {
+    title: 'Worcester Bosch vs Ideal Boilers: Which Is Best? | Blue Flame',
+    description: 'We compare Worcester Bosch and Ideal boilers head-to-head on reliability, efficiency, warranty, and price to help you choose the right boiler.',
+  },
+  '/blog/how-to-bleed-a-radiator': {
+    title: 'How to Bleed a Radiator: Step-by-Step Guide | Blue Flame Worcester',
+    description: 'Cold spots on your radiator? Our Gas Safe engineers walk you through exactly how to bleed a radiator and when to call a professional.',
   },
 };
 
@@ -79,6 +109,12 @@ export default function App() {
           <Route path="/reviews" element={<Reviews />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/gas-safety-guide" element={<GasSafetyGuide />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/boiler-cost-worcester" element={<BoilerCost />} />
+          <Route path="/blog/signs-boiler-needs-replacing" element={<SignsBoilerNeedsReplacing />} />
+          <Route path="/blog/carbon-monoxide-safety" element={<CarbonMonoxideSafety />} />
+          <Route path="/blog/worcester-bosch-vs-ideal-boilers" element={<WorcesterVsIdeal />} />
+          <Route path="/blog/how-to-bleed-a-radiator" element={<HowToBleedRadiator />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
