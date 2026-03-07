@@ -97,12 +97,22 @@
   }
 }
 
-/* Add your custom animation keyframes here */
+/* Animation keyframes */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%) skewX(-12deg); }
+  100% { transform: translateX(200%) skewX(-12deg); }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s ease-in-out;
+}
+
+/* Perspective utility for 3D transforms */
+.perspective-1000 {
+  perspective: 1000px;
 }
