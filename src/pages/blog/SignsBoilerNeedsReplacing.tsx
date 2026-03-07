@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { AlertTriangle, CheckCircle, Phone } from 'lucide-react';
+import RelatedArticles from '../../components/RelatedArticles';
 
 const signs = [
   {
@@ -43,14 +44,14 @@ export default function SignsBoilerNeedsReplacing() {
   return (
     <article className="bg-white animate-fadeIn">
 
-      <header className="bg-gray-950 text-white py-20">
+      <header className="bg-slate-900 text-white py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
-          <Link to="/blog" className="text-sky-400 text-sm font-bold hover:underline mb-4 inline-block">← Back to Blog</Link>
-          <span className="inline-block bg-orange-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wide">Boiler Advice</span>
+          <Link to="/blog" className="text-amber-400 text-sm font-bold hover:underline mb-4 inline-block">← Back to Blog</Link>
+          <span className="inline-block bg-amber-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wide">Boiler Advice</span>
           <h1 className="text-3xl md:text-5xl font-extrabold leading-tight mb-4">
             7 Warning Signs Your Boiler Needs Replacing
           </h1>
-          <p className="text-blue-200 text-lg">By Blue Flame Gas Services · March 2026 · 5 min read</p>
+          <p className="text-slate-300 text-lg">By Blue Flame Gas Services · March 2026 · 5 min read</p>
         </div>
       </header>
 
@@ -63,7 +64,7 @@ export default function SignsBoilerNeedsReplacing() {
         <div className="space-y-8 mb-12">
           {signs.map((sign) => (
             <div key={sign.number} className="flex gap-6 p-6 bg-gray-50 rounded-2xl border border-gray-100">
-              <div className="text-3xl font-extrabold text-blue-100 flex-shrink-0 w-12 text-right">{sign.number}</div>
+              <div className="text-3xl font-extrabold text-gray-200 flex-shrink-0 w-12 text-right">{sign.number}</div>
               <div>
                 <h2 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
                   {sign.number === '05' && <AlertTriangle className="text-red-600" size={20} />}
@@ -104,14 +105,17 @@ export default function SignsBoilerNeedsReplacing() {
           <p className="text-amber-700">Our Gas Safe engineers will give you an honest assessment — we never push replacement when a repair is genuinely the better option for you.</p>
         </div>
 
-        <div className="bg-blue-800 text-white p-8 rounded-2xl text-center">
+        {/* Related Articles */}
+        <RelatedArticles slugs={['boiler-cost-worcester', 'carbon-monoxide-safety']} />
+
+        <div className="bg-slate-900 text-white p-8 rounded-2xl text-center">
           <h2 className="text-2xl font-bold mb-3">Concerned About Your Boiler?</h2>
-          <p className="text-blue-200 mb-6">We cover Worcester and Worcestershire. Same-day emergency visits available.</p>
+          <p className="text-slate-300 mb-6">We cover Worcester and Worcestershire. Same-day emergency visits available.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/services" className="bg-red-700 text-white font-bold py-3 px-8 rounded-xl hover:bg-red-600 transition-colors">
               Book an Inspection
             </Link>
-            <a href="tel:07480561846" className="bg-white text-blue-800 font-bold py-3 px-8 rounded-xl hover:bg-blue-50 transition-colors flex items-center justify-center gap-2">
+            <a href="tel:07480561846" className="bg-white text-slate-900 font-bold py-3 px-8 rounded-xl hover:bg-slate-100 transition-colors flex items-center justify-center gap-2">
               <Phone size={18} /> 07480 561 846
             </a>
           </div>

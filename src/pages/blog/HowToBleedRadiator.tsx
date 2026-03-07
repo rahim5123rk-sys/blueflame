@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { CheckCircle, AlertTriangle, Phone } from 'lucide-react';
+import RelatedArticles from '../../components/RelatedArticles';
 
 const steps = [
   {
@@ -53,14 +54,14 @@ export default function HowToBleedRadiator() {
   return (
     <article className="bg-white animate-fadeIn">
 
-      <header className="bg-gray-950 text-white py-20">
+      <header className="bg-slate-900 text-white py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
-          <Link to="/blog" className="text-sky-400 text-sm font-bold hover:underline mb-4 inline-block">← Back to Blog</Link>
+          <Link to="/blog" className="text-amber-400 text-sm font-bold hover:underline mb-4 inline-block">← Back to Blog</Link>
           <span className="inline-block bg-emerald-700 text-white text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wide">DIY Heating Tips</span>
           <h1 className="text-3xl md:text-5xl font-extrabold leading-tight mb-4">
             How to Bleed a Radiator: Step-by-Step Guide (No Plumber Needed)
           </h1>
-          <p className="text-blue-200 text-lg">By Blue Flame Gas Services · March 2026 · 4 min read</p>
+          <p className="text-slate-300 text-lg">By Blue Flame Gas Services · March 2026 · 4 min read</p>
         </div>
       </header>
 
@@ -70,9 +71,9 @@ export default function HowToBleedRadiator() {
           If your radiators are warm at the bottom but cold at the top, the fix is simple: bleed them. It takes 5 minutes per radiator, costs nothing (just a £1.50 bleed key), and can make a noticeable difference to your heating efficiency.
         </p>
 
-        <div className="bg-blue-50 border-l-4 border-blue-800 p-5 rounded-r-xl mb-10">
-          <p className="font-bold text-blue-800">Why do radiators get airlocks?</p>
-          <p className="text-blue-700 text-sm mt-1">Small amounts of air enter your heating system over time — through normal pump operation, small leaks, or when adding water. The air rises to the top of radiators and prevents hot water from filling the full height, creating cold spots.</p>
+        <div className="bg-amber-50 border-l-4 border-amber-500 p-5 rounded-r-xl mb-10">
+          <p className="font-bold text-amber-800">Why do radiators get airlocks?</p>
+          <p className="text-amber-700 text-sm mt-1">Small amounts of air enter your heating system over time — through normal pump operation, small leaks, or when adding water. The air rises to the top of radiators and prevents hot water from filling the full height, creating cold spots.</p>
         </div>
 
         <h2 className="text-2xl font-bold text-gray-900 mb-6">What You'll Need</h2>
@@ -89,7 +90,7 @@ export default function HowToBleedRadiator() {
         <div className="space-y-5 mb-12">
           {steps.map((s) => (
             <div key={s.step} className="flex gap-5 p-5 bg-gray-50 rounded-2xl border border-gray-100">
-              <div className="w-10 h-10 bg-blue-800 text-white rounded-full flex-shrink-0 flex items-center justify-center font-extrabold text-lg">
+              <div className="w-10 h-10 bg-red-700 text-white rounded-full flex-shrink-0 flex items-center justify-center font-extrabold text-lg">
                 {s.step}
               </div>
               <div>
@@ -100,9 +101,9 @@ export default function HowToBleedRadiator() {
           ))}
         </div>
 
-        <div className="bg-amber-50 border-l-4 border-amber-500 p-6 rounded-r-xl mb-10">
-          <p className="font-bold text-amber-800 flex items-center gap-2"><AlertTriangle size={18} /> Safety notes</p>
-          <ul className="mt-2 space-y-1 text-amber-700 text-sm">
+        <div className="bg-red-50 border-l-4 border-red-500 p-6 rounded-r-xl mb-10">
+          <p className="font-bold text-red-800 flex items-center gap-2"><AlertTriangle size={18} /> Safety notes</p>
+          <ul className="mt-2 space-y-1 text-red-700 text-sm">
             <li>• Always turn the heating off and wait before bleeding — pressurised hot water causes serious scalds</li>
             <li>• Never fully remove the bleed valve — a quarter to half turn is all you need</li>
             <li>• If water sprays out forcefully, close the valve and call a plumber — your system pressure may be too high</li>
@@ -127,12 +128,15 @@ export default function HowToBleedRadiator() {
           ))}
         </ul>
 
-        <div className="bg-blue-800 text-white p-8 rounded-2xl text-center">
+        {/* Related Articles */}
+        <RelatedArticles slugs={['signs-boiler-needs-replacing', 'carbon-monoxide-safety']} />
+
+        <div className="bg-slate-900 text-white p-8 rounded-2xl text-center">
           <h2 className="text-2xl font-bold mb-3">Still Having Heating Problems?</h2>
-          <p className="text-blue-200 mb-6">If bleeding your radiators doesn't solve the issue, our Gas Safe engineers can diagnose and fix it. We cover Worcester and Worcestershire.</p>
+          <p className="text-slate-300 mb-6">If bleeding your radiators doesn't solve the issue, our Gas Safe engineers can diagnose and fix it. We cover Worcester and Worcestershire.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/services" className="bg-red-700 text-white font-bold py-3 px-8 rounded-xl hover:bg-red-600 transition-colors">Book a Diagnosis</Link>
-            <a href="tel:07480561846" className="bg-white text-blue-800 font-bold py-3 px-8 rounded-xl hover:bg-blue-50 transition-colors flex items-center justify-center gap-2">
+            <a href="tel:07480561846" className="bg-white text-slate-900 font-bold py-3 px-8 rounded-xl hover:bg-slate-100 transition-colors flex items-center justify-center gap-2">
               <Phone size={18} /> 07480 561 846
             </a>
           </div>

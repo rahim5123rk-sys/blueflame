@@ -67,6 +67,16 @@ const PAGE_META: Record<string, { title: string; description: string }> = {
   },
 };
 
+const BREADCRUMB_NAMES: Record<string, string> = {
+  '/blog/boiler-cost-worcester': 'New Boiler Cost in Worcester',
+  '/blog/signs-boiler-needs-replacing': '7 Signs Your Boiler Needs Replacing',
+  '/blog/carbon-monoxide-safety': 'Carbon Monoxide Safety Guide',
+  '/blog/worcester-bosch-vs-ideal-boilers': 'Worcester Bosch vs Ideal Boilers',
+  '/blog/how-to-bleed-a-radiator': 'How to Bleed a Radiator',
+};
+
+const BASE = 'https://www.blueflameworcester.com';
+
 export default function App() {
   const location = useLocation();
 
@@ -96,6 +106,27 @@ export default function App() {
         page_title: meta.title,
         page_location: window.location.href,
       });
+    }
+
+    // BreadcrumbList schema — only on blog article pages
+    const existingBreadcrumb = document.getElementById('breadcrumb-schema');
+    if (existingBreadcrumb) existingBreadcrumb.remove();
+
+    const articleName = BREADCRUMB_NAMES[location.pathname];
+    if (articleName) {
+      const script = document.createElement('script');
+      script.id = 'breadcrumb-schema';
+      script.type = 'application/ld+json';
+      script.text = JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: `${BASE}/` },
+          { '@type': 'ListItem', position: 2, name: 'Blog', item: `${BASE}/blog` },
+          { '@type': 'ListItem', position: 3, name: articleName, item: `${BASE}${location.pathname}` },
+        ],
+      });
+      document.head.appendChild(script);
     }
   }, [location.pathname]);
 

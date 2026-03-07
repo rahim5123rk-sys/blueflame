@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { AlertTriangle, CheckCircle, Phone, ShieldCheck } from 'lucide-react';
+import RelatedArticles from '../../components/RelatedArticles';
 
 export default function CarbonMonoxideSafety() {
   return (
@@ -108,7 +109,7 @@ export default function CarbonMonoxideSafety() {
             { title: 'Check your flue', body: 'Birds\' nests, debris, or deterioration can block a boiler flue. Have it inspected annually as part of your boiler service.' },
           ].map((item) => (
             <div key={item.title} className="flex gap-4 p-5 bg-gray-50 rounded-xl border border-gray-100">
-              <ShieldCheck className="text-blue-800 flex-shrink-0 mt-1" size={20} />
+              <ShieldCheck className="text-red-700 flex-shrink-0 mt-1" size={20} />
               <div>
                 <p className="font-bold text-gray-900 mb-1">{item.title}</p>
                 <p className="text-gray-600 text-sm">{item.body}</p>
@@ -117,15 +118,18 @@ export default function CarbonMonoxideSafety() {
           ))}
         </div>
 
-        <div className="bg-blue-800 text-white p-8 rounded-2xl text-center">
+        {/* Related Articles */}
+        <RelatedArticles slugs={['signs-boiler-needs-replacing', 'how-to-bleed-a-radiator']} />
+
+        <div className="bg-slate-900 text-white p-8 rounded-2xl text-center">
           <h2 className="text-2xl font-bold mb-3">Book Your Annual Boiler Service</h2>
-          <p className="text-blue-200 mb-2">An annual Gas Safe inspection is the most effective way to prevent carbon monoxide poisoning.</p>
-          <p className="text-blue-200 mb-6">Boiler servicing from <strong>£60</strong> across Worcester and Worcestershire.</p>
+          <p className="text-slate-300 mb-2">An annual Gas Safe inspection is the most effective way to prevent carbon monoxide poisoning.</p>
+          <p className="text-slate-300 mb-6">Boiler servicing from <strong>£60</strong> across Worcester and Worcestershire.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/services" className="bg-red-700 text-white font-bold py-3 px-8 rounded-xl hover:bg-red-600 transition-colors">
               Book a Service — from £60
             </Link>
-            <a href="tel:07480561846" className="bg-white text-blue-800 font-bold py-3 px-8 rounded-xl hover:bg-blue-50 transition-colors flex items-center justify-center gap-2">
+            <a href="tel:07480561846" className="bg-white text-slate-900 font-bold py-3 px-8 rounded-xl hover:bg-slate-100 transition-colors flex items-center justify-center gap-2">
               <Phone size={18} /> 07480 561 846
             </a>
           </div>

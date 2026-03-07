@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import BoilerTool from '../components/BoilerTool';
-import { BLOG_POSTS } from './Blog';
+import { BLOG_POSTS, BADGE_CLASS } from './Blog';
 
 import { CheckCircle, Flame, ArrowRight, Zap, ShieldCheck } from 'lucide-react';
 
@@ -69,14 +69,14 @@ export default function Home() {
     <div className="animate-fadeIn font-sans">
       
       {/* 1. HERO SECTION */}
-      <section className="relative pt-32 pb-32 lg:pt-40 lg:pb-40 overflow-hidden bg-gray-950">
+      <section className="relative pt-32 pb-32 lg:pt-40 lg:pb-40 overflow-hidden bg-slate-900">
 
-        {/* Solid brand gradient — guaranteed contrast, no external dependency */}
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-950 via-blue-950 to-[#002244]"></div>
+        {/* Neutral charcoal gradient — no blue tint */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"></div>
         {/* Subtle dot grid for depth */}
         <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '28px 28px' }}></div>
-        {/* Warm glow behind hero text */}
-        <div className="absolute top-0 left-0 w-1/2 h-full bg-gradient-to-r from-blue-800/20 to-transparent pointer-events-none"></div>
+        {/* Warm red brand glow on left */}
+        <div className="absolute top-0 left-0 w-1/2 h-full bg-gradient-to-r from-red-950/25 to-transparent pointer-events-none"></div>
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -84,17 +84,17 @@ export default function Home() {
             {/* LEFT: MAIN TEXT */}
             <div className="text-white text-center lg:text-left">
 
-              <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-2 mb-6 text-sm font-semibold text-blue-200">
+              <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-2 mb-6 text-sm font-semibold text-amber-300">
                 <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
                 Gas Safe Registered · Worcester
               </div>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold mb-6 leading-tight tracking-tight text-white">
                 Boiler Experts <br className="hidden lg:block"/>
-                <span className="text-sky-400">in Worcester.</span>
+                <span className="text-amber-400">in Worcester.</span>
               </h1>
 
-              <p className="text-lg sm:text-xl text-blue-100 mb-8 max-w-xl mx-auto lg:mx-0 font-medium leading-relaxed">
+              <p className="text-lg sm:text-xl text-slate-300 mb-8 max-w-xl mx-auto lg:mx-0 font-medium leading-relaxed">
                 From emergency repairs to brand new boiler installations. Honest pricing, quality workmanship, and 24/7 support across Worcestershire.
               </p>
 
@@ -391,7 +391,7 @@ export default function Home() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-end justify-between mb-12">
             <div>
-              <p className="text-sky-600 font-bold uppercase tracking-widest text-xs mb-2">Expert Advice</p>
+              <p className="text-red-600 font-bold uppercase tracking-widest text-xs mb-2">Expert Advice</p>
               <h2 className="text-3xl font-bold text-gray-900">From Our Blog</h2>
             </div>
             <Link to="/blog" className="text-blue-800 font-bold text-sm hover:underline flex items-center gap-1">
@@ -403,12 +403,12 @@ export default function Home() {
               <Link
                 key={post.slug}
                 to={`/blog/${post.slug}`}
-                className="group bg-gray-50 rounded-2xl border border-gray-200 p-6 hover:shadow-lg hover:border-blue-200 transition-all"
+                className="group bg-gray-50 rounded-2xl border border-gray-200 p-6 hover:shadow-lg hover:border-red-200 transition-all"
               >
-                <span className="inline-block bg-blue-100 text-blue-800 text-xs font-bold px-2 py-1 rounded-full mb-3 uppercase tracking-wide">
+                <span className={`inline-block text-xs font-bold px-2 py-1 rounded-full mb-3 uppercase tracking-wide ${BADGE_CLASS[post.category] ?? 'bg-slate-100 text-slate-700'}`}>
                   {post.category}
                 </span>
-                <h3 className="font-bold text-gray-900 group-hover:text-blue-800 transition-colors leading-snug mb-3">
+                <h3 className="font-bold text-gray-900 group-hover:text-red-700 transition-colors leading-snug mb-3">
                   {post.title}
                 </h3>
                 <p className="text-sm text-gray-500">{post.readTime}</p>
