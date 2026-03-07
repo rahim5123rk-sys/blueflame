@@ -79,7 +79,6 @@ export default function Home() {
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
   const heroY = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   const services = [
     { name: 'Annual Boiler Service', image: '/images/boiler-service.webp', icon: Wrench, desc: 'Keep your boiler running safely and efficiently all year round.' },
@@ -166,7 +165,7 @@ export default function Home() {
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-red-600 rounded-full blur-[140px]"
         />
 
-        <motion.div style={{ opacity: heroOpacity }} className="container mx-auto px-4 relative z-10 pt-32 pb-20 lg:pt-0 lg:pb-0">
+        <div className="container mx-auto px-4 relative z-10 pt-32 pb-20 lg:pt-0 lg:pb-0">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
             {/* LEFT: Animated text reveals */}
@@ -351,7 +350,7 @@ export default function Home() {
             </motion.div>
 
           </div>
-        </motion.div>
+        </div>
 
         {/* Scroll indicator */}
         <motion.div
