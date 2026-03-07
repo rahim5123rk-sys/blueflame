@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
-interface ServicesProps {
-  preselectedService: string;
-  setPreselectedService: (service: string) => void;
-}
-
-export default function Services({ preselectedService, setPreselectedService }: ServicesProps) {
+export default function Services() {
+  const location = useLocation();
+  const preselectedService = (location.state as { service?: string } | null)?.service ?? '';
   const [selectedService, setSelectedService] = useState('');
   const [customerDetails, setCustomerDetails] = useState({
     name: '',
@@ -27,16 +25,15 @@ export default function Services({ preselectedService, setPreselectedService }: 
     { name: 'Radiator System Clean', price: 'From £200', description: 'A deep clean of your central heating system to remove sludge, improve efficiency, and reduce bills.' },
   ];
 
-  // Handle pre-selection from Home page
+  // Handle pre-selection passed via router state from Home page
   useEffect(() => {
     if (preselectedService) {
       setSelectedService(preselectedService);
       setTimeout(() => {
         document.getElementById('booking-form')?.scrollIntoView({ behavior: 'smooth' });
       }, 100);
-      setPreselectedService('');
     }
-  }, [preselectedService, setPreselectedService]);
+  }, [preselectedService]);
 
   const handleDetailChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setCustomerDetails({

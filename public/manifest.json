@@ -1,0 +1,17 @@
+{
+  "name": "Blue Flame Gas Services",
+  "short_name": "Blue Flame",
+  "description": "Gas Safe registered engineers in Worcester. Boiler installations, servicing, emergency repairs & landlord certificates.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#005C9E",
+  "icons": [
+    {
+      "src": "/images/logo.webp",
+      "sizes": "any",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    }
+  ]
+}

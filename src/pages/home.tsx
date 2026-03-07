@@ -1,12 +1,8 @@
 import { useState, useEffect } from 'react';
-import BoilerTool from '../components/BoilerTool'; 
+import { useNavigate } from 'react-router-dom';
+import BoilerTool from '../components/BoilerTool';
 
 import { CheckCircle, Flame, ArrowRight, Zap, ShieldCheck } from 'lucide-react';
-
-interface HomeProps {
-  setCurrentPage: (page: string) => void;
-  setPreselectedService: (service: string) => void;
-}
 
 const WhatsAppIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="mr-2">
@@ -23,7 +19,8 @@ const GoogleIcon = () => (
   </svg>
 );
 
-export default function Home({ setCurrentPage, setPreselectedService }: HomeProps) {
+export default function Home() {
+  const navigate = useNavigate();
   const services = [
     { name: 'Annual Boiler Service', image: '/images/boiler-service.webp' },
     { name: 'Landlord Gas Safety Certificate (CP12)', image: '/images/gas-certificate.webp' },
@@ -61,13 +58,9 @@ export default function Home({ setCurrentPage, setPreselectedService }: HomeProp
 
   const handleServiceClick = (serviceName: string) => {
     if (serviceName === 'New Boiler Installation') {
-      const toolElement = document.getElementById('boiler-quote-tool');
-      if (toolElement) {
-        toolElement.scrollIntoView({ behavior: 'smooth' });
-      }
+      document.getElementById('boiler-quote-tool')?.scrollIntoView({ behavior: 'smooth' });
     } else {
-      setPreselectedService(serviceName);
-      setCurrentPage('Services');
+      navigate('/services', { state: { service: serviceName } });
     }
   };
 
