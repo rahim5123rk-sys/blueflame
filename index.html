@@ -1,45 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
   <head>
-    
+
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.jpg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="/favicon.jpg" />
+
+    <!-- Canonical -->
     <link rel="canonical" href="https://www.blueflameworcester.com" />
-   <script defer src="https://www.googletagmanager.com/gtag/js?id=G-M97YPQ2QT2"></script>
+
+    <!-- ─── Google Analytics ─────────────────────────────────────────────── -->
+    <!-- async (not defer) ensures gtag.js loads as fast as possible          -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-M97YPQ2QT2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
-      gtag('config', 'G-M97YPQ2QT2');
+      gtag('config', 'G-M97YPQ2QT2', {
+        send_page_view: true,
+        anonymize_ip: true
+      });
     </script>
 
-    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=60&w=1200&auto=format&fit=crop" fetchpriority="high">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- ─── Performance: resource hints ─────────────────────────────────── -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=60&w=1200&auto=format&fit=crop" fetchpriority="high" />
 
-    <title>Blue Flame | Premium Gas Safe Engineers in Worcester | Boiler Servicing & Repairs</title>
-    <meta name="description" content="Worcester's trusted, high-end Gas Safe registered engineers. Specializing in premium boiler installations, expert repairs, luxury plumbing solutions, and landlord certificates across Worcestershire." />
-    <meta property="og:title" content="Blue Flame | Premium Gas Safe Engineers in Worcestershire">
-    <meta property="og:description" content="Worcester's premier heating and plumbing experts. Expert boiler servicing, luxury installs, and certified repairs.">
-    <meta property="og:image" content="/images/logo.jpg">
-    <meta property="og:url" content="https://www.blueflameworcester.com">
-    <meta name="twitter:card" content="summary_large_image">
+    <!-- ─── Fonts ─────────────────────────────────────────────────────────── -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
+    <!-- ─── Primary SEO ──────────────────────────────────────────────────── -->
+    <title>Blue Flame | Gas Safe Engineers in Worcester | Boiler Servicing & Repairs</title>
+    <meta name="description" content="Worcester's trusted Gas Safe registered engineers. Expert boiler installations, servicing, emergency repairs & landlord certificates (CP12) across Worcestershire. Call 07480 561 846." />
+    <meta name="keywords" content="gas safe engineers Worcester, boiler service Worcester, boiler installation Worcester, landlord gas certificate Worcester, CP12 Worcester, emergency boiler repair Worcester, Worcestershire heating engineers" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Blue Flame Gas Services" />
+    <meta name="theme-color" content="#005C9E" />
+
+    <!-- ─── Open Graph (Facebook / LinkedIn / WhatsApp) ─────────────────── -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:site_name" content="Blue Flame Gas Services" />
+    <meta property="og:title" content="Blue Flame | Gas Safe Engineers in Worcester | Boiler Servicing & Repairs" />
+    <meta property="og:description" content="Worcester's trusted Gas Safe registered engineers. Expert boiler installations, servicing, emergency repairs & landlord certificates across Worcestershire." />
+    <meta property="og:image" content="https://www.blueflameworcester.com/6055dc03-8124-4f67-9ac4-f1933b1bdd44.JPG" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Blue Flame Gas Services – Gas Safe Engineers in Worcester" />
+    <meta property="og:url" content="https://www.blueflameworcester.com" />
+
+    <!-- ─── Twitter Card ─────────────────────────────────────────────────── -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Blue Flame | Gas Safe Engineers in Worcester" />
+    <meta name="twitter:description" content="Expert boiler installations, servicing, emergency repairs & landlord gas certificates across Worcestershire. Call 07480 561 846." />
+    <meta name="twitter:image" content="https://www.blueflameworcester.com/6055dc03-8124-4f67-9ac4-f1933b1bdd44.JPG" />
+    <meta name="twitter:image:alt" content="Blue Flame Gas Services – Gas Safe Engineers in Worcester" />
+
+    <!-- ─── Structured Data (JSON-LD) ────────────────────────────────────── -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "HVACBusiness",
+      "@type": ["HVACBusiness", "LocalBusiness"],
       "name": "Blue Flame Gas Services",
       "telephone": "+447480561846",
       "url": "https://www.blueflameworcester.com",
-      "description": "Worcester's premium gas safe engineers providing luxury boiler installations, expert servicing, and rapid repairs across Worcestershire.",
+      "description": "Gas Safe registered engineers providing expert boiler installations, servicing, emergency repairs and landlord gas safety certificates across Worcester and Worcestershire.",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Worcester",
         "addressRegion": "Worcestershire",
+        "postalCode": "WR1",
         "addressCountry": "GB"
       },
       "geo": {
@@ -54,16 +88,42 @@
         "closes": "23:59"
       },
       "areaServed": [
-        "Worcestershire",
-        "West Midlands",
-        "Worcester",
-        "Droitwich Spa",
-        "Malvern"
+        {"@type": "City", "name": "Worcester"},
+        {"@type": "City", "name": "Droitwich Spa"},
+        {"@type": "City", "name": "Malvern"},
+        {"@type": "City", "name": "Redditch"},
+        {"@type": "City", "name": "Bromsgrove"},
+        {"@type": "City", "name": "Evesham"},
+        {"@type": "City", "name": "Pershore"},
+        {"@type": "AdministrativeArea", "name": "Worcestershire"},
+        {"@type": "AdministrativeArea", "name": "West Midlands"}
       ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Gas & Heating Services",
+        "itemListElement": [
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Annual Boiler Service"}, "price": "60", "priceCurrency": "GBP"},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Landlord Gas Safety Certificate (CP12)"}, "price": "60", "priceCurrency": "GBP"},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "New Boiler Installation"}, "description": "Supply and fit from £1,650 including Worcester Bosch 1000"},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Emergency Boiler Repair"}, "description": "24/7 emergency call-out service"},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Landlord Deal: Gas Cert + Boiler Service"}, "price": "100", "priceCurrency": "GBP"}
+        ]
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "reviewCount": "6",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
       "image": "https://www.blueflameworcester.com/6055dc03-8124-4f67-9ac4-f1933b1bdd44.JPG",
-      "priceRange": "££"
+      "logo": "https://www.blueflameworcester.com/images/logo.webp",
+      "priceRange": "££",
+      "currenciesAccepted": "GBP",
+      "paymentAccepted": "Cash, Credit Card, Bank Transfer"
     }
     </script>
+
   </head>
   <body>
     <div id="root"></div>
