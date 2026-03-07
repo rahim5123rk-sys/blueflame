@@ -5,8 +5,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Favicon -->
+    <!-- Favicon & PWA -->
     <link rel="icon" type="image/jpeg" href="/favicon.jpg" />
+    <link rel="apple-touch-icon" href="/images/logo.webp" />
+    <link rel="manifest" href="/manifest.json" />
 
     <!-- Canonical -->
     <link rel="canonical" href="https://www.blueflameworcester.com" />
@@ -95,6 +97,13 @@
         {"@type": "City", "name": "Bromsgrove"},
         {"@type": "City", "name": "Evesham"},
         {"@type": "City", "name": "Pershore"},
+        {"@type": "City", "name": "Birmingham"},
+        {"@type": "City", "name": "Dudley"},
+        {"@type": "City", "name": "Wolverhampton"},
+        {"@type": "City", "name": "Walsall"},
+        {"@type": "City", "name": "Solihull"},
+        {"@type": "City", "name": "Stourbridge"},
+        {"@type": "City", "name": "Halesowen"},
         {"@type": "AdministrativeArea", "name": "Worcestershire"},
         {"@type": "AdministrativeArea", "name": "West Midlands"}
       ],
@@ -121,6 +130,64 @@
       "priceRange": "££",
       "currenciesAccepted": "GBP",
       "paymentAccepted": "Cash, Credit Card, Bank Transfer"
+    }
+    </script>
+
+    <!-- ─── FAQPage Structured Data ──────────────────────────────────────── -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Are you Gas Safe registered?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, absolutely. All our engineers are fully qualified and on the Gas Safe Register. Your safety is our number one priority."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is your call-out charge for breakdowns?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We have a standard call-out and diagnosis fee of £60. This covers the first hour of work. We will always provide you with a full quote for any required repairs before carrying out further work."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How often should I get my boiler serviced?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We recommend an annual boiler service to ensure it is running safely and efficiently. This can prevent costly breakdowns and prolong the life of your boiler."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What payment methods do you accept?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We accept bank transfers, cash, and all major credit and debit cards."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What areas do you cover?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We cover Worcester, Droitwich Spa, Malvern, Redditch, Bromsgrove, Evesham, Pershore, and the wider Worcestershire and West Midlands area including Birmingham, Dudley, Wolverhampton, Walsall, Solihull, Stourbridge, and Halesowen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a CP12 Gas Safety Certificate?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A CP12 is a Gas Safety Certificate legally required for all landlords with gas appliances in rental properties. It must be renewed annually and provided to tenants within 28 days of the inspection. Our engineers carry out full CP12 inspections from £60."
+          }
+        }
+      ]
     }
     </script>
 

@@ -5,12 +5,12 @@ import { CheckCircle, ArrowRight, ArrowLeft, Home, Droplets, MapPin, Wrench, Cal
 
 // --- LOCAL IMAGES ---
 const BOILER_IMGS = {
-  w1000: "/images/boilers/w1000.png",
-  w4000: "/images/boilers/w4000.png",
-  w8000: "/images/boilers/w8000.png",
-  idealEsprit: "/images/boilers/esprit.png", 
-  idealLogic: "/images/boilers/logic.png",
-  idealVogue: "/images/boilers/vogue.png"
+  w1000: "/images/boilers/w1000.webp",
+  w4000: "/images/boilers/w4000.webp",
+  w8000: "/images/boilers/w8000.webp",
+  idealEsprit: "/images/boilers/esprit.webp",
+  idealLogic: "/images/boilers/logic.webp",
+  idealVogue: "/images/boilers/vogue.webp"
 };
 
 const transitionSettings = {
@@ -552,7 +552,7 @@ export default function BoilerTool() {
                 
                 {/* Large Centered Image */}
                 <div className="w-full h-48 bg-gradient-to-b from-blue-50 to-white rounded-xl flex items-center justify-center mb-4 mt-2 p-2">
-                   <img src={activeBoiler.img} alt="Boiler" className="h-full object-contain drop-shadow-xl" />
+                   <img src={activeBoiler.img} alt={`${activeBoiler.name} Boiler`} className="h-full object-contain drop-shadow-xl" />
                 </div>
 
                 <div className="text-center mb-4">

@@ -1,10 +1,6 @@
+import { Link } from 'react-router-dom';
 
-
-interface NotFoundProps {
-  setCurrentPage: (page: string) => void;
-}
-
-export default function NotFound({ setCurrentPage }: NotFoundProps) {
+export default function NotFound() {
   return (
     <div className="flex items-center justify-center min-h-[60vh] bg-white text-center px-4">
       <div>
@@ -12,12 +8,12 @@ export default function NotFound({ setCurrentPage }: NotFoundProps) {
         <h2 className="mt-4 text-3xl font-bold text-gray-800">Page Not Found</h2>
         <p className="mt-2 text-lg text-gray-600">Sorry, we couldn't find the page you were looking for.</p>
         <div className="mt-8">
-          <button
-            onClick={() => setCurrentPage('Home')}
+          <Link
+            to="/"
             className="inline-block bg-red-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-red-700 transition-colors"
           >
             Go Back Home
-          </button>
+          </Link>
         </div>
       </div>
     </div>
