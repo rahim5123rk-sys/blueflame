@@ -6,7 +6,7 @@ export default function Contact() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
   // Your actual email address
-  const BUSINESS_EMAIL = "rahim.5123.rk@gmail.com";
+  const BUSINESS_EMAIL = "blueflameworc@gmail.com";
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
@@ -69,7 +69,7 @@ export default function Contact() {
               </div>
               <div className="mt-4">
                 <p className="text-lg font-semibold text-gray-700">Email:</p>
-                <a href="mailto:rahim.5123.rk@gmail.com" className="text-lg text-blue-800 hover:underline">rahim.5123.rk@gmail.com</a>
+                <a href="mailto:blueflameworc@gmail.com" className="text-lg text-blue-800 hover:underline">blueflameworc@gmail.com</a>
               </div>
             </div>
           </div>
