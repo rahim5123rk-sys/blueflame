@@ -1,19 +1,20 @@
 import { Link } from 'react-router-dom';
 import { CheckCircle, Phone, ArrowRight } from 'lucide-react';
+import RelatedArticles from '../../components/RelatedArticles';
 
 export default function BoilerCost() {
   return (
     <article className="bg-white animate-fadeIn">
 
       {/* HERO */}
-      <header className="bg-gray-950 text-white py-20">
+      <header className="bg-slate-900 text-white py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
-          <Link to="/blog" className="text-sky-400 text-sm font-bold hover:underline mb-4 inline-block">← Back to Blog</Link>
-          <span className="inline-block bg-blue-800 text-white text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wide">Boiler Installation</span>
+          <Link to="/blog" className="text-amber-400 text-sm font-bold hover:underline mb-4 inline-block">← Back to Blog</Link>
+          <span className="inline-block bg-orange-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wide">Boiler Installation</span>
           <h1 className="text-3xl md:text-5xl font-extrabold leading-tight mb-4">
             How Much Does a New Boiler Cost in Worcester? (2026 Price Guide)
           </h1>
-          <p className="text-blue-200 text-lg">
+          <p className="text-slate-300 text-lg">
             By Blue Flame Gas Services · March 2026 · 6 min read
           </p>
         </div>
@@ -30,7 +31,7 @@ export default function BoilerCost() {
         <div className="overflow-x-auto mb-8">
           <table className="w-full border-collapse text-sm">
             <thead>
-              <tr className="bg-blue-800 text-white">
+              <tr className="bg-slate-800 text-white">
                 <th className="p-3 text-left rounded-tl-lg">Boiler Type</th>
                 <th className="p-3 text-left">Supply Only</th>
                 <th className="p-3 text-left rounded-tr-lg">Supply & Fit (Worcester)</th>
@@ -47,7 +48,7 @@ export default function BoilerCost() {
                 <tr key={i} className={i % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
                   <td className="p-3 font-medium border-b border-gray-100">{type}</td>
                   <td className="p-3 border-b border-gray-100">{supply}</td>
-                  <td className="p-3 border-b border-gray-100 font-bold text-blue-800">{fit}</td>
+                  <td className="p-3 border-b border-gray-100 font-bold text-red-700">{fit}</td>
                 </tr>
               ))}
             </tbody>
@@ -73,10 +74,10 @@ export default function BoilerCost() {
           ))}
         </ul>
 
-        <div className="bg-blue-50 border-l-4 border-blue-800 p-6 rounded-r-xl mb-10">
-          <p className="font-bold text-blue-800 text-lg mb-1">Blue Flame Deal: Worcester Bosch 1000 from £1,650</p>
-          <p className="text-blue-700">Supply and fit including thermostat, Adey filter, full installation, and Gas Safe certificate. Standard horizontal flue swap.</p>
-          <Link to="/services" className="inline-flex items-center gap-2 mt-3 text-blue-800 font-bold hover:underline">
+        <div className="bg-amber-50 border-l-4 border-amber-500 p-6 rounded-r-xl mb-10">
+          <p className="font-bold text-amber-800 text-lg mb-1">Blue Flame Deal: Worcester Bosch 1000 from £1,650</p>
+          <p className="text-amber-700">Supply and fit including thermostat, Adey filter, full installation, and Gas Safe certificate. Standard horizontal flue swap.</p>
+          <Link to="/services" className="inline-flex items-center gap-2 mt-3 text-amber-800 font-bold hover:underline">
             Get a free quote <ArrowRight size={16} />
           </Link>
         </div>
@@ -132,15 +133,18 @@ export default function BoilerCost() {
           ))}
         </div>
 
+        {/* Related Articles */}
+        <RelatedArticles slugs={['signs-boiler-needs-replacing', 'worcester-bosch-vs-ideal-boilers']} />
+
         {/* CTA */}
-        <div className="bg-blue-800 text-white p-8 rounded-2xl text-center">
+        <div className="bg-slate-900 text-white p-8 rounded-2xl text-center">
           <h2 className="text-2xl font-bold mb-3">Get a Free Boiler Quote in Worcester</h2>
-          <p className="text-blue-200 mb-6">Gas Safe registered. Competitive prices. Worcester Bosch 1000 from £1,650 supply and fit.</p>
+          <p className="text-slate-300 mb-6">Gas Safe registered. Competitive prices. Worcester Bosch 1000 from £1,650 supply and fit.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/services" className="bg-red-700 text-white font-bold py-3 px-8 rounded-xl hover:bg-red-600 transition-colors">
               Request a Quote
             </Link>
-            <a href="tel:07480561846" className="bg-white text-blue-800 font-bold py-3 px-8 rounded-xl hover:bg-blue-50 transition-colors flex items-center justify-center gap-2">
+            <a href="tel:07480561846" className="bg-white text-slate-900 font-bold py-3 px-8 rounded-xl hover:bg-slate-100 transition-colors flex items-center justify-center gap-2">
               <Phone size={18} /> 07480 561 846
             </a>
           </div>

@@ -44,16 +44,24 @@ export const BLOG_POSTS = [
   },
 ];
 
+export const BADGE_CLASS: Record<string, string> = {
+  'Boiler Installation': 'bg-orange-100 text-orange-800',
+  'Boiler Advice':       'bg-amber-100 text-amber-800',
+  'Gas Safety':          'bg-red-100 text-red-800',
+  'Boiler Comparison':   'bg-slate-100 text-slate-700',
+  'DIY Heating Tips':    'bg-emerald-100 text-emerald-800',
+};
+
 export default function Blog() {
   return (
     <div className="bg-white animate-fadeIn">
 
       {/* HERO */}
-      <section className="bg-gray-950 text-white py-20">
+      <section className="bg-slate-900 text-white py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
-          <p className="text-sky-400 font-bold uppercase tracking-widest text-sm mb-3">Expert Advice</p>
+          <p className="text-red-500 font-bold uppercase tracking-widest text-sm mb-3">Expert Advice</p>
           <h1 className="text-4xl md:text-5xl font-extrabold mb-4">Heating & Gas Safety Blog</h1>
-          <p className="text-blue-200 text-xl max-w-2xl">
+          <p className="text-slate-300 text-xl max-w-2xl">
             Practical guides and expert advice from Blue Flame's Gas Safe engineers in Worcester.
           </p>
         </div>
@@ -66,13 +74,13 @@ export default function Blog() {
             <Link
               key={post.slug}
               to={`/blog/${post.slug}`}
-              className="group flex flex-col bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-xl hover:border-blue-200 transition-all duration-300 overflow-hidden"
+              className="group flex flex-col bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-xl hover:border-red-200 transition-all duration-300 overflow-hidden"
             >
               <div className="p-6 flex flex-col flex-grow">
-                <span className="inline-block bg-blue-50 text-blue-800 text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wide">
+                <span className={`inline-block text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wide ${BADGE_CLASS[post.category] ?? 'bg-slate-100 text-slate-700'}`}>
                   {post.category}
                 </span>
-                <h2 className="text-lg font-bold text-gray-900 mb-3 group-hover:text-blue-800 transition-colors leading-snug">
+                <h2 className="text-lg font-bold text-gray-900 mb-3 group-hover:text-red-700 transition-colors leading-snug">
                   {post.title}
                 </h2>
                 <p className="text-gray-600 text-sm leading-relaxed flex-grow mb-5">
@@ -80,7 +88,7 @@ export default function Blog() {
                 </p>
                 <div className="flex items-center justify-between text-xs text-gray-400 pt-4 border-t border-gray-100">
                   <span className="flex items-center gap-1"><Clock size={12} /> {post.readTime}</span>
-                  <span className="flex items-center gap-1 text-blue-800 font-bold">Read more <ArrowRight size={12} /></span>
+                  <span className="flex items-center gap-1 text-red-700 font-bold">Read more <ArrowRight size={12} /></span>
                 </div>
               </div>
             </Link>
@@ -88,14 +96,14 @@ export default function Blog() {
         </div>
 
         {/* CTA */}
-        <div className="mt-16 bg-blue-800 text-white rounded-2xl p-10 text-center">
+        <div className="mt-16 bg-slate-900 text-white rounded-2xl p-10 text-center">
           <h2 className="text-2xl font-bold mb-3">Need help with your boiler?</h2>
-          <p className="text-blue-200 mb-6">Gas Safe registered engineers covering Worcester and Worcestershire. Available 24/7 for emergencies.</p>
+          <p className="text-slate-300 mb-6">Gas Safe registered engineers covering Worcester and Worcestershire. Available 24/7 for emergencies.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/services" className="bg-red-700 text-white font-bold py-3 px-8 rounded-xl hover:bg-red-600 transition-colors">
               Book a Service
             </Link>
-            <a href="tel:07480561846" className="bg-white text-blue-800 font-bold py-3 px-8 rounded-xl hover:bg-blue-50 transition-colors">
+            <a href="tel:07480561846" className="bg-white text-slate-900 font-bold py-3 px-8 rounded-xl hover:bg-slate-100 transition-colors">
               Call 07480 561 846
             </a>
           </div>
