@@ -1,5 +1,60 @@
 import { Link } from 'react-router-dom';
-import { CheckCircle, AlertTriangle, Phone } from 'lucide-react';
+import { CheckCircle, AlertTriangle, Phone, ExternalLink, ChevronRight, Info, Play } from 'lucide-react';
+
+function RadiatorColdSpotDiagram() {
+  return (
+    <div className="my-10">
+      <p className="font-bold text-gray-900 mb-4 text-center text-lg">Where Is Your Radiator Cold?</p>
+      <svg viewBox="0 0 400 340" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-lg mx-auto block" aria-label="Radiator cold spot diagram">
+        {/* Radiator outline */}
+        <rect x="60" y="30" width="280" height="260" rx="10" ry="10" fill="#f3f4f6" stroke="#9ca3af" strokeWidth="2" />
+
+        {/* Top zone — air (cold at top) */}
+        <rect x="60" y="30" width="280" height="80" rx="10" ry="10" fill="#bfdbfe" opacity="0.85" />
+        <rect x="60" y="90" width="280" height="20" fill="#bfdbfe" opacity="0.85" />
+
+        {/* Middle zone — warm */}
+        <rect x="60" y="110" width="280" height="100" fill="#fef3c7" opacity="0.85" />
+
+        {/* Bottom zone — sludge (cold at bottom) */}
+        <rect x="60" y="210" width="280" height="70" fill="#d1fae5" opacity="0.85" />
+        <rect x="60" y="270" width="280" height="20" rx="0" ry="0" fill="#d1fae5" opacity="0.85" />
+        {/* Round bottom corners */}
+        <rect x="60" y="278" width="280" height="12" rx="10" ry="10" fill="#d1fae5" opacity="0.85" />
+
+        {/* Radiator fins */}
+        {[100, 140, 180, 220, 260, 300].map((x) => (
+          <line key={x} x1={x} y1="30" x2={x} y2="290" stroke="#9ca3af" strokeWidth="1.5" strokeDasharray="4,3" />
+        ))}
+
+        {/* Top label */}
+        <text x="200" y="62" textAnchor="middle" fontSize="13" fontWeight="bold" fill="#1e40af">Cold at TOP</text>
+        <text x="200" y="80" textAnchor="middle" fontSize="11" fill="#1d4ed8">= Trapped Air → Bleed It</text>
+
+        {/* Middle label */}
+        <text x="200" y="158" textAnchor="middle" fontSize="13" fontWeight="bold" fill="#92400e">Warm in Middle</text>
+        <text x="200" y="175" textAnchor="middle" fontSize="11" fill="#b45309">= Hot water flowing normally</text>
+
+        {/* Bottom label */}
+        <text x="200" y="232" textAnchor="middle" fontSize="13" fontWeight="bold" fill="#065f46">Cold at BOTTOM</text>
+        <text x="200" y="250" textAnchor="middle" fontSize="11" fill="#047857">= Sludge Build-up → Power Flush</text>
+
+        {/* Valve left */}
+        <rect x="30" y="155" width="30" height="28" rx="4" fill="#6b7280" />
+        <text x="45" y="148" textAnchor="middle" fontSize="9" fill="#374151">TRV</text>
+
+        {/* Valve right */}
+        <rect x="340" y="155" width="30" height="28" rx="4" fill="#6b7280" />
+        <text x="355" y="148" textAnchor="middle" fontSize="9" fill="#374151">Lock</text>
+
+        {/* Completely cold callout */}
+        <rect x="80" y="300" width="240" height="28" rx="6" fill="#fef2f2" stroke="#fca5a5" strokeWidth="1.5" />
+        <text x="200" y="319" textAnchor="middle" fontSize="11" fontWeight="bold" fill="#b91c1c">Completely Cold = Valve or Boiler Issue</text>
+      </svg>
+      <p className="text-sm text-gray-500 text-center mt-3">Diagram: common radiator cold spot patterns and their causes</p>
+    </div>
+  );
+}
 
 export default function RadiatorNotHeating() {
   return (
@@ -26,7 +81,26 @@ export default function RadiatorNotHeating() {
           A radiator that won't heat up — or only heats partially — is frustrating, especially in winter. The good news is that most radiator problems have straightforward fixes. Here's a complete troubleshooting guide to help you diagnose and resolve the issue.
         </p>
 
-        <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">Quick Diagnosis: Where Is the Cold Spot?</h2>
+        {/* TABLE OF CONTENTS */}
+        <nav className="bg-gray-50 border border-gray-200 rounded-2xl p-6 mb-10">
+          <p className="font-bold text-gray-900 mb-4 flex items-center gap-2"><Info size={18} className="text-blue-800" /> In This Article</p>
+          <ol className="space-y-2">
+            {[
+              ['section-diagnosis', 'Quick Diagnosis: Where Is the Cold Spot?'],
+              ['section-fix-1', 'Fix 1: Bleed the Radiator'],
+              ['section-fix-2', 'Fix 2: Check the Radiator Valves'],
+              ['section-fix-3', 'Fix 3: Balance Your Radiators'],
+              ['section-fix-4', 'Fix 4: Power Flush for Sludge'],
+              ['section-fix-5', 'Fix 5: Check the Boiler Itself'],
+              ['section-when-to-call', 'When to Call a Professional'],
+              ['section-faqs', 'Frequently Asked Questions'],
+            ].map(([id, title]) => (
+              <li key={id}><a href={`#${id}`} className="flex items-center gap-2 text-blue-800 hover:underline text-sm font-medium"><ChevronRight size={14} />{title}</a></li>
+            ))}
+          </ol>
+        </nav>
+
+        <h2 id="section-diagnosis" className="text-2xl font-bold text-gray-900 mt-10 mb-4">Quick Diagnosis: Where Is the Cold Spot?</h2>
         <p className="text-gray-700 mb-4">
           The location of the cold area on your radiator tells you a lot about the cause:
         </p>
@@ -57,7 +131,10 @@ export default function RadiatorNotHeating() {
           </table>
         </div>
 
-        <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">Fix 1: Bleed the Radiator (Cold at the Top)</h2>
+        {/* SVG INFOGRAPHIC */}
+        <RadiatorColdSpotDiagram />
+
+        <h2 id="section-fix-1" className="text-2xl font-bold text-gray-900 mt-10 mb-4">Fix 1: Bleed the Radiator (Cold at the Top)</h2>
         <p className="text-gray-700 mb-4">
           Air trapped in the top of a radiator prevents hot water from filling the entire panel. This is the most common radiator problem and the easiest to fix.
         </p>
@@ -65,7 +142,15 @@ export default function RadiatorNotHeating() {
           We've written a complete <Link to="/blog/how-to-bleed-a-radiator" className="text-blue-800 font-semibold hover:underline">step-by-step guide to bleeding a radiator</Link> — it takes under 5 minutes with a radiator key.
         </p>
 
-        <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">Fix 2: Check the Radiator Valves</h2>
+        {/* YOUTUBE EMBED */}
+        <div className="mb-10">
+          <div className="relative w-full rounded-2xl overflow-hidden" style={{paddingBottom: '56.25%'}}>
+            <iframe className="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/PLACEHOLDER_RADIATOR_ID" title="Radiator not heating up — troubleshooting guide" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+          </div>
+          <p className="text-sm text-gray-500 mt-2 flex items-center gap-2"><Play size={14} className="text-blue-800" /> How to diagnose and fix a radiator that won't heat up</p>
+        </div>
+
+        <h2 id="section-fix-2" className="text-2xl font-bold text-gray-900 mt-10 mb-4">Fix 2: Check the Radiator Valves</h2>
         <p className="text-gray-700 mb-4">
           If a radiator is completely cold, the first thing to check is whether both valves are open:
         </p>
@@ -86,7 +171,7 @@ export default function RadiatorNotHeating() {
           A very common issue: the metal pin inside the TRV body gets stuck in the closed position, blocking water flow even when the valve head is turned up. You can sometimes free it by removing the TRV head and gently tapping or wiggling the pin with pliers. If it won't budge, the TRV body needs replacing.
         </p>
 
-        <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">Fix 3: Balance Your Radiators</h2>
+        <h2 id="section-fix-3" className="text-2xl font-bold text-gray-900 mt-10 mb-4">Fix 3: Balance Your Radiators</h2>
         <p className="text-gray-700 mb-4">
           If radiators closest to the boiler are hot but those furthest away are lukewarm or cold, the system needs <strong>balancing</strong>. This involves partially closing the lockshield valves on the hottest radiators to redirect more flow to the cooler ones.
         </p>
@@ -94,7 +179,7 @@ export default function RadiatorNotHeating() {
           Balancing a system properly requires a digital thermometer to measure the temperature difference across each radiator. It's best done by a heating engineer.
         </p>
 
-        <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">Fix 4: Power Flush for Sludge (Cold at the Bottom)</h2>
+        <h2 id="section-fix-4" className="text-2xl font-bold text-gray-900 mt-10 mb-4">Fix 4: Power Flush for Sludge (Cold at the Bottom)</h2>
         <p className="text-gray-700 mb-4">
           Radiators that are <strong>cold at the bottom but hot at the top</strong> are blocked with iron oxide sludge — a brown/black deposit that forms when water reacts with the metal inside radiators and pipes.
         </p>
@@ -112,7 +197,7 @@ export default function RadiatorNotHeating() {
           </div>
         </div>
 
-        <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">Fix 5: Check the Boiler Itself</h2>
+        <h2 id="section-fix-5" className="text-2xl font-bold text-gray-900 mt-10 mb-4">Fix 5: Check the Boiler Itself</h2>
         <p className="text-gray-700 mb-4">
           If <strong>all</strong> radiators are cold or lukewarm, the problem is likely with the boiler rather than individual radiators:
         </p>
@@ -131,7 +216,17 @@ export default function RadiatorNotHeating() {
           ))}
         </ul>
 
-        <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">When to Call a Professional</h2>
+        {/* EXTERNAL RESOURCES */}
+        <div className="bg-gray-50 border border-gray-200 rounded-xl p-5 mb-6">
+          <p className="font-bold text-gray-900 mb-3 flex items-center gap-2"><ExternalLink size={16} className="text-blue-800" /> Useful Resources</p>
+          <ul className="space-y-2">
+            <li><a href="https://www.gassaferegister.co.uk" target="_blank" rel="noopener noreferrer" className="text-blue-800 hover:underline text-sm font-medium flex items-center gap-1"><ExternalLink size={12} /> Gas Safe Register — find a registered engineer</a></li>
+            <li><a href="https://energysavingtrust.org.uk/advice/heating/" target="_blank" rel="noopener noreferrer" className="text-blue-800 hover:underline text-sm font-medium flex items-center gap-1"><ExternalLink size={12} /> Energy Saving Trust — heating system advice</a></li>
+            <li><a href="/blog/boiler-losing-pressure" className="text-blue-800 hover:underline text-sm font-medium flex items-center gap-1"><ExternalLink size={12} /> Why does my boiler keep losing pressure?</a></li>
+          </ul>
+        </div>
+
+        <h2 id="section-when-to-call" className="text-2xl font-bold text-gray-900 mt-10 mb-4">When to Call a Professional</h2>
         <ul className="space-y-3 mb-8">
           {[
             'You\'ve bled and checked valves but the radiator is still cold',
@@ -148,12 +243,16 @@ export default function RadiatorNotHeating() {
           ))}
         </ul>
 
-        <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">Frequently Asked Questions</h2>
+        <h2 id="section-faqs" className="text-2xl font-bold text-gray-900 mt-10 mb-4">Frequently Asked Questions</h2>
         <div className="space-y-5 mb-10">
           {[
             { q: 'Why is one radiator cold when the rest are hot?', a: 'Usually a stuck TRV pin, a closed lockshield valve, or an airlock. Try bleeding the radiator first, then check both valves are open. If it\'s still cold, the TRV pin may need freeing or the system may need balancing.' },
             { q: 'Can I add inhibitor to my heating system myself?', a: 'Yes — you can add inhibitor through a radiator bleed valve using a special funnel or through the filling loop. However, it\'s best added after a flush, which is a professional job. We add inhibitor as standard with every service and flush.' },
             { q: 'Should I replace a radiator that\'s full of sludge?', a: 'If a single radiator is badly corroded or doesn\'t improve after flushing, replacement is often the best option (£80–£200 including fitting). If multiple radiators are affected, a full system power flush is more cost-effective than replacing them all.' },
+            { q: 'Can I add a radiator to my existing heating system?', a: 'Yes, in most cases. A Gas Safe engineer can add a radiator by extending the existing pipework. The key considerations are whether your boiler has enough output capacity for the extra load, and whether the pipework can be easily routed. Most combi boiler systems can accommodate one or two additional radiators without issue.' },
+            { q: 'Why is my radiator still cold after a power flush?', a: 'If a radiator remains cold after a power flush, it\'s usually because the radiator itself is severely corroded or scaled internally, or there\'s a persistent airlock or valve issue. In this case, the radiator may need to be removed, flushed individually, or replaced. Occasionally, a second pass with the power flush machine on that specific radiator is needed.' },
+            { q: 'How much does it cost to replace a radiator?', a: 'A standard single or double-panel radiator costs £40–£150 for the unit itself. Including labour, a straight swap replacement typically costs £150–£350. Prices rise if new pipework is needed or the radiator is in a difficult location such as a bathroom or behind furniture. Designer or towel radiators cost more — typically £200–£600 fitted.' },
+            { q: 'How often should I bleed my radiators?', a: 'Most heating engineers recommend checking radiators at the start of each heating season — typically October or November. If you notice any cold spots at the top during winter, bleed them straight away. Homes with older systems or no magnetic filter fitted may need bleeding more frequently.' },
           ].map((faq) => (
             <div key={faq.q} className="bg-gray-50 p-6 rounded-xl border border-gray-100">
               <p className="font-bold text-gray-900 mb-2">{faq.q}</p>

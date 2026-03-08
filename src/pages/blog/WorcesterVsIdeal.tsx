@@ -1,10 +1,72 @@
 import { Link } from 'react-router-dom';
-import { CheckCircle, X, Phone } from 'lucide-react';
+import { CheckCircle, X, Phone, ExternalLink, ChevronRight, Info, Play } from 'lucide-react';
+
+function BoilerComparisonInfographic() {
+  const bars = [
+    {
+      label: 'Warranty (years)',
+      wb: { value: 12, max: 12, display: '12 yrs' },
+      ideal: { value: 10, max: 12, display: '10 yrs' },
+    },
+    {
+      label: 'Efficiency (%)',
+      wb: { value: 94, max: 100, display: '94%' },
+      ideal: { value: 91, max: 100, display: '91%' },
+    },
+    {
+      label: 'Value Score',
+      wb: { value: 72, max: 100, display: '7.2/10' },
+      ideal: { value: 88, max: 100, display: '8.8/10' },
+    },
+    {
+      label: 'Reliability Score',
+      wb: { value: 95, max: 100, display: '9.5/10' },
+      ideal: { value: 82, max: 100, display: '8.2/10' },
+    },
+  ];
+
+  return (
+    <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6 mb-10">
+      <p className="font-bold text-gray-900 mb-6 text-center text-lg">Worcester Bosch vs Ideal: At a Glance</p>
+      <div className="space-y-6">
+        {bars.map((bar) => (
+          <div key={bar.label}>
+            <p className="text-sm font-semibold text-gray-700 mb-2">{bar.label}</p>
+            <div className="space-y-2">
+              <div className="flex items-center gap-3">
+                <span className="text-xs font-bold text-blue-800 w-28 shrink-0">Worcester Bosch</span>
+                <div className="flex-1 bg-gray-200 rounded-full h-5 overflow-hidden">
+                  <div
+                    className="h-5 bg-blue-800 rounded-full flex items-center justify-end pr-2 transition-all"
+                    style={{ width: `${(bar.wb.value / bar.wb.max) * 100}%` }}
+                  >
+                    <span className="text-white text-xs font-bold">{bar.wb.display}</span>
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="text-xs font-bold text-gray-600 w-28 shrink-0">Ideal</span>
+                <div className="flex-1 bg-gray-200 rounded-full h-5 overflow-hidden">
+                  <div
+                    className="h-5 bg-gray-500 rounded-full flex items-center justify-end pr-2 transition-all"
+                    style={{ width: `${(bar.ideal.value / bar.ideal.max) * 100}%` }}
+                  >
+                    <span className="text-white text-xs font-bold">{bar.ideal.display}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p className="text-xs text-gray-400 mt-4 text-center">Based on manufacturer specs, Which? surveys &amp; installer experience. Value Score is higher for Ideal due to lower price point.</p>
+    </div>
+  );
+}
 
 export default function WorcesterVsIdeal() {
   return (
     <article className="bg-white animate-fadeIn">
-
       <header className="bg-gray-950 text-white py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
           <Link to="/blog" className="text-sky-400 text-sm font-bold hover:underline mb-4 inline-block">← Back to Blog</Link>
@@ -22,8 +84,26 @@ export default function WorcesterVsIdeal() {
           Worcester Bosch and Ideal are two of the UK's most installed boiler brands. As engineers who fit both regularly across Worcester and Worcestershire, we're well placed to compare them honestly — so you can make the right choice for your home and budget. For full pricing on either brand, see our <Link to="/blog/boiler-cost-worcester" className="text-blue-800 font-semibold hover:underline">2026 new boiler cost guide</Link>.
         </p>
 
+        {/* Table of Contents */}
+        <nav className="bg-gray-50 border border-gray-200 rounded-2xl p-6 mb-10">
+          <p className="font-bold text-gray-900 mb-4 flex items-center gap-2"><Info size={18} className="text-blue-800" /> In This Article</p>
+          <ol className="space-y-2">
+            {[
+              ['section-quick-comparison', 'Quick Comparison'],
+              ['section-worcester-bosch', 'Worcester Bosch: The Premium Choice'],
+              ['section-ideal-boilers', 'Ideal Boilers: The Strong Mid-Range Contender'],
+              ['section-our-verdict', 'Our Verdict: Which Should You Choose?'],
+              ['section-video', 'Watch: Worcester Bosch vs Ideal Review'],
+              ['section-resources', 'Useful Resources'],
+              ['section-faqs', 'Frequently Asked Questions'],
+            ].map(([id, title]) => (
+              <li key={id}><a href={`#${id}`} className="flex items-center gap-2 text-blue-800 hover:underline text-sm font-medium"><ChevronRight size={14} />{title}</a></li>
+            ))}
+          </ol>
+        </nav>
+
         {/* Head-to-head comparison table */}
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Quick Comparison</h2>
+        <h2 id="section-quick-comparison" className="text-2xl font-bold text-gray-900 mb-6">Quick Comparison</h2>
         <div className="overflow-x-auto mb-12">
           <table className="w-full text-sm border-collapse">
             <thead>
@@ -55,8 +135,11 @@ export default function WorcesterVsIdeal() {
           </table>
         </div>
 
+        {/* SVG Infographic */}
+        <BoilerComparisonInfographic />
+
         {/* Worcester Bosch */}
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Worcester Bosch: The Premium Choice</h2>
+        <h2 id="section-worcester-bosch" className="text-2xl font-bold text-gray-900 mb-4">Worcester Bosch: The Premium Choice</h2>
         <p className="text-gray-700 mb-4">
           Worcester Bosch has been the UK's best-selling boiler brand for decades, and for good reason. Their Greenstar range combines German engineering precision with strong UK after-sales support. Which? has recommended Worcester Bosch in their annual boiler surveys for many consecutive years.
         </p>
@@ -96,7 +179,7 @@ export default function WorcesterVsIdeal() {
         </div>
 
         {/* Ideal */}
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Ideal Boilers: The Strong Mid-Range Contender</h2>
+        <h2 id="section-ideal-boilers" className="text-2xl font-bold text-gray-900 mb-4">Ideal Boilers: The Strong Mid-Range Contender</h2>
         <p className="text-gray-700 mb-4">
           Ideal is a British brand, manufactured in Hull since 1906. Their Logic+ range is one of the most affordable reliable boilers on the market, while the Vogue and Esprit sit firmly in the mid-to-premium tier. Ideal has significantly improved their reliability and efficiency in recent years.
         </p>
@@ -135,7 +218,7 @@ export default function WorcesterVsIdeal() {
           </div>
         </div>
 
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Our Verdict: Which Should You Choose?</h2>
+        <h2 id="section-our-verdict" className="text-2xl font-bold text-gray-900 mb-4">Our Verdict: Which Should You Choose?</h2>
         <div className="space-y-4 mb-10">
           <div className="bg-blue-50 border-l-4 border-blue-800 p-5 rounded-r-xl">
             <p className="font-bold text-blue-800 mb-1">Choose Worcester Bosch if…</p>
@@ -147,10 +230,83 @@ export default function WorcesterVsIdeal() {
           </div>
         </div>
 
-        {/* Not sure if you should replace? */}
         <div className="bg-amber-50 border-l-4 border-amber-500 p-5 rounded-r-xl mb-10">
           <p className="font-bold text-amber-800 mb-1">Not sure if you need a new boiler yet?</p>
           <p className="text-amber-700 text-sm">Read our guide on <Link to="/blog/signs-boiler-needs-replacing" className="text-amber-900 font-semibold hover:underline">7 warning signs your boiler needs replacing</Link> before making a decision.</p>
+        </div>
+
+        {/* YouTube Video Embed */}
+        <h2 id="section-video" className="text-2xl font-bold text-gray-900 mb-4">Watch: Worcester Bosch vs Ideal Review</h2>
+        <div className="mb-10">
+          <div className="relative w-full rounded-2xl overflow-hidden" style={{ paddingBottom: '56.25%' }}>
+            <iframe
+              className="absolute inset-0 w-full h-full"
+              src="https://www.youtube.com/embed/PLACEHOLDER_ID"
+              title="Worcester Bosch vs Ideal Boilers — Which Should You Buy?"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+          <p className="text-sm text-gray-500 mt-2 flex items-center gap-2"><Play size={14} className="text-blue-800" /> An independent engineer's comparison of Worcester Bosch and Ideal boiler ranges</p>
+        </div>
+
+        {/* External Resources */}
+        <h2 id="section-resources" className="text-2xl font-bold text-gray-900 mb-4">Useful Resources</h2>
+        <div className="bg-gray-50 border border-gray-200 rounded-xl p-5 mb-10">
+          <p className="font-bold text-gray-900 mb-3 flex items-center gap-2"><ExternalLink size={16} className="text-blue-800" /> Useful Resources</p>
+          <ul className="space-y-2">
+            <li>
+              <a href="https://www.worcester-bosch.co.uk" target="_blank" rel="noopener noreferrer" className="text-blue-800 hover:underline text-sm font-medium flex items-center gap-1">
+                <ExternalLink size={12} /> Worcester Bosch official website — product specs &amp; warranty registration
+              </a>
+            </li>
+            <li>
+              <a href="https://www.idealheating.com" target="_blank" rel="noopener noreferrer" className="text-blue-800 hover:underline text-sm font-medium flex items-center gap-1">
+                <ExternalLink size={12} /> Ideal Boilers official website — full range &amp; warranty information
+              </a>
+            </li>
+            <li>
+              <a href="https://www.which.co.uk/reviews/boilers" target="_blank" rel="noopener noreferrer" className="text-blue-800 hover:underline text-sm font-medium flex items-center gap-1">
+                <ExternalLink size={12} /> Which? Boiler Reviews &amp; Reliability Survey
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        {/* FAQs */}
+        <h2 id="section-faqs" className="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
+        <div className="space-y-4 mb-10">
+          {[
+            {
+              q: 'Is Worcester Bosch really worth the extra cost?',
+              a: 'For most homeowners, yes. Worcester Bosch boilers consistently outperform on reliability, efficiency, and warranty length. The extra upfront cost — typically £200–£400 more than a comparable Ideal — is often offset over the boiler\'s lifetime by fewer breakdowns and lower energy bills. If you plan to stay in your home long-term, Worcester Bosch is usually the better investment.',
+            },
+            {
+              q: 'How long is the Worcester Bosch Greenstar warranty?',
+              a: 'Worcester Bosch offers a standard warranty of 5 years on the Greenstar 1000, 8 years on the Greenstar 4000, and 8 years on the Greenstar 8000. When installed by a Worcester Bosch Accredited Installer and registered within 30 days, these extend to 8, 10, and 12 years respectively. As accredited installers, we can secure you the maximum warranty period.',
+            },
+            {
+              q: 'Are Ideal boilers good quality?',
+              a: 'Yes — Ideal has significantly improved their build quality and reliability in recent years, particularly with the Vogue and Esprit ranges. The Logic+ remains a solid budget option. Ideal holds Which? Best Buy status on select models and has a strong UK service network. They\'re not quite at Worcester Bosch\'s level for longevity, but they represent excellent value for money.',
+            },
+            {
+              q: 'Which boiler brand do plumbers recommend most?',
+              a: 'Industry surveys consistently show Worcester Bosch as the most recommended boiler brand among Gas Safe engineers in the UK. Viessmann and Vaillant also feature highly. Ideal is well regarded for budget installations. Our own recommendation depends on your budget: Worcester Bosch for longevity, Ideal for value.',
+            },
+            {
+              q: 'Is Ideal Logic+ a good boiler?',
+              a: 'The Ideal Logic+ is one of the best-selling budget combi boilers in the UK for good reason. It\'s dependable, easy to service, and comes with a 2-year standard warranty (extendable to 7 years with registration and an annual service). It\'s not the most efficient or quietest boiler, but for smaller homes or tighter budgets it\'s a solid choice.',
+            },
+            {
+              q: 'What warranty does the Ideal Vogue come with?',
+              a: 'The Ideal Vogue Max comes with a 2-year standard warranty. When registered within 30 days of installation and serviced annually by a Gas Safe engineer, this extends to 10 years. The Vogue is Ideal\'s premium range and their most direct competitor to the Worcester Bosch Greenstar 8000.',
+            },
+          ].map(({ q, a }) => (
+            <div key={q} className="bg-gray-50 border border-gray-200 rounded-xl p-5">
+              <p className="font-bold text-gray-900 mb-2">{q}</p>
+              <p className="text-gray-600 text-sm leading-relaxed">{a}</p>
+            </div>
+          ))}
         </div>
 
         {/* Related Articles */}

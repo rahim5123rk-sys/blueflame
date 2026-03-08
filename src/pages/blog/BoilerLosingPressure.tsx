@@ -1,5 +1,35 @@
 import { Link } from 'react-router-dom';
-import { AlertTriangle, CheckCircle, Phone } from 'lucide-react';
+import { AlertTriangle, CheckCircle, Phone, ExternalLink, ChevronRight, Info, Play } from 'lucide-react';
+
+function PressureGaugeInfographic() {
+  return (
+    <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6 mb-10 flex flex-col items-center">
+      <p className="font-bold text-gray-900 mb-4 text-center">Boiler Pressure at a Glance</p>
+      <svg viewBox="0 0 260 150" width="260" height="150" aria-label="Boiler pressure gauge infographic">
+        {/* Background arc zones */}
+        {/* Too low: 0–1 bar (left red arc) */}
+        <path d="M 30 130 A 100 100 0 0 1 80 43" fill="none" stroke="#ef4444" strokeWidth="18" strokeLinecap="round" />
+        {/* Normal: 1–2 bar (green arc) */}
+        <path d="M 80 43 A 100 100 0 0 1 180 43" fill="none" stroke="#22c55e" strokeWidth="18" strokeLinecap="round" />
+        {/* Too high: 2–3 bar (right red arc) */}
+        <path d="M 180 43 A 100 100 0 0 1 230 130" fill="none" stroke="#ef4444" strokeWidth="18" strokeLinecap="round" />
+        {/* Gauge centre */}
+        <circle cx="130" cy="130" r="8" fill="#1e3a8a" />
+        {/* Needle pointing to normal zone (~1.2 bar) */}
+        <line x1="130" y1="130" x2="108" y2="50" stroke="#1e3a8a" strokeWidth="3" strokeLinecap="round" />
+        {/* Labels */}
+        <text x="22" y="148" fontSize="10" fill="#ef4444" fontWeight="bold">Too Low</text>
+        <text x="100" y="22" fontSize="10" fill="#16a34a" fontWeight="bold" textAnchor="middle">Normal</text>
+        <text x="195" y="148" fontSize="10" fill="#ef4444" fontWeight="bold">Too High</text>
+        {/* Bar values */}
+        <text x="52" y="138" fontSize="9" fill="#374151">&lt;1 bar</text>
+        <text x="110" y="138" fontSize="9" fill="#374151">1–2 bar</text>
+        <text x="190" y="138" fontSize="9" fill="#374151">&gt;2.5 bar</text>
+      </svg>
+      <p className="text-xs text-gray-500 mt-2 text-center">Normal cold pressure: 1.0–1.5 bar. If the needle sits below 1 bar, your boiler may lock out.</p>
+    </div>
+  );
+}
 
 export default function BoilerLosingPressure() {
   return (
@@ -11,7 +41,7 @@ export default function BoilerLosingPressure() {
           <Link to="/blog" className="text-sky-400 text-sm font-bold hover:underline mb-4 inline-block">&larr; Back to Blog</Link>
           <span className="inline-block bg-blue-800 text-white text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wide">Boiler Troubleshooting</span>
           <h1 className="text-3xl md:text-5xl font-extrabold leading-tight mb-4">
-            Why Does My Boiler Keep Losing Pressure? Causes & Fixes
+            Why Does My Boiler Keep Losing Pressure? Causes &amp; Fixes
           </h1>
           <p className="text-blue-200 text-lg">
             By Blue Flame Gas Services &middot; March 2026 &middot; 6 min read
@@ -26,7 +56,24 @@ export default function BoilerLosingPressure() {
           A boiler that keeps losing pressure is one of the most common heating problems in UK homes. If your pressure gauge keeps dropping below 1 bar, your heating may cut out and your hot water may stop working. Here's what causes it and what you can do about it.
         </p>
 
-        <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">What Is Boiler Pressure?</h2>
+        {/* TABLE OF CONTENTS */}
+        <nav className="bg-gray-50 border border-gray-200 rounded-2xl p-6 mb-10">
+          <p className="font-bold text-gray-900 mb-4 flex items-center gap-2"><Info size={18} className="text-blue-800" /> In This Article</p>
+          <ol className="space-y-2">
+            {[
+              ['section-what-is-boiler-pressure', 'What Is Boiler Pressure?'],
+              ['section-6-common-causes', '6 Common Causes of Boiler Pressure Loss'],
+              ['section-what-can-i-fix-myself', 'What Can I Fix Myself?'],
+              ['section-what-needs-an-engineer', 'What Needs an Engineer?'],
+              ['section-how-much-does-it-cost', 'How Much Does It Cost to Fix?'],
+              ['section-faqs', 'Frequently Asked Questions'],
+            ].map(([id, title]) => (
+              <li key={id}><a href={`#${id}`} className="flex items-center gap-2 text-blue-800 hover:underline text-sm font-medium"><ChevronRight size={14} />{title}</a></li>
+            ))}
+          </ol>
+        </nav>
+
+        <h2 id="section-what-is-boiler-pressure" className="text-2xl font-bold text-gray-900 mt-10 mb-4">What Is Boiler Pressure?</h2>
         <p className="text-gray-700 mb-4">
           Boiler pressure refers to the pressure of the hot water circulating through your central heating system. It's shown on the <strong>pressure gauge</strong> on the front of your boiler — usually a small dial or digital display.
         </p>
@@ -37,7 +84,18 @@ export default function BoilerLosingPressure() {
           <li><strong>Too high:</strong> Above 2.5 bar — pressure relief valve may discharge</li>
         </ul>
 
-        <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">6 Common Causes of Boiler Pressure Loss</h2>
+        {/* PRESSURE GAUGE INFOGRAPHIC */}
+        <PressureGaugeInfographic />
+
+        {/* YOUTUBE EMBED */}
+        <div className="mb-10">
+          <div className="relative w-full rounded-2xl overflow-hidden" style={{paddingBottom: '56.25%'}}>
+            <iframe className="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/PLACEHOLDER_BOILER_PRESSURE_ID" title="Boiler pressure explained" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+          </div>
+          <p className="text-sm text-gray-500 mt-2 flex items-center gap-2"><Play size={14} className="text-blue-800" /> Quick explainer: what boiler pressure is and how to check it</p>
+        </div>
+
+        <h2 id="section-6-common-causes" className="text-2xl font-bold text-gray-900 mt-10 mb-4">6 Common Causes of Boiler Pressure Loss</h2>
 
         <h3 className="text-xl font-bold text-gray-800 mt-6 mb-2">1. A leak in the heating system</h3>
         <p className="text-gray-700 mb-4">
@@ -79,7 +137,7 @@ export default function BoilerLosingPressure() {
           </div>
         </div>
 
-        <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">What Can I Fix Myself?</h2>
+        <h2 id="section-what-can-i-fix-myself" className="text-2xl font-bold text-gray-900 mt-10 mb-4">What Can I Fix Myself?</h2>
         <ul className="space-y-3 mb-8">
           {[
             'Repressurise the boiler via the filling loop (see our step-by-step guide)',
@@ -94,7 +152,7 @@ export default function BoilerLosingPressure() {
           ))}
         </ul>
 
-        <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">What Needs an Engineer?</h2>
+        <h2 id="section-what-needs-an-engineer" className="text-2xl font-bold text-gray-900 mt-10 mb-4">What Needs an Engineer?</h2>
         <ul className="space-y-3 mb-8">
           {[
             'Replacing a faulty pressure relief valve',
@@ -110,7 +168,17 @@ export default function BoilerLosingPressure() {
           ))}
         </ul>
 
-        <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">How Much Does It Cost to Fix?</h2>
+        {/* EXTERNAL RESOURCES */}
+        <div className="bg-gray-50 border border-gray-200 rounded-xl p-5 mb-6">
+          <p className="font-bold text-gray-900 mb-3 flex items-center gap-2"><ExternalLink size={16} className="text-blue-800" /> Useful Resources</p>
+          <ul className="space-y-2">
+            <li><a href="https://www.gassaferegister.co.uk/check-the-register/" target="_blank" rel="noopener noreferrer" className="text-blue-800 hover:underline text-sm font-medium flex items-center gap-1"><ExternalLink size={12} /> Gas Safe Register — find a local registered engineer</a></li>
+            <li><a href="https://www.worcester-bosch.co.uk/support" target="_blank" rel="noopener noreferrer" className="text-blue-800 hover:underline text-sm font-medium flex items-center gap-1"><ExternalLink size={12} /> Worcester Bosch boiler support &amp; fault codes</a></li>
+            <li><a href="https://www.idealheating.com/help-and-advice/fault-codes" target="_blank" rel="noopener noreferrer" className="text-blue-800 hover:underline text-sm font-medium flex items-center gap-1"><ExternalLink size={12} /> Ideal boiler fault code lookup</a></li>
+          </ul>
+        </div>
+
+        <h2 id="section-how-much-does-it-cost" className="text-2xl font-bold text-gray-900 mt-10 mb-4">How Much Does It Cost to Fix?</h2>
         <div className="overflow-x-auto mb-8">
           <table className="w-full border-collapse text-sm">
             <thead>
@@ -137,12 +205,16 @@ export default function BoilerLosingPressure() {
           </table>
         </div>
 
-        <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">Frequently Asked Questions</h2>
+        <h2 id="section-faqs" className="text-2xl font-bold text-gray-900 mt-10 mb-4">Frequently Asked Questions</h2>
         <div className="space-y-5 mb-10">
           {[
             { q: 'Is low boiler pressure dangerous?', a: 'No — low pressure isn\'t a safety risk. Your boiler will simply stop working (lock out) to protect itself. However, the cause of the pressure loss (e.g., a leak) should be investigated to prevent further damage.' },
             { q: 'Can I keep topping up the pressure?', a: 'As a temporary measure, yes. But regularly topping up means there\'s a leak or fault that needs fixing. Fresh mains water introduces oxygen that accelerates internal corrosion, potentially shortening the life of your system.' },
             { q: 'My pressure is fine when heating is off but too high when it\'s on — why?', a: 'This usually indicates a failed expansion vessel. The vessel can no longer absorb the pressure increase from heated water, so the pressure climbs too high. An engineer can test and re-charge or replace the vessel.' },
+            { q: 'How do I know if my expansion vessel has failed?', a: 'The clearest sign is pressure that sits at a normal 1–1.5 bar when cold but rises above 2.5 bar when the heating is running. Another indicator is the pressure relief valve discharging water externally. An engineer can press the Schrader valve on the expansion vessel to test it — if water comes out instead of air, the diaphragm has ruptured.' },
+            { q: 'Can a leaking radiator cause pressure loss?', a: 'Yes — even a small weep from a radiator valve, bleed point, or tail connection will cause a gradual pressure drop over days or weeks. Check around the bottom of each radiator and the valve connections for damp patches, rust staining, or white limescale residue, which are all signs of a slow leak.' },
+            { q: 'How long should boiler pressure hold after repressurising?', a: 'If your system is healthy, pressure should remain stable for months with only very minor fluctuation (0.1–0.2 bar seasonally is normal). Needing to repressurise more than once every two months is a clear sign of a leak or component fault that needs investigation.' },
+            { q: 'What is a normal pressure drop over winter?', a: 'A very slight drop of around 0.1–0.2 bar over a full heating season is considered acceptable as small amounts of dissolved air are expelled from the system. Anything more significant — or a sudden drop — indicates a fault. If you need to repressurise multiple times during winter, call an engineer.' },
           ].map((faq) => (
             <div key={faq.q} className="bg-gray-50 p-6 rounded-xl border border-gray-100">
               <p className="font-bold text-gray-900 mb-2">{faq.q}</p>
