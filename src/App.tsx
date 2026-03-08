@@ -18,6 +18,12 @@ const HowToBleedRadiator = lazy(() => import('./pages/blog/HowToBleedRadiator.ts
 const RepressurisBoiler = lazy(() => import('./pages/blog/RepressurisBoiler.tsx'));
 const PowerFlush = lazy(() => import('./pages/blog/PowerFlush.tsx'));
 const AnnualBoilerService = lazy(() => import('./pages/blog/AnnualBoilerService.tsx'));
+const CombiVsSystemBoiler = lazy(() => import('./pages/blog/CombiVsSystemBoiler.tsx'));
+const BoilerLosingPressure = lazy(() => import('./pages/blog/BoilerLosingPressure.tsx'));
+const RadiatorNotHeating = lazy(() => import('./pages/blog/RadiatorNotHeating.tsx'));
+const SmartThermostatGuide = lazy(() => import('./pages/blog/SmartThermostatGuide.tsx'));
+const FrozenCondensatePipe = lazy(() => import('./pages/blog/FrozenCondensatePipe.tsx'));
+const CentralHeatingNoises = lazy(() => import('./pages/blog/CentralHeatingNoises.tsx'));
 
 const PAGE_META: Record<string, { title: string; description: string }> = {
   '/': {
@@ -80,6 +86,30 @@ const PAGE_META: Record<string, { title: string; description: string }> = {
     title: 'Annual Boiler Service Worcester: What\'s Included & Why It Matters | Blue Flame',
     description: 'A Gas Safe boiler service from £60 in Worcester. Find out exactly what\'s checked, why annual servicing is essential, and when to book.',
   },
+  '/blog/combi-vs-system-boiler': {
+    title: 'Combi vs System Boiler: Which Is Right for Your Home? | Blue Flame Worcester',
+    description: 'Combi or system boiler? Compare costs, pros and cons, and find out which type suits your home size and hot water needs.',
+  },
+  '/blog/boiler-losing-pressure': {
+    title: 'Boiler Losing Pressure? 6 Common Causes & Fixes | Blue Flame Worcester',
+    description: 'Why does your boiler keep losing pressure? Discover the 6 most common causes, what you can fix yourself, and when to call an engineer.',
+  },
+  '/blog/radiator-not-heating-up': {
+    title: 'Radiator Not Heating Up? Troubleshooting Guide | Blue Flame Worcester',
+    description: 'Cold radiator? Diagnose the problem from cold spots to stuck valves with our complete troubleshooting guide for Worcester homeowners.',
+  },
+  '/blog/smart-thermostat-guide': {
+    title: 'Smart Thermostats: Are They Worth It? Honest Guide | Blue Flame Worcester',
+    description: 'Do smart thermostats actually save money? Compare Hive, Nest, Tado and more. Honest advice from Gas Safe engineers in Worcester.',
+  },
+  '/blog/frozen-condensate-pipe': {
+    title: 'Frozen Condensate Pipe: How to Thaw It Yourself | Blue Flame Worcester',
+    description: 'Boiler stopped in freezing weather? It\'s probably a frozen condensate pipe. Step-by-step thawing guide and prevention tips.',
+  },
+  '/blog/central-heating-noises': {
+    title: 'Noisy Boiler or Radiators? What Those Sounds Mean | Blue Flame Worcester',
+    description: 'Banging, gurgling, kettling? Find out what your heating noises mean, which are harmless, and when to call a Gas Safe engineer.',
+  },
 };
 
 export default function App() {
@@ -133,6 +163,12 @@ export default function App() {
           <Route path="/blog/how-to-repressurise-a-boiler" element={<RepressurisBoiler />} />
           <Route path="/blog/what-is-a-power-flush" element={<PowerFlush />} />
           <Route path="/blog/annual-boiler-service-worcester" element={<AnnualBoilerService />} />
+          <Route path="/blog/combi-vs-system-boiler" element={<CombiVsSystemBoiler />} />
+          <Route path="/blog/boiler-losing-pressure" element={<BoilerLosingPressure />} />
+          <Route path="/blog/radiator-not-heating-up" element={<RadiatorNotHeating />} />
+          <Route path="/blog/smart-thermostat-guide" element={<SmartThermostatGuide />} />
+          <Route path="/blog/frozen-condensate-pipe" element={<FrozenCondensatePipe />} />
+          <Route path="/blog/central-heating-noises" element={<CentralHeatingNoises />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
