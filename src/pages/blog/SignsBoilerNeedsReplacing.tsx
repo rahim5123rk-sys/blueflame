@@ -71,6 +71,9 @@ export default function SignsBoilerNeedsReplacing() {
                 </h2>
                 <p className="text-gray-600 leading-relaxed">
                   {sign.body}
+                  {sign.number === '04' && (
+                    <> Learn more: <Link to="/blog/what-is-a-power-flush" className="text-blue-800 font-semibold hover:underline">What is a power flush and do you need one?</Link></>
+                  )}
                   {sign.number === '05' && (
                     <> Read our full guide: <Link to="/blog/carbon-monoxide-safety" className="text-blue-800 font-semibold hover:underline">Carbon monoxide — what every homeowner must know</Link>.</>
                   )}
@@ -124,9 +127,9 @@ export default function SignsBoilerNeedsReplacing() {
               <span className="text-xs font-bold text-red-600 uppercase tracking-wide">Gas Safety</span>
               <p className="font-bold text-gray-900 mt-1 text-sm">Carbon Monoxide: The Silent Killer Every Homeowner Must Know About</p>
             </Link>
-            <Link to="/blog/worcester-bosch-vs-ideal-boilers" className="block bg-gray-50 border border-gray-200 rounded-xl p-5 hover:border-blue-800 hover:bg-blue-50 transition-colors">
-              <span className="text-xs font-bold text-blue-600 uppercase tracking-wide">Boiler Comparison</span>
-              <p className="font-bold text-gray-900 mt-1 text-sm">Worcester Bosch vs Ideal Boilers: Which Is Best?</p>
+            <Link to="/blog/what-is-a-power-flush" className="block bg-gray-50 border border-gray-200 rounded-xl p-5 hover:border-blue-800 hover:bg-blue-50 transition-colors">
+              <span className="text-xs font-bold text-orange-600 uppercase tracking-wide">Boiler Advice</span>
+              <p className="font-bold text-gray-900 mt-1 text-sm">What is a Power Flush? Do You Need One?</p>
             </Link>
           </div>
         </div>

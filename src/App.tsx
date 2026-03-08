@@ -15,6 +15,9 @@ const SignsBoilerNeedsReplacing = lazy(() => import('./pages/blog/SignsBoilerNee
 const CarbonMonoxideSafety = lazy(() => import('./pages/blog/CarbonMonoxideSafety.tsx'));
 const WorcesterVsIdeal = lazy(() => import('./pages/blog/WorcesterVsIdeal.tsx'));
 const HowToBleedRadiator = lazy(() => import('./pages/blog/HowToBleedRadiator.tsx'));
+const RepressurisBoiler = lazy(() => import('./pages/blog/RepressurisBoiler.tsx'));
+const PowerFlush = lazy(() => import('./pages/blog/PowerFlush.tsx'));
+const AnnualBoilerService = lazy(() => import('./pages/blog/AnnualBoilerService.tsx'));
 
 const PAGE_META: Record<string, { title: string; description: string }> = {
   '/': {
@@ -64,6 +67,18 @@ const PAGE_META: Record<string, { title: string; description: string }> = {
   '/blog/how-to-bleed-a-radiator': {
     title: 'How to Bleed a Radiator: Step-by-Step Guide | Blue Flame Worcester',
     description: 'Cold spots on your radiator? Our Gas Safe engineers walk you through exactly how to bleed a radiator and when to call a professional.',
+  },
+  '/blog/how-to-repressurise-a-boiler': {
+    title: 'How to Repressurise a Boiler: Step-by-Step Guide | Blue Flame Worcester',
+    description: 'Boiler showing low pressure? Follow our simple 7-step guide to safely repressurise your boiler — and find out when to call a professional.',
+  },
+  '/blog/what-is-a-power-flush': {
+    title: 'What is a Power Flush? Do You Need One? | Blue Flame Worcester',
+    description: 'Cold radiator bottoms, a noisy boiler, slow heating? Sludge is probably to blame. Find out what a power flush is, what it costs in Worcester, and if you need one.',
+  },
+  '/blog/annual-boiler-service-worcester': {
+    title: 'Annual Boiler Service Worcester: What\'s Included & Why It Matters | Blue Flame',
+    description: 'A Gas Safe boiler service from £60 in Worcester. Find out exactly what\'s checked, why annual servicing is essential, and when to book.',
   },
 };
 
@@ -115,6 +130,9 @@ export default function App() {
           <Route path="/blog/carbon-monoxide-safety" element={<CarbonMonoxideSafety />} />
           <Route path="/blog/worcester-bosch-vs-ideal-boilers" element={<WorcesterVsIdeal />} />
           <Route path="/blog/how-to-bleed-a-radiator" element={<HowToBleedRadiator />} />
+          <Route path="/blog/how-to-repressurise-a-boiler" element={<RepressurisBoiler />} />
+          <Route path="/blog/what-is-a-power-flush" element={<PowerFlush />} />
+          <Route path="/blog/annual-boiler-service-worcester" element={<AnnualBoilerService />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
