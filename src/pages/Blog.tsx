@@ -173,10 +173,10 @@ export default function Blog() {
               <p className="text-sky-400 font-bold uppercase tracking-widest text-sm">Blue Flame Blog</p>
             </div>
             <h1 className="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
-              Heating Advice You Can <span className="text-sky-400">Actually Trust</span>
+              Heating Advice You Can <span className="text-sky-400">Trust</span>
             </h1>
             <p className="text-blue-200 text-xl max-w-2xl mb-8">
-              Practical guides and honest answers from Gas Safe registered engineers in Worcester. No jargon, no sales pitches — just expert advice.
+              Practical guides answers from Gas Safe registered engineer.
             </p>
 
             {/* SEARCH */}
