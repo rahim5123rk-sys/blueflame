@@ -1,5 +1,4 @@
-// This is a Node.js function that will run on Netlify's servers.
-// It acts as a secure intermediary between your website and the Brevo API.
+// Cloudflare Pages Function — secure intermediary between the website and the Brevo API.
 
 export async function onRequest(context) {
   const { request, env } = context;
