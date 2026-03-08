@@ -23,6 +23,9 @@ export default function Services() {
     { name: 'Boiler Breakdown & Repair', price: 'Callout Fee', description: 'Fast and effective diagnosis and repair for when your heating or hot water fails.' },
     { name: 'New Boiler Installation', price: 'Free Quote', description: 'Expert installation of modern, high-efficiency boilers tailored to your home\'s needs.' },
     { name: 'Radiator System Clean', price: 'From £200', description: 'A deep clean of your central heating system to remove sludge, improve efficiency, and reduce bills.' },
+    { name: 'Radiator Installation', price: 'Free Quote', description: 'Supply and installation of new radiators — straight swaps or brand new additions to your heating system.' },
+    { name: 'Thermostat Installation', price: 'From £80', description: 'Installation of smart or standard thermostats, including Hive, Nest, and Tado. Maximise comfort and reduce your energy bills.' },
+    { name: 'Cooker / Hob Installation', price: 'Free Quote', description: 'Safe, Gas Safe certified installation of gas cookers and hobs. New installs and replacements covered.' },
   ];
 
   // Handle pre-selection passed via router state from Home page
