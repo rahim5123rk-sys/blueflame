@@ -1,7 +1,7 @@
 # SEO Audit — Blue Flame Gas Services
 **Site:** https://www.blueflameworcester.com
 **Audited:** 2026-03-07
-**Stack:** React 19 SPA (Vite + Tailwind) hosted on Netlify
+**Stack:** React 19 SPA (Vite + Tailwind)
 
 ---
 
@@ -153,7 +153,7 @@
 - Correct `Sitemap` reference pointing to the XML sitemap URL
 
 **Issues:**
-- Extremely minimal — no `Disallow` rules to protect non-public paths (e.g. Netlify function endpoints at `/.netlify/`)
+- Extremely minimal — no `Disallow` rules to protect non-public paths
 - No crawl-delay consideration (not critical but could be refined)
 - A single `User-agent: *` rule is functional but basic
 
@@ -222,7 +222,7 @@
 - This means the site effectively has **one indexable URL** (the homepage) from Google's perspective
 - Each service (Boiler Service, CP12, Emergency Repair) deserves its own indexable URL like `/services/boiler-service`
 
-**Fix Required:** Migrate to proper path-based routing (`/services`, `/about`, `/contact`) using React Router's `BrowserRouter` with Netlify's `_redirects` catch-all already in place
+**Fix Required:** Migrate to proper path-based routing (`/services`, `/about`, `/contact`) using React Router's `BrowserRouter` with a server-side SPA catch-all redirect in place
 
 ---
 
@@ -266,7 +266,7 @@
 
 ## Top 5 Priority Fixes
 
-1. **Switch to path-based routing** — Replace hash routing (`/#services`) with real paths (`/services`). This is the single highest-impact change; it unlocks proper per-page indexing. Netlify's `_redirects` already exists to handle SPA routing.
+1. **Switch to path-based routing** — Replace hash routing (`/#services`) with real paths (`/services`). This is the single highest-impact change; it unlocks proper per-page indexing. A server-side SPA catch-all redirect is needed to handle direct URL access.
 
 2. **Add FAQPage JSON-LD schema** — The homepage already has 4 FAQs. Adding FAQ schema costs 10 minutes and can win a featured snippet or PAA box — high-value SERP real estate for a local business.
 

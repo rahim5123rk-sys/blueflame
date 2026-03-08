@@ -1,5 +1,82 @@
 import { Link } from 'react-router-dom';
-import { CheckCircle, AlertTriangle, Phone } from 'lucide-react';
+import { CheckCircle, AlertTriangle, Phone, ExternalLink, ChevronRight, Info, Play } from 'lucide-react';
+
+function CondensatePipeInfographic() {
+  return (
+    <div className="mb-10">
+      <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" className="w-full rounded-2xl border border-gray-200 bg-gray-50">
+        {/* Sky / background */}
+        <rect x="0" y="0" width="600" height="320" fill="#f8fafc" />
+
+        {/* Ground line */}
+        <rect x="0" y="220" width="600" height="100" fill="#e2e8f0" />
+        <text x="10" y="238" fontSize="11" fill="#64748b">Ground level</text>
+
+        {/* House wall */}
+        <rect x="40" y="80" width="220" height="145" fill="#cbd5e1" stroke="#94a3b8" strokeWidth="2" />
+        <text x="130" y="70" textAnchor="middle" fontSize="13" fontWeight="bold" fill="#1e3a5f">House</text>
+
+        {/* Roof */}
+        <polygon points="30,80 150,20 270,80" fill="#94a3b8" />
+
+        {/* Window */}
+        <rect x="60" y="100" width="50" height="50" fill="#bfdbfe" stroke="#60a5fa" strokeWidth="1.5" rx="2" />
+        <rect x="165" y="100" width="50" height="50" fill="#bfdbfe" stroke="#60a5fa" strokeWidth="1.5" rx="2" />
+
+        {/* Door */}
+        <rect x="108" y="170" width="45" height="55" fill="#475569" rx="3" />
+
+        {/* Boiler (inside house) */}
+        <rect x="55" y="145" width="60" height="60" fill="#1e3a5f" rx="6" />
+        <text x="85" y="172" textAnchor="middle" fontSize="10" fontWeight="bold" fill="white">BOILER</text>
+        <circle cx="70" cy="185" r="6" fill="#38bdf8" />
+        <circle cx="85" cy="185" r="6" fill="#f59e0b" />
+        <circle cx="100" cy="185" r="6" fill="#34d399" />
+
+        {/* Condensate pipe — internal section */}
+        <rect x="85" y="205" width="10" height="25" fill="#94a3b8" />
+
+        {/* Pipe exits wall */}
+        <rect x="85" y="215" width="195" height="10" fill="#94a3b8" />
+
+        {/* Freeze point marker */}
+        <rect x="250" y="207" width="30" height="26" fill="#bfdbfe" stroke="#2563eb" strokeWidth="2" strokeDasharray="4 2" rx="3" />
+        <text x="265" y="222" textAnchor="middle" fontSize="9" fontWeight="bold" fill="#1d4ed8">ICE</text>
+
+        {/* Pipe continues to drain */}
+        <rect x="275" y="215" width="115" height="10" fill="#94a3b8" />
+        <rect x="380" y="215" width="10" height="40" fill="#94a3b8" />
+
+        {/* Drain */}
+        <ellipse cx="385" cy="258" rx="18" ry="8" fill="#64748b" />
+        <text x="385" y="275" textAnchor="middle" fontSize="10" fill="#475569">Drain</text>
+
+        {/* Freeze label callout */}
+        <line x1="265" y1="205" x2="265" y2="170" stroke="#2563eb" strokeWidth="1.5" strokeDasharray="3 2" />
+        <rect x="200" y="148" width="130" height="26" fill="#eff6ff" stroke="#2563eb" strokeWidth="1.5" rx="5" />
+        <text x="265" y="165" textAnchor="middle" fontSize="11" fontWeight="bold" fill="#1d4ed8">Freeze point (outside)</text>
+
+        {/* Labels */}
+        <text x="85" y="140" textAnchor="middle" fontSize="11" fill="#475569">Condensate</text>
+        <text x="85" y="152" textAnchor="middle" fontSize="11" fill="#475569">outlet</text>
+        <text x="340" y="212" textAnchor="middle" fontSize="11" fill="#475569">Pipe to drain</text>
+
+        {/* Temperature label */}
+        <text x="530" y="90" textAnchor="middle" fontSize="12" fontWeight="bold" fill="#dc2626">−2°C</text>
+        <text x="530" y="105" textAnchor="middle" fontSize="10" fill="#64748b">outside temp</text>
+
+        {/* Legend */}
+        <rect x="400" y="130" width="14" height="14" fill="#94a3b8" rx="2" />
+        <text x="420" y="142" fontSize="10" fill="#475569">Condensate pipe</text>
+        <rect x="400" y="152" width="14" height="14" fill="#bfdbfe" stroke="#2563eb" strokeWidth="1.5" rx="2" />
+        <text x="420" y="164" fontSize="10" fill="#475569">Freeze zone</text>
+        <rect x="400" y="174" width="14" height="14" fill="#1e3a5f" rx="2" />
+        <text x="420" y="186" fontSize="10" fill="#475569">Boiler unit</text>
+      </svg>
+      <p className="text-xs text-gray-500 mt-2 text-center">Diagram: condensate pipe route from boiler to external drain, showing typical freeze point</p>
+    </div>
+  );
+}
 
 export default function FrozenCondensatePipe() {
   return (
@@ -26,7 +103,23 @@ export default function FrozenCondensatePipe() {
           Your boiler has stopped working on the coldest day of the year. Before you panic, check for the UK's most common winter boiler breakdown: a <strong>frozen condensate pipe</strong>. Here's how to identify it, thaw it yourself, and prevent it happening again.
         </p>
 
-        <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">What Is a Condensate Pipe?</h2>
+        {/* TABLE OF CONTENTS */}
+        <nav className="bg-gray-50 border border-gray-200 rounded-2xl p-6 mb-10">
+          <p className="font-bold text-gray-900 mb-4 flex items-center gap-2"><Info size={18} className="text-blue-800" /> In This Article</p>
+          <ol className="space-y-2">
+            {[
+              ['section-what-is-a-condensate-pipe', 'What Is a Condensate Pipe?'],
+              ['section-how-to-tell-if-frozen', 'How to Tell If Your Condensate Pipe Is Frozen'],
+              ['section-how-to-thaw', 'How to Thaw a Frozen Condensate Pipe: Step by Step'],
+              ['section-how-to-prevent', 'How to Prevent a Frozen Condensate Pipe'],
+              ['section-faqs', 'Frequently Asked Questions'],
+            ].map(([id, title]) => (
+              <li key={id}><a href={`#${id}`} className="flex items-center gap-2 text-blue-800 hover:underline text-sm font-medium"><ChevronRight size={14} />{title}</a></li>
+            ))}
+          </ol>
+        </nav>
+
+        <h2 id="section-what-is-a-condensate-pipe" className="text-2xl font-bold text-gray-900 mt-10 mb-4">What Is a Condensate Pipe?</h2>
         <p className="text-gray-700 mb-4">
           All modern condensing boilers produce a small amount of acidic water (condensate) as a byproduct of the combustion process. This condensate drains away through a narrow plastic pipe — usually <strong>21.5mm white or grey overflow pipe</strong> — that runs from the boiler to an outside drain, soil pipe, or internal waste pipe.
         </p>
@@ -34,7 +127,9 @@ export default function FrozenCondensatePipe() {
           When the temperature drops below freezing, the condensate inside this pipe can freeze solid, creating a blockage. The boiler detects it can't drain and shuts down with an error code.
         </p>
 
-        <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">How to Tell If Your Condensate Pipe Is Frozen</h2>
+        <CondensatePipeInfographic />
+
+        <h2 id="section-how-to-tell-if-frozen" className="text-2xl font-bold text-gray-900 mt-10 mb-4">How to Tell If Your Condensate Pipe Is Frozen</h2>
         <ul className="space-y-3 mb-8">
           {[
             'Your boiler has stopped working or locked out during freezing weather',
@@ -50,7 +145,7 @@ export default function FrozenCondensatePipe() {
           ))}
         </ul>
 
-        <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">How to Thaw a Frozen Condensate Pipe: Step by Step</h2>
+        <h2 id="section-how-to-thaw" className="text-2xl font-bold text-gray-900 mt-10 mb-4">How to Thaw a Frozen Condensate Pipe: Step by Step</h2>
 
         <div className="space-y-6 mb-10">
           {[
@@ -82,7 +177,15 @@ export default function FrozenCondensatePipe() {
           </div>
         </div>
 
-        <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">How to Prevent a Frozen Condensate Pipe</h2>
+        {/* YouTube embed */}
+        <div className="mb-10">
+          <div className="relative w-full rounded-2xl overflow-hidden" style={{paddingBottom: '56.25%'}}>
+            <iframe className="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/PLACEHOLDER_FROZEN_CONDENSATE" title="How to thaw a frozen condensate pipe" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+          </div>
+          <p className="text-sm text-gray-500 mt-2 flex items-center gap-2"><Play size={14} className="text-blue-800" /> Step-by-step guide to thawing a frozen condensate pipe and resetting your boiler</p>
+        </div>
+
+        <h2 id="section-how-to-prevent" className="text-2xl font-bold text-gray-900 mt-10 mb-4">How to Prevent a Frozen Condensate Pipe</h2>
         <ul className="space-y-3 mb-8">
           {[
             { title: 'Insulate the pipe', desc: 'Wrap the external section with pipe lagging (foam insulation). This is the single most effective prevention — costs under £5 from any DIY shop.' },
@@ -103,12 +206,26 @@ export default function FrozenCondensatePipe() {
           <p className="text-blue-700">We insulate and check the condensate pipe as part of every <Link to="/blog/annual-boiler-service-worcester" className="text-blue-800 font-semibold underline">annual boiler service</Link>. If your pipe is in an exposed location, we can advise on the best long-term solution during your next service visit.</p>
         </div>
 
-        <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">Frequently Asked Questions</h2>
+        {/* External resources */}
+        <div className="bg-gray-50 border border-gray-200 rounded-xl p-5 mb-6">
+          <p className="font-bold text-gray-900 mb-3 flex items-center gap-2"><ExternalLink size={16} className="text-blue-800" /> Useful Resources</p>
+          <ul className="space-y-2">
+            <li><a href="https://www.worcester-bosch.co.uk/support/guides/frozen-condensate-pipe" target="_blank" rel="noopener noreferrer" className="text-blue-800 hover:underline text-sm font-medium flex items-center gap-1"><ExternalLink size={12} /> Worcester Bosch: Frozen Condensate Pipe Guide</a></li>
+            <li><a href="https://www.gassaferegister.co.uk" target="_blank" rel="noopener noreferrer" className="text-blue-800 hover:underline text-sm font-medium flex items-center gap-1"><ExternalLink size={12} /> Gas Safe Register — Find a registered engineer</a></li>
+            <li><a href="https://www.energysavingtrust.org.uk/advice/boilers-and-heating/" target="_blank" rel="noopener noreferrer" className="text-blue-800 hover:underline text-sm font-medium flex items-center gap-1"><ExternalLink size={12} /> Energy Saving Trust: Winter boiler tips</a></li>
+          </ul>
+        </div>
+
+        <h2 id="section-faqs" className="text-2xl font-bold text-gray-900 mt-10 mb-4">Frequently Asked Questions</h2>
         <div className="space-y-5 mb-10">
           {[
             { q: 'Can a frozen condensate pipe damage my boiler?', a: 'No — the boiler shuts down safely to protect itself. Once the pipe is thawed and the boiler is reset, it will work normally. However, if it freezes repeatedly, the repeated lockouts can strain ignition components over time.' },
             { q: 'Why does my condensate pipe keep freezing every winter?', a: 'Usually because the external section is too long, too exposed, or not insulated. A short-term fix is lagging the pipe; a permanent fix is rerouting it internally or upgrading to a larger diameter.' },
             { q: 'My boiler is still not working after thawing the pipe — what now?', a: 'Make sure you\'ve pressed the reset button on the boiler. If it still won\'t fire, there may be a secondary fault — possibly caused by the lockout. Call us on 07480 561 846 and we can usually attend the same day.' },
+            { q: 'What temperature does a condensate pipe freeze?', a: 'Condensate pipes typically freeze when the outside temperature drops to around −2°C or below, though exposed pipes in windy or poorly sheltered locations can freeze even at 0°C. The pipe diameter matters too — narrower 21.5mm pipes freeze much faster than 32mm pipes.' },
+            { q: 'Does every boiler have a condensate pipe?', a: 'No — only condensing boilers have a condensate pipe. All gas boilers installed since 2005 must be condensing models, so if your boiler was installed in the last 20 years, it almost certainly has one. Older non-condensing boilers do not produce condensate.' },
+            { q: 'How long does a condensate pipe need to be?', a: 'Building regulations (Part L) state that external condensate pipe runs should be kept as short as possible — ideally no more than 3 metres. Longer external runs significantly increase freeze risk. If your external pipe run is unavoidably long, it should be 32mm diameter and insulated.' },
+            { q: 'Is condensate pipe insulation a DIY job?', a: 'Yes — insulating an accessible external condensate pipe is a straightforward DIY job. Foam pipe lagging (sometimes called pipe insulation or pipe wrap) is widely available at DIY stores and costs under £5 for a 1-metre length. Simply cut to length and clip or tape around the exposed pipe. If the pipe is in a difficult-to-reach location, a plumber or heating engineer can do it during a service visit.' },
           ].map((faq) => (
             <div key={faq.q} className="bg-gray-50 p-6 rounded-xl border border-gray-100">
               <p className="font-bold text-gray-900 mb-2">{faq.q}</p>

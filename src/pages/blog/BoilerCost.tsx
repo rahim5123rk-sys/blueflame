@@ -1,5 +1,51 @@
 import { Link } from 'react-router-dom';
-import { CheckCircle, Phone, ArrowRight } from 'lucide-react';
+import { CheckCircle, Phone, ArrowRight, ExternalLink, ChevronRight, Info, Play } from 'lucide-react';
+
+function BoilerCostInfographic() {
+  const bars = [
+    { label: 'Entry Combi', low: 1400, high: 1800, color: '#93c5fd' },
+    { label: 'Mid Combi', low: 1800, high: 2400, color: '#3b82f6' },
+    { label: 'Premium Combi', low: 2400, high: 3200, color: '#1e40af' },
+    { label: 'System Boiler', low: 1600, high: 2600, color: '#6366f1' },
+    { label: 'Heat-only', low: 1400, high: 2400, color: '#8b5cf6' },
+  ];
+  const max = 3500;
+  const svgWidth = 560;
+  const barHeight = 28;
+  const gap = 16;
+  const labelWidth = 110;
+  const chartWidth = svgWidth - labelWidth - 60;
+  const svgHeight = bars.length * (barHeight + gap) + 50;
+
+  return (
+    <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6 mb-10">
+      <p className="font-bold text-gray-900 mb-1">Supply &amp; Fit Cost Ranges — Worcester 2026</p>
+      <p className="text-xs text-gray-500 mb-4">Approximate installed prices including VAT at 5%</p>
+      <svg viewBox={`0 0 ${svgWidth} ${svgHeight}`} className="w-full" aria-label="Bar chart of boiler cost ranges">
+        {bars.map((bar, i) => {
+          const y = i * (barHeight + gap) + 30;
+          const xLow = (bar.low / max) * chartWidth;
+          const xHigh = (bar.high / max) * chartWidth;
+          const barW = xHigh - xLow;
+          return (
+            <g key={bar.label}>
+              <text x={labelWidth - 6} y={y + barHeight / 2 + 5} textAnchor="end" fontSize="11" fill="#374151" fontFamily="sans-serif">{bar.label}</text>
+              <rect x={labelWidth + xLow} y={y} width={barW} height={barHeight} rx="6" fill={bar.color} />
+              <text x={labelWidth + xLow + 4} y={y + barHeight / 2 + 5} fontSize="10" fill="#fff" fontFamily="sans-serif">£{bar.low.toLocaleString()}</text>
+              <text x={labelWidth + xHigh + 4} y={y + barHeight / 2 + 5} fontSize="10" fill="#374151" fontFamily="sans-serif">£{bar.high.toLocaleString()}</text>
+            </g>
+          );
+        })}
+        {[0, 1000, 2000, 3000].map((tick) => (
+          <g key={tick}>
+            <line x1={labelWidth + (tick / max) * chartWidth} y1={20} x2={labelWidth + (tick / max) * chartWidth} y2={svgHeight - 8} stroke="#e5e7eb" strokeWidth="1" />
+            <text x={labelWidth + (tick / max) * chartWidth} y={14} textAnchor="middle" fontSize="9" fill="#9ca3af" fontFamily="sans-serif">£{tick.toLocaleString()}</text>
+          </g>
+        ))}
+      </svg>
+    </div>
+  );
+}
 
 export default function BoilerCost() {
   return (
@@ -26,7 +72,24 @@ export default function BoilerCost() {
           If your boiler has broken down or you're planning ahead, one of the first questions you'll ask is: <strong>how much does a new boiler cost?</strong> Here's a complete, honest breakdown of 2026 prices for Worcester and Worcestershire homeowners.
         </p>
 
-        <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">Average New Boiler Costs in Worcester (2026)</h2>
+        {/* TABLE OF CONTENTS */}
+        <nav className="bg-gray-50 border border-gray-200 rounded-2xl p-6 mb-10">
+          <p className="font-bold text-gray-900 mb-4 flex items-center gap-2"><Info size={18} className="text-blue-800" /> In This Article</p>
+          <ol className="space-y-2">
+            {[
+              ['section-average-costs', 'Average New Boiler Costs in Worcester (2026)'],
+              ['section-whats-included', "What's Included in Blue Flame's Installation Price?"],
+              ['section-what-affects-cost', 'What Affects the Cost of a New Boiler?'],
+              ['section-how-long', 'How Long Does a Boiler Installation Take?'],
+              ['section-finance', 'Is Finance Available?'],
+              ['section-faqs', 'Frequently Asked Questions'],
+            ].map(([id, title]) => (
+              <li key={id}><a href={`#${id}`} className="flex items-center gap-2 text-blue-800 hover:underline text-sm font-medium"><ChevronRight size={14} />{title}</a></li>
+            ))}
+          </ol>
+        </nav>
+
+        <h2 id="section-average-costs" className="text-2xl font-bold text-gray-900 mt-10 mb-4">Average New Boiler Costs in Worcester (2026)</h2>
         <div className="overflow-x-auto mb-8">
           <table className="w-full border-collapse text-sm">
             <thead>
@@ -55,7 +118,17 @@ export default function BoilerCost() {
         </div>
         <p className="text-gray-600 text-sm italic mb-8">Prices include VAT at 5% (domestic heating installations). Labour typically £300–£700 depending on complexity.</p>
 
-        <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">What's Included in Blue Flame's Installation Price?</h2>
+        <BoilerCostInfographic />
+
+        {/* YouTube embed */}
+        <div className="mb-10">
+          <div className="relative w-full rounded-2xl overflow-hidden" style={{paddingBottom: '56.25%'}}>
+            <iframe className="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/PLACEHOLDER_BOILER_INSTALL" title="New boiler installation — what to expect" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+          </div>
+          <p className="text-sm text-gray-500 mt-2 flex items-center gap-2"><Play size={14} className="text-blue-800" /> What to expect on new boiler installation day — a step-by-step walkthrough</p>
+        </div>
+
+        <h2 id="section-whats-included" className="text-2xl font-bold text-gray-900 mt-10 mb-4">What's Included in Blue Flame's Installation Price?</h2>
         <ul className="space-y-3 mb-8">
           {[
             'Supply and installation of the new boiler',
@@ -81,7 +154,7 @@ export default function BoilerCost() {
           </Link>
         </div>
 
-        <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">What Affects the Cost of a New Boiler?</h2>
+        <h2 id="section-what-affects-cost" className="text-2xl font-bold text-gray-900 mt-10 mb-4">What Affects the Cost of a New Boiler?</h2>
 
         <h3 className="text-xl font-bold text-gray-800 mt-6 mb-2">1. Boiler brand and model</h3>
         <p className="text-gray-700 mb-4">
@@ -110,22 +183,57 @@ export default function BoilerCost() {
           A 24–30kW combi is correct for most 2–4 bedroom Worcester homes. Larger properties or homes with multiple bathrooms may need 35–40kW. Oversizing wastes money — our engineers will calculate the right size for your home.
         </p>
 
-        <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">How Long Does a Boiler Installation Take?</h2>
+        {/* External resources */}
+        <div className="bg-gray-50 border border-gray-200 rounded-xl p-5 mb-6">
+          <p className="font-bold text-gray-900 mb-3 flex items-center gap-2"><ExternalLink size={16} className="text-blue-800" /> Useful Resources</p>
+          <ul className="space-y-2">
+            <li><a href="https://energysavingtrust.org.uk/advice/boilers/" target="_blank" rel="noopener noreferrer" className="text-blue-800 hover:underline text-sm font-medium flex items-center gap-1"><ExternalLink size={12} /> Energy Saving Trust — Boiler Advice &amp; Efficiency Tips</a></li>
+            <li><a href="https://www.gassaferegister.co.uk" target="_blank" rel="noopener noreferrer" className="text-blue-800 hover:underline text-sm font-medium flex items-center gap-1"><ExternalLink size={12} /> Gas Safe Register — Check Your Engineer</a></li>
+            <li><a href="https://www.citizensadvice.org.uk/consumer/energy/" target="_blank" rel="noopener noreferrer" className="text-blue-800 hover:underline text-sm font-medium flex items-center gap-1"><ExternalLink size={12} /> Citizens Advice — Energy Bills &amp; Boiler Grants</a></li>
+          </ul>
+        </div>
+
+        <h2 id="section-how-long" className="text-2xl font-bold text-gray-900 mt-10 mb-4">How Long Does a Boiler Installation Take?</h2>
         <p className="text-gray-700 mb-4">
           A like-for-like combi boiler swap typically takes <strong>4–8 hours</strong>. More complex jobs involving moving the boiler, upgrading pipework, or installing a new system type may take 1–2 days. We aim to have your hot water and heating back on the same day in most cases.
         </p>
 
-        <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">Is Finance Available?</h2>
+        <h2 id="section-finance" className="text-2xl font-bold text-gray-900 mt-10 mb-4">Is Finance Available?</h2>
         <p className="text-gray-700 mb-8">
           Many Worcester homeowners spread the cost of a new boiler over monthly payments. Ask us about 0% and low-interest finance options when you request your free quote — we work with trusted financing partners to make a new boiler affordable.
         </p>
 
-        <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">Frequently Asked Questions</h2>
+        <h2 id="section-faqs" className="text-2xl font-bold text-gray-900 mt-10 mb-4">Frequently Asked Questions</h2>
         <div className="space-y-5 mb-10">
           {[
-            { q: 'Can I get a new boiler grant?', a: 'The UK government\'s Boiler Upgrade Scheme offers grants for heat pumps, not gas boilers. However, if your home is in receipt of certain benefits, you may qualify for a free boiler through the ECO4 scheme. Ask us about eligibility.' },
-            { q: 'How long does a new boiler last?', a: 'A well-maintained combi boiler from a reputable brand typically lasts 12–15 years. Annual servicing is the single most important thing you can do to extend its life.' },
-            { q: 'Do I need a new boiler or just a repair?', a: <span>As a rough rule: if your boiler is under 8 years old, repair is usually better value. Over 10 years and breaking down regularly, replacement is often more cost-effective in the long run. We'll always give you an honest assessment. Read our guide on <Link to="/blog/signs-boiler-needs-replacing" className="text-blue-800 font-semibold hover:underline">7 signs your boiler needs replacing</Link> to help you decide.</span> },
+            {
+              q: 'Can I get a new boiler grant?',
+              a: "The UK government's Boiler Upgrade Scheme offers grants for heat pumps, not gas boilers. However, if your home is in receipt of certain benefits, you may qualify for a free boiler through the ECO4 scheme. Ask us about eligibility.",
+            },
+            {
+              q: 'How long does a new boiler last?',
+              a: 'A well-maintained combi boiler from a reputable brand typically lasts 12–15 years. Annual servicing is the single most important thing you can do to extend its life.',
+            },
+            {
+              q: 'Do I need a new boiler or just a repair?',
+              a: <span>As a rough rule: if your boiler is under 8 years old, repair is usually better value. Over 10 years and breaking down regularly, replacement is often more cost-effective in the long run. We'll always give you an honest assessment. Read our guide on <Link to="/blog/signs-boiler-needs-replacing" className="text-blue-800 font-semibold hover:underline">7 signs your boiler needs replacing</Link> to help you decide.</span>,
+            },
+            {
+              q: 'What VAT rate applies to boiler installation?',
+              a: 'Domestic boiler installations qualify for the reduced VAT rate of 5% rather than the standard 20%. This applies to both the boiler unit and the labour for residential properties. Always check your quote explicitly states 5% VAT.',
+            },
+            {
+              q: 'Can I get a grant for a new boiler?',
+              a: 'Gas boiler grants are currently available through the ECO4 (Energy Company Obligation) scheme for low-income households or those receiving qualifying benefits such as Universal Credit, Pension Credit, or Child Tax Credit. The Boiler Upgrade Scheme (BUS) covers heat pumps only. Contact us or visit the Citizens Advice website to check your eligibility.',
+            },
+            {
+              q: 'Should I get a combi or system boiler?',
+              a: 'A combi boiler is ideal for most Worcester homes with 1–2 bathrooms — it heats water on demand, takes up less space, and requires no hot water cylinder. A system boiler suits larger homes with 3+ bathrooms where simultaneous hot water demand is high. Our engineers will assess your property and recommend the right type during a free survey.',
+            },
+            {
+              q: 'Will a new boiler reduce my energy bills?',
+              a: 'Yes, significantly. If you are replacing a boiler over 10 years old, a modern A-rated condensing boiler operating at 90–94% efficiency versus the old unit\'s 65–75% can cut your heating bills by 15–25% annually. The Energy Saving Trust estimates savings of up to £340 per year for a detached home upgrading from a G-rated boiler.',
+            },
           ].map((faq) => (
             <div key={faq.q} className="bg-gray-50 p-6 rounded-xl border border-gray-100">
               <p className="font-bold text-gray-900 mb-2">{faq.q}</p>
