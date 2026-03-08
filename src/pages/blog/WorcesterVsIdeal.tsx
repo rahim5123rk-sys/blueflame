@@ -19,7 +19,7 @@ export default function WorcesterVsIdeal() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl py-14">
 
         <p className="text-xl text-gray-700 leading-relaxed mb-10">
-          Worcester Bosch and Ideal are two of the UK's most installed boiler brands. As engineers who fit both regularly across Worcester and Worcestershire, we're well placed to compare them honestly — so you can make the right choice for your home and budget.
+          Worcester Bosch and Ideal are two of the UK's most installed boiler brands. As engineers who fit both regularly across Worcester and Worcestershire, we're well placed to compare them honestly — so you can make the right choice for your home and budget. For full pricing on either brand, see our <Link to="/blog/boiler-cost-worcester" className="text-blue-800 font-semibold hover:underline">2026 new boiler cost guide</Link>.
         </p>
 
         {/* Head-to-head comparison table */}
@@ -144,6 +144,31 @@ export default function WorcesterVsIdeal() {
           <div className="bg-gray-50 border-l-4 border-gray-500 p-5 rounded-r-xl">
             <p className="font-bold text-gray-800 mb-1">Choose Ideal if…</p>
             <p className="text-gray-700">You want a solid, reliable boiler with a lower upfront cost. The Ideal Vogue and Esprit are strong performers that we're confident recommending, especially for budget-conscious homeowners.</p>
+          </div>
+        </div>
+
+        {/* Not sure if you should replace? */}
+        <div className="bg-amber-50 border-l-4 border-amber-500 p-5 rounded-r-xl mb-10">
+          <p className="font-bold text-amber-800 mb-1">Not sure if you need a new boiler yet?</p>
+          <p className="text-amber-700 text-sm">Read our guide on <Link to="/blog/signs-boiler-needs-replacing" className="text-amber-900 font-semibold hover:underline">7 warning signs your boiler needs replacing</Link> before making a decision.</p>
+        </div>
+
+        {/* Related Articles */}
+        <div className="border-t border-gray-200 pt-10 mb-10">
+          <h2 className="text-xl font-bold text-gray-900 mb-5">Related Articles</h2>
+          <div className="grid md:grid-cols-3 gap-4">
+            <Link to="/blog/boiler-cost-worcester" className="block bg-gray-50 border border-gray-200 rounded-xl p-5 hover:border-blue-800 hover:bg-blue-50 transition-colors">
+              <span className="text-xs font-bold text-blue-600 uppercase tracking-wide">Boiler Installation</span>
+              <p className="font-bold text-gray-900 mt-1 text-sm">How Much Does a New Boiler Cost in Worcester? (2026)</p>
+            </Link>
+            <Link to="/blog/signs-boiler-needs-replacing" className="block bg-gray-50 border border-gray-200 rounded-xl p-5 hover:border-blue-800 hover:bg-blue-50 transition-colors">
+              <span className="text-xs font-bold text-orange-600 uppercase tracking-wide">Boiler Advice</span>
+              <p className="font-bold text-gray-900 mt-1 text-sm">7 Warning Signs Your Boiler Needs Replacing</p>
+            </Link>
+            <Link to="/blog/carbon-monoxide-safety" className="block bg-gray-50 border border-gray-200 rounded-xl p-5 hover:border-blue-800 hover:bg-blue-50 transition-colors">
+              <span className="text-xs font-bold text-red-600 uppercase tracking-wide">Gas Safety</span>
+              <p className="font-bold text-gray-900 mt-1 text-sm">Carbon Monoxide: The Silent Killer Every Homeowner Must Know About</p>
+            </Link>
           </div>
         </div>
 

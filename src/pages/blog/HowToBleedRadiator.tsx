@@ -111,7 +111,7 @@ export default function HowToBleedRadiator() {
 
         <h2 className="text-2xl font-bold text-gray-900 mb-4">When Bleeding Doesn't Fix It</h2>
         <p className="text-gray-700 mb-4">
-          If you bleed the radiator and the cold spot returns within a few weeks, you likely have a more persistent problem:
+          If you bleed the radiator and the cold spot returns within a few weeks, you likely have a more persistent problem. Persistent heating issues can also be an early sign that your boiler needs attention — see our guide on <Link to="/blog/signs-boiler-needs-replacing" className="text-blue-800 font-semibold hover:underline">7 warning signs your boiler needs replacing</Link>.
         </p>
         <ul className="space-y-3 mb-10">
           {[
@@ -126,6 +126,25 @@ export default function HowToBleedRadiator() {
             </li>
           ))}
         </ul>
+
+        {/* Related Articles */}
+        <div className="border-t border-gray-200 pt-10 mb-10">
+          <h2 className="text-xl font-bold text-gray-900 mb-5">Related Articles</h2>
+          <div className="grid md:grid-cols-3 gap-4">
+            <Link to="/blog/signs-boiler-needs-replacing" className="block bg-gray-50 border border-gray-200 rounded-xl p-5 hover:border-blue-800 hover:bg-blue-50 transition-colors">
+              <span className="text-xs font-bold text-orange-600 uppercase tracking-wide">Boiler Advice</span>
+              <p className="font-bold text-gray-900 mt-1 text-sm">7 Warning Signs Your Boiler Needs Replacing</p>
+            </Link>
+            <Link to="/blog/carbon-monoxide-safety" className="block bg-gray-50 border border-gray-200 rounded-xl p-5 hover:border-blue-800 hover:bg-blue-50 transition-colors">
+              <span className="text-xs font-bold text-red-600 uppercase tracking-wide">Gas Safety</span>
+              <p className="font-bold text-gray-900 mt-1 text-sm">Carbon Monoxide: The Silent Killer Every Homeowner Must Know About</p>
+            </Link>
+            <Link to="/blog/boiler-cost-worcester" className="block bg-gray-50 border border-gray-200 rounded-xl p-5 hover:border-blue-800 hover:bg-blue-50 transition-colors">
+              <span className="text-xs font-bold text-blue-600 uppercase tracking-wide">Boiler Installation</span>
+              <p className="font-bold text-gray-900 mt-1 text-sm">How Much Does a New Boiler Cost in Worcester? (2026)</p>
+            </Link>
+          </div>
+        </div>
 
         <div className="bg-blue-800 text-white p-8 rounded-2xl text-center">
           <h2 className="text-2xl font-bold mb-3">Still Having Heating Problems?</h2>

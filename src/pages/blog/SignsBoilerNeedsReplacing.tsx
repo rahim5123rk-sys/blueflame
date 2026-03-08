@@ -69,7 +69,12 @@ export default function SignsBoilerNeedsReplacing() {
                   {sign.number === '05' && <AlertTriangle className="text-red-600" size={20} />}
                   {sign.title}
                 </h2>
-                <p className="text-gray-600 leading-relaxed">{sign.body}</p>
+                <p className="text-gray-600 leading-relaxed">
+                  {sign.body}
+                  {sign.number === '05' && (
+                    <> Read our full guide: <Link to="/blog/carbon-monoxide-safety" className="text-blue-800 font-semibold hover:underline">Carbon monoxide — what every homeowner must know</Link>.</>
+                  )}
+                </p>
               </div>
             </div>
           ))}
@@ -96,12 +101,34 @@ export default function SignsBoilerNeedsReplacing() {
               <li>• Parts are hard to source</li>
               <li>• Efficiency has noticeably dropped</li>
             </ul>
+            <Link to="/blog/boiler-cost-worcester" className="inline-block mt-4 text-red-800 font-semibold text-sm hover:underline">
+              See 2026 new boiler prices →
+            </Link>
           </div>
         </div>
 
         <div className="bg-amber-50 border-l-4 border-amber-500 p-6 rounded-r-xl mb-10">
           <p className="font-bold text-amber-800 mb-1">Always get a professional opinion</p>
           <p className="text-amber-700">Our Gas Safe engineers will give you an honest assessment — we never push replacement when a repair is genuinely the better option for you.</p>
+        </div>
+
+        {/* Related Articles */}
+        <div className="border-t border-gray-200 pt-10 mb-10">
+          <h2 className="text-xl font-bold text-gray-900 mb-5">Related Articles</h2>
+          <div className="grid md:grid-cols-3 gap-4">
+            <Link to="/blog/boiler-cost-worcester" className="block bg-gray-50 border border-gray-200 rounded-xl p-5 hover:border-blue-800 hover:bg-blue-50 transition-colors">
+              <span className="text-xs font-bold text-blue-600 uppercase tracking-wide">Boiler Installation</span>
+              <p className="font-bold text-gray-900 mt-1 text-sm">How Much Does a New Boiler Cost in Worcester? (2026)</p>
+            </Link>
+            <Link to="/blog/carbon-monoxide-safety" className="block bg-gray-50 border border-gray-200 rounded-xl p-5 hover:border-blue-800 hover:bg-blue-50 transition-colors">
+              <span className="text-xs font-bold text-red-600 uppercase tracking-wide">Gas Safety</span>
+              <p className="font-bold text-gray-900 mt-1 text-sm">Carbon Monoxide: The Silent Killer Every Homeowner Must Know About</p>
+            </Link>
+            <Link to="/blog/worcester-bosch-vs-ideal-boilers" className="block bg-gray-50 border border-gray-200 rounded-xl p-5 hover:border-blue-800 hover:bg-blue-50 transition-colors">
+              <span className="text-xs font-bold text-blue-600 uppercase tracking-wide">Boiler Comparison</span>
+              <p className="font-bold text-gray-900 mt-1 text-sm">Worcester Bosch vs Ideal Boilers: Which Is Best?</p>
+            </Link>
+          </div>
         </div>
 
         <div className="bg-blue-800 text-white p-8 rounded-2xl text-center">

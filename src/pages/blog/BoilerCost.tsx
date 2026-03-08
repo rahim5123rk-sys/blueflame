@@ -63,10 +63,10 @@ export default function BoilerCost() {
             'Adey MagnaClean filter to protect your new boiler',
             'Full system flush and inhibitor dosing',
             'Removal and disposal of your old boiler',
-            'Gas Safe certificate issued on completion',
+            <><Link to="/gas-safety-guide" className="text-blue-800 font-semibold hover:underline">Gas Safe certificate</Link> issued on completion</>,
             'Manufacturer warranty registration',
-          ].map((item) => (
-            <li key={item} className="flex items-start gap-3 text-gray-700">
+          ].map((item, i) => (
+            <li key={i} className="flex items-start gap-3 text-gray-700">
               <CheckCircle className="text-green-600 mt-1 flex-shrink-0" size={18} />
               {item}
             </li>
@@ -85,7 +85,9 @@ export default function BoilerCost() {
 
         <h3 className="text-xl font-bold text-gray-800 mt-6 mb-2">1. Boiler brand and model</h3>
         <p className="text-gray-700 mb-4">
-          Worcester Bosch and Viessmann sit at the premium end with longer warranties (up to 12 years). Ideal and Baxi offer solid mid-range reliability. Budget brands like Vaillant ecotec and Alpha cost less upfront but may have higher long-term servicing costs.
+          Worcester Bosch and Viessmann sit at the premium end with longer warranties (up to 12 years). Ideal and Baxi offer solid mid-range reliability. Budget brands like Vaillant ecotec and Alpha cost less upfront but may have higher long-term servicing costs. See our full{' '}
+          <Link to="/blog/worcester-bosch-vs-ideal-boilers" className="text-blue-800 font-semibold hover:underline">Worcester Bosch vs Ideal comparison</Link>{' '}
+          if you're weighing up which brand to choose.
         </p>
 
         <h3 className="text-xl font-bold text-gray-800 mt-6 mb-2">2. Boiler type</h3>
@@ -123,13 +125,32 @@ export default function BoilerCost() {
           {[
             { q: 'Can I get a new boiler grant?', a: 'The UK government\'s Boiler Upgrade Scheme offers grants for heat pumps, not gas boilers. However, if your home is in receipt of certain benefits, you may qualify for a free boiler through the ECO4 scheme. Ask us about eligibility.' },
             { q: 'How long does a new boiler last?', a: 'A well-maintained combi boiler from a reputable brand typically lasts 12–15 years. Annual servicing is the single most important thing you can do to extend its life.' },
-            { q: 'Do I need a new boiler or just a repair?', a: 'As a rough rule: if your boiler is under 8 years old, repair is usually better value. Over 10 years and breaking down regularly, replacement is often more cost-effective in the long run. We\'ll always give you an honest assessment.' },
+            { q: 'Do I need a new boiler or just a repair?', a: <span>As a rough rule: if your boiler is under 8 years old, repair is usually better value. Over 10 years and breaking down regularly, replacement is often more cost-effective in the long run. We'll always give you an honest assessment. Read our guide on <Link to="/blog/signs-boiler-needs-replacing" className="text-blue-800 font-semibold hover:underline">7 signs your boiler needs replacing</Link> to help you decide.</span> },
           ].map((faq) => (
             <div key={faq.q} className="bg-gray-50 p-6 rounded-xl border border-gray-100">
               <p className="font-bold text-gray-900 mb-2">{faq.q}</p>
               <p className="text-gray-600">{faq.a}</p>
             </div>
           ))}
+        </div>
+
+        {/* Related Articles */}
+        <div className="border-t border-gray-200 pt-10 mb-10">
+          <h2 className="text-xl font-bold text-gray-900 mb-5">Related Articles</h2>
+          <div className="grid md:grid-cols-3 gap-4">
+            <Link to="/blog/signs-boiler-needs-replacing" className="block bg-gray-50 border border-gray-200 rounded-xl p-5 hover:border-blue-800 hover:bg-blue-50 transition-colors">
+              <span className="text-xs font-bold text-orange-600 uppercase tracking-wide">Boiler Advice</span>
+              <p className="font-bold text-gray-900 mt-1 text-sm">7 Warning Signs Your Boiler Needs Replacing</p>
+            </Link>
+            <Link to="/blog/worcester-bosch-vs-ideal-boilers" className="block bg-gray-50 border border-gray-200 rounded-xl p-5 hover:border-blue-800 hover:bg-blue-50 transition-colors">
+              <span className="text-xs font-bold text-blue-600 uppercase tracking-wide">Boiler Comparison</span>
+              <p className="font-bold text-gray-900 mt-1 text-sm">Worcester Bosch vs Ideal: Which Is Best?</p>
+            </Link>
+            <Link to="/gas-safety-guide" className="block bg-gray-50 border border-gray-200 rounded-xl p-5 hover:border-blue-800 hover:bg-blue-50 transition-colors">
+              <span className="text-xs font-bold text-green-600 uppercase tracking-wide">Gas Safety</span>
+              <p className="font-bold text-gray-900 mt-1 text-sm">Worcester Landlord Gas Safety Guide</p>
+            </Link>
+          </div>
         </div>
 
         {/* CTA */}
