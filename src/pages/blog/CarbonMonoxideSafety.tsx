@@ -102,7 +102,7 @@ export default function CarbonMonoxideSafety() {
         <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4">How to Prevent Carbon Monoxide Poisoning</h2>
         <div className="space-y-4 mb-10">
           {[
-            { title: 'Annual boiler service', body: 'A Gas Safe engineer will check your burner, heat exchanger, flue, and ventilation — the components most likely to cause CO production if faulty. This is the single most effective prevention measure.' },
+            { title: 'Annual boiler service', body: <span>A Gas Safe engineer will check your burner, heat exchanger, flue, and ventilation — the components most likely to cause CO production if faulty. This is the single most effective prevention measure. Landlords in Worcestershire also have a legal obligation — see our <Link to="/gas-safety-guide" className="text-blue-800 font-semibold hover:underline">Landlord Gas Safety Guide</Link>.</span> },
             { title: 'Never block or cover ventilation', body: 'Air vents around boilers and gas fires exist to allow combustion. Covering them, even partially, can cause dangerous CO build-up.' },
             { title: 'Never use outdoor appliances indoors', body: 'Barbecues, portable gas heaters, and generators should never be used indoors or in enclosed spaces. They produce lethal quantities of CO.' },
             { title: 'Check your flue', body: 'Birds\' nests, debris, or deterioration can block a boiler flue. Have it inspected annually as part of your boiler service.' },
@@ -115,6 +115,25 @@ export default function CarbonMonoxideSafety() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Related Articles */}
+        <div className="border-t border-gray-200 pt-10 mb-10">
+          <h2 className="text-xl font-bold text-gray-900 mb-5">Related Articles</h2>
+          <div className="grid md:grid-cols-3 gap-4">
+            <Link to="/blog/signs-boiler-needs-replacing" className="block bg-gray-50 border border-gray-200 rounded-xl p-5 hover:border-blue-800 hover:bg-blue-50 transition-colors">
+              <span className="text-xs font-bold text-orange-600 uppercase tracking-wide">Boiler Advice</span>
+              <p className="font-bold text-gray-900 mt-1 text-sm">7 Warning Signs Your Boiler Needs Replacing</p>
+            </Link>
+            <Link to="/gas-safety-guide" className="block bg-gray-50 border border-gray-200 rounded-xl p-5 hover:border-blue-800 hover:bg-blue-50 transition-colors">
+              <span className="text-xs font-bold text-green-600 uppercase tracking-wide">Gas Safety</span>
+              <p className="font-bold text-gray-900 mt-1 text-sm">Worcester Landlord Gas Safety Guide (CP12)</p>
+            </Link>
+            <Link to="/blog/boiler-cost-worcester" className="block bg-gray-50 border border-gray-200 rounded-xl p-5 hover:border-blue-800 hover:bg-blue-50 transition-colors">
+              <span className="text-xs font-bold text-blue-600 uppercase tracking-wide">Boiler Installation</span>
+              <p className="font-bold text-gray-900 mt-1 text-sm">How Much Does a New Boiler Cost in Worcester? (2026)</p>
+            </Link>
+          </div>
         </div>
 
         <div className="bg-blue-800 text-white p-8 rounded-2xl text-center">

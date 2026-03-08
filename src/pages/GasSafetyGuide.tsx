@@ -68,7 +68,7 @@ export default function GasSafetyGuide() {
           </p>
           <ul className="space-y-4 mb-6">
             {[
-              { title: 'Annual inspection', text: 'Have all gas appliances, pipework, and flues inspected by a Gas Safe registered engineer every 12 months.' },
+              { title: 'Annual inspection', text: <span>Have all gas appliances, pipework, and flues inspected by a Gas Safe registered engineer every 12 months. An annual service also protects against <Link to="/blog/carbon-monoxide-safety" className="text-blue-800 font-semibold hover:underline">carbon monoxide risk</Link>.</span> },
               { title: 'Provide the certificate to tenants', text: 'Give a copy of the Gas Safety Record to existing tenants within 28 days of the inspection, and to new tenants before they move in.' },
               { title: 'Keep records for two years', text: 'Retain copies of all Gas Safety Records for at least two years.' },
               { title: 'Only use Gas Safe engineers', text: 'All gas work must be carried out by an engineer registered on the Gas Safe Register. It is illegal to use an unregistered person.' },
@@ -98,12 +98,12 @@ export default function GasSafetyGuide() {
           </p>
           <ul className="space-y-3 mb-6">
             {[
-              'Ensures the boiler operates safely and does not produce dangerous carbon monoxide',
+              <span>Ensures the boiler operates safely and does not produce dangerous <Link to="/blog/carbon-monoxide-safety" className="text-blue-800 font-semibold hover:underline">carbon monoxide</Link></span>,
               'Identifies wear and small faults before they become expensive breakdowns',
               'Maintains efficiency — a well-serviced boiler uses less gas and reduces energy bills',
               'Satisfies most landlord insurance policy requirements',
-            ].map((item) => (
-              <li key={item} className="flex items-start gap-3 text-gray-700">
+            ].map((item, i) => (
+              <li key={i} className="flex items-start gap-3 text-gray-700">
                 <CheckCircle className="text-green-600 mt-1 flex-shrink-0" size={20} />
                 {item}
               </li>
@@ -169,6 +169,25 @@ export default function GasSafetyGuide() {
                 <p className="text-gray-600 leading-relaxed">{faq.a}</p>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* Related Guides */}
+        <section>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">Related Guides</h2>
+          <div className="grid md:grid-cols-3 gap-4">
+            <Link to="/blog/carbon-monoxide-safety" className="block bg-gray-50 border border-gray-200 rounded-xl p-5 hover:border-blue-800 hover:bg-blue-50 transition-colors">
+              <span className="text-xs font-bold text-red-600 uppercase tracking-wide">Gas Safety</span>
+              <p className="font-bold text-gray-900 mt-1 text-sm">Carbon Monoxide: The Silent Killer Every Homeowner Must Know About</p>
+            </Link>
+            <Link to="/blog/signs-boiler-needs-replacing" className="block bg-gray-50 border border-gray-200 rounded-xl p-5 hover:border-blue-800 hover:bg-blue-50 transition-colors">
+              <span className="text-xs font-bold text-orange-600 uppercase tracking-wide">Boiler Advice</span>
+              <p className="font-bold text-gray-900 mt-1 text-sm">7 Warning Signs Your Boiler Needs Replacing</p>
+            </Link>
+            <Link to="/blog/boiler-cost-worcester" className="block bg-gray-50 border border-gray-200 rounded-xl p-5 hover:border-blue-800 hover:bg-blue-50 transition-colors">
+              <span className="text-xs font-bold text-blue-600 uppercase tracking-wide">Boiler Installation</span>
+              <p className="font-bold text-gray-900 mt-1 text-sm">How Much Does a New Boiler Cost in Worcester? (2026)</p>
+            </Link>
           </div>
         </section>
 
