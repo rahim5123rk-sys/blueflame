@@ -116,6 +116,7 @@ export default function App() {
   const location = useLocation();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const meta = PAGE_META[location.pathname] ?? PAGE_META['/'];
 
     document.title = meta.title;
