@@ -139,9 +139,9 @@ export default function HowToBleedRadiator() {
               <span className="text-xs font-bold text-red-600 uppercase tracking-wide">Gas Safety</span>
               <p className="font-bold text-gray-900 mt-1 text-sm">Carbon Monoxide: The Silent Killer Every Homeowner Must Know About</p>
             </Link>
-            <Link to="/blog/boiler-cost-worcester" className="block bg-gray-50 border border-gray-200 rounded-xl p-5 hover:border-blue-800 hover:bg-blue-50 transition-colors">
-              <span className="text-xs font-bold text-blue-600 uppercase tracking-wide">Boiler Installation</span>
-              <p className="font-bold text-gray-900 mt-1 text-sm">How Much Does a New Boiler Cost in Worcester? (2026)</p>
+            <Link to="/blog/how-to-repressurise-a-boiler" className="block bg-gray-50 border border-gray-200 rounded-xl p-5 hover:border-blue-800 hover:bg-blue-50 transition-colors">
+              <span className="text-xs font-bold text-emerald-600 uppercase tracking-wide">DIY Heating Tips</span>
+              <p className="font-bold text-gray-900 mt-1 text-sm">How to Repressurise a Boiler: Step-by-Step Guide</p>
             </Link>
           </div>
         </div>

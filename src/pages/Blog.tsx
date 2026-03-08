@@ -42,6 +42,30 @@ export const BLOG_POSTS = [
     readTime: '4 min read',
     category: 'DIY Heating Tips',
   },
+  {
+    slug: 'how-to-repressurise-a-boiler',
+    title: 'How to Repressurise a Boiler: Step-by-Step Guide',
+    excerpt: 'Boiler showing a low pressure warning? Here\'s how to safely top up your boiler pressure in under 10 minutes — and when to call a professional.',
+    date: '2026-03-08',
+    readTime: '4 min read',
+    category: 'DIY Heating Tips',
+  },
+  {
+    slug: 'what-is-a-power-flush',
+    title: 'What is a Power Flush? Do You Need One? (Worcester Guide)',
+    excerpt: 'Cold radiator bottoms, a noisy boiler, or slow heating? Sludge is probably the cause. Find out what a power flush is, what it costs, and whether you need one.',
+    date: '2026-03-08',
+    readTime: '5 min read',
+    category: 'Boiler Advice',
+  },
+  {
+    slug: 'annual-boiler-service-worcester',
+    title: 'Annual Boiler Service: What\'s Included and Why You Shouldn\'t Skip It',
+    excerpt: 'A boiler service isn\'t just a box-ticking exercise — it keeps your warranty valid, your gas bills down, and your family safe from carbon monoxide. Here\'s exactly what it covers.',
+    date: '2026-03-08',
+    readTime: '5 min read',
+    category: 'Boiler Servicing',
+  },
 ];
 
 export default function Blog() {

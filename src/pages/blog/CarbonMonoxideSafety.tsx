@@ -129,9 +129,9 @@ export default function CarbonMonoxideSafety() {
               <span className="text-xs font-bold text-green-600 uppercase tracking-wide">Gas Safety</span>
               <p className="font-bold text-gray-900 mt-1 text-sm">Worcester Landlord Gas Safety Guide (CP12)</p>
             </Link>
-            <Link to="/blog/boiler-cost-worcester" className="block bg-gray-50 border border-gray-200 rounded-xl p-5 hover:border-blue-800 hover:bg-blue-50 transition-colors">
-              <span className="text-xs font-bold text-blue-600 uppercase tracking-wide">Boiler Installation</span>
-              <p className="font-bold text-gray-900 mt-1 text-sm">How Much Does a New Boiler Cost in Worcester? (2026)</p>
+            <Link to="/blog/annual-boiler-service-worcester" className="block bg-gray-50 border border-gray-200 rounded-xl p-5 hover:border-blue-800 hover:bg-blue-50 transition-colors">
+              <span className="text-xs font-bold text-blue-600 uppercase tracking-wide">Boiler Servicing</span>
+              <p className="font-bold text-gray-900 mt-1 text-sm">Annual Boiler Service: What's Included & Why It Matters</p>
             </Link>
           </div>
         </div>
